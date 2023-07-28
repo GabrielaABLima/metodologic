@@ -1,0 +1,88 @@
+
+.text {
+  color: #201a29;
+  font-family: "Lexend", sans-serif;
+  font-weight: bold;
+}
+
+.menu {
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+.profile-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+}
+
+.variant2 {
+  margin: 0;
+  color: #ffffff;
+  font-family: "Lexend", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.variant3 {
+  margin: 0;
+  color: #ffffff;
+  font-family: "Lexend", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.variant1 {
+  color: #ffffff;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.round-button {
+  height: 20px;
+  width: 20px;
+  border-radius: 25px;
+  border: 0.5px solid rgba(218, 206, 102, 0.377);
+  background-color: #170523;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.round-button:hover {
+
+  background-color: rgba(218, 206, 102, 0.377);
+  cursor: pointer;
+
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 30px;
+  position: relative;
+  height: 100%;
+}
+
+.menu-button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background-color: #FFEB3B;
+  border-radius: 2px; /* Adjust the radius to control the roundness of the border */
+  transition: width 0.3s;
+}
+
+.menu-button:hover::before {
+  width: 100%;
+}
+

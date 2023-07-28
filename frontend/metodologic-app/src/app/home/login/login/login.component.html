@@ -1,0 +1,38 @@
+
+<!-- input.component.html -->
+<div class="form-login">
+  <div class="login-circle">
+    <svg width="60" height="75" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.3739 15.2845C17.595 15.2845 21.0161 11.8634 21.0161 7.64223C21.0161 3.42109 17.595 0 13.3739 0C9.15276 0 5.73167 3.42109 5.73167 7.64223C5.73167 11.8634 9.15276 15.2845 13.3739 15.2845ZM18.7235 17.195H17.7264C16.4009 17.804 14.9262 18.1503 13.3739 18.1503C11.8216 18.1503 10.3528 17.804 9.02141 17.195H8.02434C3.59423 17.195 0 20.7892 0 25.2193V27.7031C0 29.2853 1.28366 30.5689 2.86584 30.5689H23.882C25.4641 30.5689 26.7478 29.2853 26.7478 27.7031V25.2193C26.7478 20.7892 23.1536 17.195 18.7235 17.195Z" fill="#1A1A37"/>
+    </svg>
+  </div>
+  <p class="variant4">Login</p>
+<mat-form-field appearance="outline" color="primary" style="width: calc(30% + 90px);">
+  <mat-label style="flex-direction: column;">
+    <svg width="16" height="15" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.3739 15.2845C17.595 15.2845 21.0161 11.8634 21.0161 7.64223C21.0161 3.42109 17.595 0 13.3739 0C9.15276 0 5.73167 3.42109 5.73167 7.64223C5.73167 11.8634 9.15276 15.2845 13.3739 15.2845ZM18.7235 17.195H17.7264C16.4009 17.804 14.9262 18.1503 13.3739 18.1503C11.8216 18.1503 10.3528 17.804 9.02141 17.195H8.02434C3.59423 17.195 0 20.7892 0 25.2193V27.7031C0 29.2853 1.28366 30.5689 2.86584 30.5689H23.882C25.4641 30.5689 26.7478 29.2853 26.7478 27.7031V25.2193C26.7478 20.7892 23.1536 17.195 18.7235 17.195Z" fill="#1A1A37"/>
+    </svg>
+
+      Email</mat-label>
+  <input matInput /> <!-- Adicione o elemento input -->
+</mat-form-field>
+<mat-form-field appearance="outline" color="primary" style="width: calc(30% + 90px); margin-bottom: 0px;">
+  <mat-label >
+    <svg width="14" height="19" viewBox="0 0 29 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M25.9288 14.8582H24.3931V10.2513C24.3931 4.88938 20.0294 0.525635 14.6675 0.525635C9.30558 0.525635 4.94184 4.88938 4.94184 10.2513V14.8582H3.40622C1.71063 14.8582 0.334961 16.2338 0.334961 17.9294V30.2144C0.334961 31.91 1.71063 33.2857 3.40622 33.2857H25.9288C27.6243 33.2857 29 31.91 29 30.2144V17.9294C29 16.2338 27.6243 14.8582 25.9288 14.8582ZM19.2744 14.8582H10.0606V10.2513C10.0606 7.71109 12.1273 5.64439 14.6675 5.64439C17.2077 5.64439 19.2744 7.71109 19.2744 10.2513V14.8582Z" fill="#1A1A37"/>
+      </svg>
+
+      Senha
+    </mat-label>
+  <input matInput /> <!-- Adicione o elemento input -->
+  <mat-hint align="end" id="senha-texto">Esqueci minha senha</mat-hint>
+</mat-form-field>
+
+<button class="login-button"><p class="variant3">Entrar</p></button>
+<a id="conta-texto">Não tenho uma conta</a>
+</div>
+
+
+
+
+
