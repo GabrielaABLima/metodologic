@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'journey',
     loadChildren: () => import('./dashboard/journey/journey.module').then(m => m.JourneyModule)
+  },
+  {
+    path: 'classes',
+    loadChildren: () => import('./dashboard/classes/classes.module').then(m => m.ClassesModule)
   }
 ];
 
