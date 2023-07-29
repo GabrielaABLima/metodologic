@@ -71,7 +71,6 @@
 
 .custom-table td {
   border-bottom: 1px solid #ddd;
-  border-radius: 0 0 8px 0; /* Adicione o border-radius desejado */
   font-weight: 400;
   font-size: 13px;
 }
@@ -86,7 +85,6 @@
 
 .custom-table tr:last-child td {
   border-bottom: none;
-  border-radius: 0 0 8px 8px; /* Adicione o border-radius desejado */
 }
 
 .custom-table thead {
