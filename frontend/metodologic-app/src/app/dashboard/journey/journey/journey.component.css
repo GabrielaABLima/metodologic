@@ -1,0 +1,14 @@
+.modules-container {
+  margin: 50px;
+  background-color: #ebe8ef44;
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.variant2 {
+  color: #170523;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  margin-left: 52px;
+}

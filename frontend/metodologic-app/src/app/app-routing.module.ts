@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./home/register/register.module').then(m => m.RegisterModule)
+  },
+  {
+    path: 'journey',
+    loadChildren: () => import('./dashboard/journey/journey.module').then(m => m.JourneyModule)
   }
 ];
 
