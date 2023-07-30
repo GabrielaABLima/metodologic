@@ -92,18 +92,7 @@
   min-height: 100vh; /* Garante que o contêiner tenha pelo menos a altura total da viewport */
 }
 
-/* Defina o estilo para o mat-toolbar (menu) */
-mat-toolbar.menu {
-  position: fixed; /* Fixa o menu na parte superior da viewport */
-  top: 0; /* Coloca o menu no topo */
-  width: 100%; /* Define a largura do menu como 100% */
-  z-index: 999; /* Define a ordem de empilhamento, garantindo que o menu fique acima do conteúdo abaixo */
-}
 
-/* Defina o estilo para o router-outlet */
-.router-container {
 
-  margin-top: 100px;
-}
 
 
