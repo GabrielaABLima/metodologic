@@ -11,7 +11,14 @@
       <input matInput />
     </mat-form-field>
     <div style="display: flex; justify-content: flex-end;">
-      <button class="play-button" ><p class="variant3">+</p></button>
+      <button class="filter-button " >
+        <svg width="42" height="22" viewBox="0 0 42 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="42" height="4" rx="2" fill="#1A1A37"/>
+          <rect x="7" y="9" width="28" height="4" rx="2" fill="#1A1A37"/>
+          <rect x="15" y="18" width="12" height="4" rx="2" fill="#1A1A37"/>
+        </svg>
+
+      </button>
     </div>
 </div>
 
@@ -19,31 +26,31 @@
 <table class="custom-table mat-table">
   <thead>
     <tr>
-      <th>Código</th>
+      <th></th>
+      <th>Data de entrega</th>
       <th>Nome</th>
       <th>Instituição</th>
       <th>Curso</th>
-      <th>Descrição</th>
-      <th>Participantes</th>
-      <th></th>
+      <th>Data da atribuição</th>
+      <th>Nota</th>
+
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let class of dataSource" class="tableRow">
-      <td>{{ class.code }}</td>
-      <td>{{ class.name }}</td>
-      <td>{{ class.institution }}</td>
-      <td>{{ class.course }}</td>
-      <td>{{ class.description }}</td>
-      <td>{{ class.participant }}</td>
+    <tr *ngFor="let homework of dataSource" class="tableRow">
       <td>
-        <div class="button-actions">
-          <svg width="4" height="14" viewBox="0 0 8 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 9.77778C6.21111 9.77778 8 11.5667 8 13.7778C8 15.9889 6.21111 17.7778 4 17.7778C1.78889 17.7778 0 15.9889 0 13.7778C0 11.5667 1.78889 9.77778 4 9.77778ZM0 4C0 6.21111 1.78889 8 4 8C6.21111 8 8 6.21111 8 4C8 1.78889 6.21111 0 4 0C1.78889 0 0 1.78889 0 4ZM0 23.5556C0 25.7667 1.78889 27.5556 4 27.5556C6.21111 27.5556 8 25.7667 8 23.5556C8 21.3444 6.21111 19.5556 4 19.5556C1.78889 19.5556 0 21.3444 0 23.5556Z" fill="#1A1A37"/>
-            </svg>
-
-        </div>
+        <svg width="54" height="24" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" [attr.fill]="homework.color"/>
+          <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  [attr.fill]="homework.color"/>
+          <path opacity="0.7" d="M47.5 42.0068L0 18.1293L47.5 0L93.5 23.8775L47.5 42.0068Z" [attr.fill]="homework.color"/>
+        </svg>
       </td>
+      <td>{{ homework.deliveryDate }}</td>
+      <td>{{ homework.name }}</td>
+      <td>{{ homework.institution }}</td>
+      <td>{{ homework.course }}</td>
+      <td>{{ homework.postDate }}</td>
+      <td>{{ homework.grade }}/{{homework.maxGrade}}</td>
     </tr>
   </tbody>
 </table>

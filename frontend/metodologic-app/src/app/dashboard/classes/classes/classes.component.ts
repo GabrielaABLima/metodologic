@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 
 export interface PeriodicElement {
+  code: string;
   name: string;
+  course: string;
+  institution: string;
   participant: number;
-  symbol: string;
+  description: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {name: 'Escrita científica - IFSP', participant: 25, symbol: 'H'},
-  {name: 'Metodologias de pesquisa - UNESP', participant: 12, symbol: 'He'},
-  {name: 'Produção de Textos Científicos - UNIFAE', participant: 23, symbol: 'Li'},
-  {name: 'PROFEPT - IFSP', participant: 18, symbol: 'Be'},
-  {name: 'Escrita Científica - Unifeob', participant: 37, symbol: 'B'},
+  {code: "ECC6", name: 'Escrita científica', institution: "IFSP", course: "Bacharelado em Ciência da Computação", participant: 25, description: "Disciplina que tem como foco o ensino da escrita necessária para produção de textos científicos"},
+  {code: "PDTC7", name: 'Produção de Textos Científicos', institution: "IFSP", course: "Engenharia de Controle e Automação", participant: 33, description: "Disciplina que tem como foco o ensino da escrita necessária para produção de textos científicos"},
+  {code: "MTDPC", name: 'Metodologias de Pesquisa', institution: "Unifeob", course: "Workshop de Produção de textos", participant: 21, description: "Disciplina que tem como foco o ensino da escrita necessária para produção de textos científicos"},
+  {code: "TDEC", name: 'Técnicas de Escritas Científicas', institution: "UNIFAE", course: "Palestra - textos acadêmicos", participant: 25, description: "Disciplina que tem como foco o ensino da escrita necessária para produção de textos científicos"},
 
 ];
 
@@ -21,7 +23,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./classes.component.css']
 })
 export class ClassesComponent {
-  displayedColumns: string[] = ['name', 'participant', 'symbol'];
+  displayedColumns: string[] = ['code', 'name', 'institution', 'course', 'participant', 'description'];
   dataSource = ELEMENT_DATA;
 
 }

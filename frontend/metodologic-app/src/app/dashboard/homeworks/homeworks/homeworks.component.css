@@ -13,8 +13,8 @@
   margin-left: 52px;
 }
 
-.play-button {
-  background-color: #170523;
+.filter-button {
+  background-color: #ffffff;
   width: 30px;
   height: 30px;
   border-radius: 20px;
@@ -27,8 +27,8 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-.play-button:hover{
-  background-color: #503d73;
+.filter-button:hover{
+  background-color: #cecece;
 }
 
 .variant3 {
@@ -73,6 +73,7 @@
   border-bottom: 1px solid #ddd;
   font-weight: 400;
   font-size: 13px;
+  cursor: pointer;
 }
 
 .tableRow {
