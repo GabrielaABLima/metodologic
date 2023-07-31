@@ -1,0 +1,31 @@
+.title {
+  color: #170523;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 5px;
+}
+
+.description {
+  color: #1705237c;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  margin: 5px;
+}
+
+.progress-bar {
+  width: 10vw;
+  background-color: #c7c5ca;
+  height: 8px;
+  border-radius: 14px;
+  margin: 5px;
+}
+
+.progress-bar-done {
+  width: 7vw;
+  background-color: #170523;
+  height: 100%;
+  border-radius: 14px;
+}
+
