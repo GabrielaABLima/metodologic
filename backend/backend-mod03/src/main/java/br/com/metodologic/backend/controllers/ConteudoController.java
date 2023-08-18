@@ -1,7 +1,5 @@
 
 package br.com.metodologic.backend.controllers;
-
-import br.com.metodologic.backend.entidades.Interfaces.FornecedorCount;
 import br.com.metodologic.backend.repositorios.ConteudoRepository;
 import java.util.HashMap;
 import java.util.Map;
