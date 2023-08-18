@@ -19,7 +19,7 @@
 }
 
 .variant4 {
-  color: #170523;
+  color: #50ADE4;
   font-family: 'Lexend', sans-serif;
   font-weight: 700;
   font-size: calc(35px - 0.5vw);
@@ -44,14 +44,14 @@
 }
 
 .variant3 {
-  color: #170523;
+  color: #50ADE4;
   font-family: 'Lexend', sans-serif;
   font-weight: 300;
   font-size: 18px;
 }
 
 #senha-texto {
-  color: #170523;
+  color: #50ADE4;
   font-family: 'Lexend', sans-serif;
   font-weight: 300;
   font-size: 12px;
@@ -61,7 +61,7 @@
 
 
 #conta-texto {
-  color: #170523;
+  color: #50ADE4;
   font-family: 'Lexend', sans-serif;
   font-weight: 400;
   font-size: 14px;
@@ -76,7 +76,7 @@
 }
 
 .variant2 {
-  color: #170523;
+  color: #50ADE4;
   font-family: 'Lexend', sans-serif;
   font-weight: 500;
   font-size: 18px;
@@ -84,21 +84,21 @@
 }
 
 .variant5 {
-  color: #170523;
+  color: #50ADE4;
   font-family: 'Lexend', sans-serif;
   font-weight: 300;
   font-size: 12px;
 }
 
 .informative-card {
-  background-color: #17052313;
+  background-color: #50ADE413;
   margin: 10px 50px 10px 50px;
   padding: 0px 10px 0px 20px;
   border-radius: 6px;
   align-items: center;
   display: flex;
   flex-direction: row;
-  border: 1px solid #170523;
+  border: 1px solid #50ADE4;
 }
 
 .form-container {

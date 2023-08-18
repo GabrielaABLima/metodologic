@@ -19,7 +19,7 @@
 }
 
 .variant4 {
-  color: #170523;
+  color: #17384C;
   font-family: 'Lexend', sans-serif;
   font-weight: 700;
   font-size: calc(35px - 0.5vw);
@@ -43,14 +43,14 @@
 }
 
 .variant3 {
-  color: #170523;
+  color: #50ADE4;
   font-family: 'Lexend', sans-serif;
   font-weight: 300;
   font-size: 18px;
 }
 
 #senha-texto {
-  color: #170523;
+  color: #50ADE4;
   font-family: 'Lexend', sans-serif;
   font-weight: 300;
   font-size: 12px;
@@ -60,7 +60,7 @@
 
 
 #conta-texto {
-  color: #170523;
+  color: #50ADE4;
   font-family: 'Lexend', sans-serif;
   font-weight: 400;
   font-size: 14px;

@@ -1,5 +1,5 @@
 .title {
-  color: #170523;
+  color: #50ADE4;
   font-family: 'Lexend', sans-serif;
   font-weight: 500;
   font-size: 16px;
@@ -7,7 +7,7 @@
 }
 
 .description {
-  color: #1705237c;
+  color: #50ADE47c;
   font-family: 'Lexend', sans-serif;
   font-weight: 500;
   font-size: 12px;
@@ -24,7 +24,7 @@
 
 .progress-bar-done {
   width: 7vw;
-  background-color: #170523;
+  background-color: #50ADE4;
   height: 100%;
   border-radius: 14px;
 }
