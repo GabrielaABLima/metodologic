@@ -9,7 +9,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ModalModule } from './modal/modal.module';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 
 
@@ -27,6 +33,11 @@ import { MatMenuModule } from '@angular/material/menu';
     MatCardModule,
     MatIconModule,
     MatMenuModule,
+    FormsModule,
+    HttpClientModule,
+    MatDialogModule,
+    ModalModule,
+    MatFormFieldModule,
 
   ],
   providers: [],

@@ -55,9 +55,5 @@ public class Professor {
     
     @Column( name="USR_NIVEL" )
     private int nivel;
-    
-
-    @Column( name="FK_JORNADA_JRN_ID" )
-    private Jornada jornada;
         
 }

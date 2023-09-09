@@ -8,11 +8,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'; // Importe o MatInputModule do Angular Material
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
-
-
+import { ModalModule } from 'src/app/modal/modal.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
-    ClassesComponent
+    ClassesComponent,
   ],
   imports: [
     CommonModule,
@@ -21,7 +21,10 @@ import {MatIconModule} from '@angular/material/icon';
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
-    MatIconModule
+    MatIconModule,
+    ModalModule,
+    FormsModule,
+    ReactiveFormsModule,
 
   ]
 })

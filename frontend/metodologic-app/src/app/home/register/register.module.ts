@@ -1,19 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input'; // Importe o MatInputModule do Angular Material
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatIconModule} from '@angular/material/icon';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatInputModule } from '@angular/material/input';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register/register.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    RegisterComponent
-  ],
+  declarations: [RegisterComponent],
   imports: [
     CommonModule,
     RegisterRoutingModule,
@@ -21,7 +19,9 @@ import { RegisterComponent } from './register/register.component';
     MatInputModule,
     MatGridListModule,
     MatIconModule,
-    MatRadioModule
-  ]
+    MatRadioModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
-export class RegisterModule { }
+export class RegisterModule {}

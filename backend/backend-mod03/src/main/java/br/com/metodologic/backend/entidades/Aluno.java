@@ -16,7 +16,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Length;
+import java.sql.Date;
 
 @Entity
 @Table(name="ALUNOS")
@@ -30,6 +32,7 @@ public class Aluno {
     @Column( name="ALN_ID" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     @EqualsAndHashCode.Include
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private Long id;
         
     @NotNull( message = "Nome é obrigatório" )
@@ -49,6 +52,17 @@ public class Aluno {
     @Column( name="USR_SENHA" )
     @Length( max = 30 )
     private String senha;
+    
+    @Column( name="USR_DATA_NASCIMENTO" )
+    private Date dataNascimento;
+    
+    @Column( name="USR_CURSO" )
+    @Length( max = 100 )
+    private String curso;
+    
+    @Column( name="USR_INSTITUICAO_ENSINO" )
+    @Length( max = 200 )
+    private String instituicaoEnsino;
      
     @Column( name="USR_PONTOS" )
     private int pontos;
@@ -56,8 +70,5 @@ public class Aluno {
     @Column( name="USR_NIVEL" )
     private int nivel;
     
-
-    @Column( name="FK_JORNADA_JRN_ID" )
-    private Jornada jornada;
         
 }

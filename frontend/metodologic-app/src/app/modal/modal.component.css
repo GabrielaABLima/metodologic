@@ -1,0 +1,66 @@
+.modal {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #33333342;
+  min-width: 420px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+}
+
+.overlay {
+  background: #000;
+  height: 100vh;
+  left: 0;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 10;
+}
+
+.modal-header{
+
+  height: 50px;
+  border-radius: 8px 8px 0px 0px;
+  border-bottom: 1px solid #17384c31;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 98%;
+  margin: auto;
+}
+
+p{
+  color: #17384C;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 20px;
+}
+
+.variant2 {
+  color: #50ADE4;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  margin-left: 52px;
+}
+
+.close-button {
+  background-color: #50aee411;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.close-button:hover{
+  background-color: #503d731f;
+}

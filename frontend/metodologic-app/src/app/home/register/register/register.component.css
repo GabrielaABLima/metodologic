@@ -134,3 +134,24 @@
   margin-bottom: 30px;
 
 }
+
+mat-form-field{
+  width: 80%;
+
+}
+
+.form-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.campo{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+}

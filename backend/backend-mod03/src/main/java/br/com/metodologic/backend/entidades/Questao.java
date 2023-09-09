@@ -49,9 +49,6 @@ public class Questao {
     
     @Column( name="QST_NIVEL" )
     private int nivel;
-    
 
-    @Column( name="FK_JORNADA_JRN_ID" )
-    private Jornada jornada;
         
 }
