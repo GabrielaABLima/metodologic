@@ -68,14 +68,14 @@
       <div *ngIf="formCreateClass === 'active tab'" class="formCreate">
         <mat-form-field appearance="outline" color="primary" style="width: 90%; margin-top: 20px;">
           <mat-label>Código</mat-label>
-          <input matInput formControlName="nome">
+          <input matInput formControlName="codigo">
         </mat-form-field>
         <div
           *ngIf="
-          createClassFormGroup.get('nome')?.invalid &&
-            (createClassFormGroup.get('nome')?.dirty ||
-            createClassFormGroup.get('nome')?.touched ||
-            createClassFormGroup.get('nome')?.errors?.['maxlength'])
+          createClassFormGroup.get('codigo')?.invalid &&
+            (createClassFormGroup.get('codigo')?.dirty ||
+            createClassFormGroup.get('codigo')?.touched ||
+            createClassFormGroup.get('codigo')?.errors?.['maxlength'])
           "
           class="text-danger"
         >
@@ -85,14 +85,14 @@
           <mat-label style="flex-direction: column;">
               Nome
           </mat-label>
-          <input matInput formControlName="email" />
+          <input matInput formControlName="nome" />
         </mat-form-field>
         <div
           *ngIf="
-          createClassFormGroup.get('email')?.invalid &&
-            (createClassFormGroup.get('email')?.dirty ||
-            createClassFormGroup.get('email')?.touched ||
-            createClassFormGroup.get('email')?.errors?.['maxlength'])
+          createClassFormGroup.get('nome')?.invalid &&
+            (createClassFormGroup.get('nome')?.dirty ||
+            createClassFormGroup.get('nome')?.touched ||
+            createClassFormGroup.get('nome')?.errors?.['maxlength'])
           "
           class="text-danger"
         >
@@ -134,14 +134,14 @@
           <mat-label >
               Descrição
             </mat-label>
-          <input matInput formControlName="senha"/>
+          <input matInput formControlName="descricao"/>
         </mat-form-field>
         <div
           *ngIf="
-          createClassFormGroup.get('senha')?.invalid &&
-            (createClassFormGroup.get('senha')?.dirty ||
-            createClassFormGroup.get('senha')?.touched ||
-            createClassFormGroup.get('senha')?.errors?.['maxlength'])
+          createClassFormGroup.get('descricao')?.invalid &&
+            (createClassFormGroup.get('descricao')?.dirty ||
+            createClassFormGroup.get('descricao')?.touched ||
+            createClassFormGroup.get('descricao')?.errors?.['maxlength'])
           "
           class="text-danger"
         >
@@ -186,7 +186,7 @@
 
       </div>
       <div class="modal-footer">
-        <button class="form-button" routerLink="/journey"><p class="variant3">Salvar</p></button>
+        <button class="form-button" type="submit"><p class="variant3">Salvar</p></button>
       </div>
     </form>
 </app-modal>

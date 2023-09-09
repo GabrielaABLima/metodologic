@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Aluno } from 'src/app/dto/aluno/aluno.dto';
+import { Professor } from 'src/app/dto/professor/professor.dto';
+import { Turma } from 'src/app/dto/turma/turma.dto';
+import { ClassesService } from 'src/app/services/classes.service';
 
 export default interface PeriodicElement {
   code: string;
@@ -30,8 +33,6 @@ export class ClassesComponent {
   dataSource = ELEMENT_DATA;
 
   createClassFormGroup!: FormGroup;
-  imagemPromocional!: File | null;
-  pathImagemPromocional!: string;
 
 
   aluno = new Aluno(
@@ -44,11 +45,11 @@ export class ClassesComponent {
         0,
         0
       );
-      alunos: Aluno[]= [this.aluno];
+  alunos: Aluno[]= [this.aluno];
 
   constructor(
-    // private imageUploadService : ImageUploadService,
     //private studentsService: StudentsService,
+    private classesService: ClassesService,
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
@@ -57,27 +58,15 @@ export class ClassesComponent {
 
   ngOnInit(): void {
     this.createClassFormGroup = this.formBuilder.group({
+      codigo: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(10),
+      ]),
+
       nome: new FormControl('', [
         Validators.required,
         Validators.maxLength(60),
       ]),
-
-      email: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(60),
-      ]),
-
-      senha: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(60),
-      ]),
-
-      confirmarSenha: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(60),
-      ]),
-
-      dataNascimento: new FormControl('', [Validators.required]),
 
       curso: new FormControl('', [
         Validators.required,
@@ -89,24 +78,24 @@ export class ClassesComponent {
         Validators.maxLength(100),
       ]),
 
-      tipoPerfil: new FormControl('', [Validators.required]),
+      descricao: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(255),
+      ]),
 
 
     });
 
   }
 
+  get codigo() {
+    return this.createClassFormGroup.get('codigo');
+  }
   get nome() {
     return this.createClassFormGroup.get('nome');
   }
-  get email() {
-    return this.createClassFormGroup.get('email');
-  }
-  get senha() {
-    return this.createClassFormGroup.get('senha');
-  }
-  get dataNascimento() {
-    return this.createClassFormGroup.get('dataNascimento');
+  get descricao() {
+    return this.createClassFormGroup.get('descricao');
   }
   get curso() {
     return this.createClassFormGroup.get('curso');
@@ -114,31 +103,18 @@ export class ClassesComponent {
   get instituicaoEnsino() {
     return this.createClassFormGroup.get('instituicaoEnsino');
   }
-
-  get tipoPerfil() {
-    return this.createClassFormGroup.get('tipoPerfil');
+  private createTurma(): Turma {
+    return new Turma(
+      this.nome!.value,
+      this.codigo!.value,
+      this.curso!.value,
+      this.instituicaoEnsino!.value,
+      this.descricao!.value,
+      1,
+      [1],
+    );
   }
-  // private createAluno(): Aluno {
-  //   return new Aluno(
-  //     this.nome!.value,
-  //     this.email!.value,
-  //     this.senha!.value,
-  //     this.dataNascimento!.value,
-  //     this.curso!.value,
-  //     this.instituicaoEnsino!.value,
-  //     0,
-  //     0
-  //   );
-  // }
 
-  onImageSelected(image: File | null): void {
-    if (image) {
-      this.imagemPromocional = image;
-    } else {
-      this.imagemPromocional = null;
-      console.log('Nenhuma imagem selecionada.');
-    }
-  }
 
   selectStudents = "tab";
   formCreateClass = "active tab";
@@ -154,7 +130,15 @@ export class ClassesComponent {
   }
 
   onSubmitCadastro(): void {
-
+    this.classesService.save(this.createTurma()).subscribe({
+      next: (response) => {
+        console.log(response);
+        // this.router.navigate(['/']);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
   acaoPrimaria(){

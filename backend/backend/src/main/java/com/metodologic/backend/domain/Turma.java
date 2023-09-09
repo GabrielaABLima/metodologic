@@ -1,17 +1,25 @@
+
 package com.metodologic.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,48 +30,40 @@ import org.hibernate.validator.constraints.Length;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "PROFESSORES")
-public class Professor {
-       
+@Table(name = "TURMAS")
+public class Turma {
     @Id
-    @Column( name="PRF_ID" )
+    @Column( name="TRM_ID" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     @EqualsAndHashCode.Include
     private Long id;
         
     @NotNull( message = "Nome é obrigatório" )
     @NotEmpty( message = "Nome não pode ser vazio" )
-    @Column( name="USR_NOME" )
+    @Column( name="TRM_NOME" )
     @Length( max = 60 )
     private String nome;
     
-    @NotNull( message = "E-mail é obrigatório" )
-    @NotEmpty( message = "E-mail não pode ser vazio" )
-    @Column( name="USR_EMAIL" )
-    @Length( max = 100 )
-    private String email;
+    @NotNull( message = "Código é obrigatório" )
+    @NotEmpty( message = "Código não pode ser vazio" )
+    @Column( name="TRM_COD" )
+    @Length( max = 60 )
+    private String codigo;
     
-    @NotNull( message = "Senha é obrigatório" )
-    @NotEmpty( message = "Senha não pode ser vazio" )
-    @Column( name="USR_SENHA" )
-    @Length( max = 30 )
-    private String senha;
-    
-    @Column( name="USR_DATA_NASCIMENTO" )
-    private Date dataNascimento;
-    
-    @Column( name="USR_CURSO" )
+    @Column( name="TRM_CURSO" )
     @Length( max = 100 )
     private String curso;
     
-    @Column( name="USR_INSTITUICAO_ENSINO" )
+    @Column( name="TRM_INSTITUICAO_ENSINO" )
     @Length( max = 200 )
     private String instituicaoEnsino;
-     
-    @Column( name="USR_PONTOS" )
-    private int pontos;
     
-    @Column( name="USR_NIVEL" )
-    private int nivel;
- 
+    @Column( name="TRM_DESCRICAO" )
+    @Length( max = 200 )
+    private String descricao;
+    
+    @JoinColumn( name="FK_PROFESSORES_PRF_ID" )
+    @ManyToOne
+    private Professor professor;
+    
 }
