@@ -3,6 +3,8 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px #33333342;
   min-width: 420px;
+  width: 500px;
+  height: 600px;
   position: fixed;
   left: 50%;
   top: 50%;

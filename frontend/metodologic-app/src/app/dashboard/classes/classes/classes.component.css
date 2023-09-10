@@ -218,6 +218,17 @@
   height: 300px;
 }
 
+.emptyClassToAdd{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 90%;
+  background-color: #17384c1a;
+  border-radius: 10px;
+}
+
 .studentClass{
   display: flex;
   flex-direction: column;
@@ -254,4 +265,56 @@
 
 .remove-button:hover{
   background-color: #503d731f;
+}
+
+.buscar-aluno{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 87%;
+  padding: 10px;
+}
+
+.search-button {
+  background-color: #add2e7a6;
+  width: 45px;
+  height: 45px;
+  border-radius: 20px;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.search-button:hover{
+  background-color: #503d731f;
+}
+
+.variant8{
+  color: #17384C;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.informative-card {
+  background-color: #f9e93e13;
+  border-radius: 6px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #f9e93e;
+  width: 87%;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.info-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

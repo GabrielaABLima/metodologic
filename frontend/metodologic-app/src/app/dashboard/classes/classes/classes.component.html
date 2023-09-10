@@ -60,8 +60,11 @@
         <div [ngClass]="formCreateClass" (click)="clickCriarClasse()">
           <p>Informações</p>
         </div>
+        <div [ngClass]="selectAddStudents" (click)="clickAddStudents()">
+          <p>Adicionar Alunos</p>
+        </div>
         <div [ngClass]="selectStudents" (click)="clickStudents()">
-          <p>Alunos</p>
+          <p>Participantes</p>
         </div>
       </div>
     </div>
@@ -146,18 +149,54 @@
           class="text-danger"
         >
         </div>
+        <div class="modal-footer">
+          <button class="form-button" type="submit"><p class="variant3">Salvar</p></button>
+        </div>
       </div>
-      <div *ngIf="selectStudents === 'active tab'" class="formCreate">
-        <mat-form-field appearance="outline" color="primary" style="width: 90%; margin-top: 20px;">
-          <mat-label >
+
+
+      <div *ngIf="selectAddStudents === 'active tab'" class="formCreate">
+        <div class="info-container">
+          <div class="informative-card">
+            <svg width="41" height="41" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.3935 0C4.65374 0 0 4.65541 0 10.3935C0 16.135 4.65374 20.787 10.3935 20.787C16.1333 20.787 20.787 16.135 20.787 10.3935C20.787 4.65541 16.1333 0 10.3935 0ZM10.3935 4.61003C11.3656 4.61003 12.1537 5.39809 12.1537 6.37022C12.1537 7.34235 11.3656 8.13041 10.3935 8.13041C9.42138 8.13041 8.63332 7.34235 8.63332 6.37022C8.63332 5.39809 9.42138 4.61003 10.3935 4.61003ZM12.7404 15.255C12.7404 15.5327 12.5153 15.7579 12.2375 15.7579H8.5495C8.27177 15.7579 8.04659 15.5327 8.04659 15.255V14.2492C8.04659 13.9714 8.27177 13.7463 8.5495 13.7463H9.05241V11.0641H8.5495C8.27177 11.0641 8.04659 10.8389 8.04659 10.5612V9.55533C8.04659 9.27759 8.27177 9.05241 8.5495 9.05241H11.2317C11.5094 9.05241 11.7346 9.27759 11.7346 9.55533V13.7463H12.2375C12.5153 13.7463 12.7404 13.9714 12.7404 14.2492V15.255Z" fill="#f9e93e"/>
+            </svg>
+
+            <p class="variant6" style="margin-left: 20px;">
+              Nesta aba serão listados abaixo somente os alunos a serem adicionados, para conferir quais alunos já estão na turma, selecione a aba 'Participantes'.
+            </p>
+          </div>
+        </div>
+        <div class="buscar-aluno">
+          <mat-form-field appearance="outline" color="primary" style="width: 80%; margin-top: 20px;">
+            <mat-label >
+              Aluno
+            </mat-label>
+            <input matInput />
+          </mat-form-field>
+          <button class="search-button">
             <svg width="19" height="19" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M29.6686 26.0085L23.8112 20.1511C23.5468 19.8867 23.1885 19.7399 22.8125 19.7399H21.8549C23.4763 17.666 24.4398 15.0575 24.4398 12.2199C24.4398 5.46959 18.9703 0 12.2199 0C5.46959 0 0 5.46959 0 12.2199C0 18.9703 5.46959 24.4398 12.2199 24.4398C15.0575 24.4398 17.666 23.4763 19.7399 21.8549V22.8125C19.7399 23.1885 19.8867 23.5468 20.1511 23.8112L26.0085 29.6686C26.5607 30.2208 27.4537 30.2208 28.0001 29.6686L29.6627 28.0059C30.2149 27.4537 30.2149 26.5607 29.6686 26.0085ZM12.2199 19.7399C8.06632 19.7399 4.69997 16.3794 4.69997 12.2199C4.69997 8.06632 8.06045 4.69997 12.2199 4.69997C16.3735 4.69997 19.7399 8.06045 19.7399 12.2199C19.7399 16.3735 16.3794 19.7399 12.2199 19.7399Z" fill="#17384C"/>
             </svg>
+          </button>
+        </div>
+        <div class="resultado-busca">
 
-            </mat-label>
-          <input matInput />
-        </mat-form-field>
-        <div class="students">
+        </div>
+        <div *ngIf="alunos.length > 0" class="emptyClassToAdd">
+          <svg style="margin-bottom: 20px;" width="78" height="62" viewBox="0 0 78 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M75.8221 25.274H68.0455V17.4974C68.0455 16.4281 67.1706 15.5533 66.1013 15.5533H62.213C61.1437 15.5533 60.2689 16.4281 60.2689 17.4974V25.274H52.4922C51.4229 25.274 50.5481 26.1489 50.5481 27.2182V31.1065C50.5481 32.1758 51.4229 33.0507 52.4922 33.0507H60.2689V40.8273C60.2689 41.8966 61.1437 42.7714 62.213 42.7714H66.1013C67.1706 42.7714 68.0455 41.8966 68.0455 40.8273V33.0507H75.8221C76.8914 33.0507 77.7663 32.1758 77.7663 31.1065V27.2182C77.7663 26.1489 76.8914 25.274 75.8221 25.274ZM27.2182 31.1065C35.8089 31.1065 42.7714 24.144 42.7714 15.5533C42.7714 6.96251 35.8089 0 27.2182 0C18.6275 0 11.6649 6.96251 11.6649 15.5533C11.6649 24.144 18.6275 31.1065 27.2182 31.1065ZM38.1055 34.9948H36.0763C33.3787 36.2342 30.3774 36.939 27.2182 36.939C24.0589 36.939 21.0698 36.2342 18.3601 34.9948H16.3309C7.31489 34.9948 0 42.3097 0 51.3257V56.3805C0 59.6006 2.61246 62.213 5.83247 62.213H48.6039C51.8239 62.213 54.4364 59.6006 54.4364 56.3805V51.3257C54.4364 42.3097 47.1215 34.9948 38.1055 34.9948Z" fill="#17384C" fill-opacity="0.796078"/>
+          </svg>
+
+
+
+          <p class="variant6" style="padding: 10px 10px 0px 10px; text-align: center;">Ainda não foram selecionados alunos para serem adicionados</p>
+        </div>
+        <div *ngIf="alunos.length > 0" class="modal-footer">
+          <button class="form-button" type="submit"><p class="variant3">Adicionar</p></button>
+        </div>
+      </div>
+      <div *ngIf="selectStudents === 'active tab'" class="formCreate">
           <div *ngIf="alunos.length === 0" class="emptyClass">
             <svg style="margin-bottom: 20px;" width="78" height="62" viewBox="0 0 78 62" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M75.8221 25.274H68.0455V17.4974C68.0455 16.4281 67.1706 15.5533 66.1013 15.5533H62.213C61.1437 15.5533 60.2689 16.4281 60.2689 17.4974V25.274H52.4922C51.4229 25.274 50.5481 26.1489 50.5481 27.2182V31.1065C50.5481 32.1758 51.4229 33.0507 52.4922 33.0507H60.2689V40.8273C60.2689 41.8966 61.1437 42.7714 62.213 42.7714H66.1013C67.1706 42.7714 68.0455 41.8966 68.0455 40.8273V33.0507H75.8221C76.8914 33.0507 77.7663 32.1758 77.7663 31.1065V27.2182C77.7663 26.1489 76.8914 25.274 75.8221 25.274ZM27.2182 31.1065C35.8089 31.1065 42.7714 24.144 42.7714 15.5533C42.7714 6.96251 35.8089 0 27.2182 0C18.6275 0 11.6649 6.96251 11.6649 15.5533C11.6649 24.144 18.6275 31.1065 27.2182 31.1065ZM38.1055 34.9948H36.0763C33.3787 36.2342 30.3774 36.939 27.2182 36.939C24.0589 36.939 21.0698 36.2342 18.3601 34.9948H16.3309C7.31489 34.9948 0 42.3097 0 51.3257V56.3805C0 59.6006 2.61246 62.213 5.83247 62.213H48.6039C51.8239 62.213 54.4364 59.6006 54.4364 56.3805V51.3257C54.4364 42.3097 47.1215 34.9948 38.1055 34.9948Z" fill="#17384C" fill-opacity="0.796078"/>
@@ -168,6 +207,7 @@
             <p class="variant6">Ainda não foram adicionados alunos na turma</p>
             <p class="variant6">Busque os alunos pelo nome e adicione-os na turma</p>
           </div>
+
           <div *ngIf="alunos.length > 0" class="studentClass">
             <div *ngFor="let aluno of alunos" class="studentCard">
               <div style="display: flex; flex-direction: row;">
@@ -180,13 +220,8 @@
               </button>
             </div>
 
-          </div>
-
         </div>
-
-      </div>
-      <div class="modal-footer">
-        <button class="form-button" type="submit"><p class="variant3">Salvar</p></button>
       </div>
     </form>
+
 </app-modal>

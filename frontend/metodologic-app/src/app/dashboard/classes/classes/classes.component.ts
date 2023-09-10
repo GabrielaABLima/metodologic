@@ -118,15 +118,23 @@ export class ClassesComponent {
 
   selectStudents = "tab";
   formCreateClass = "active tab";
+  selectAddStudents = "tab";
 
 
   clickCriarClasse() {
     this.formCreateClass = 'active tab';
     this.selectStudents = 'tab';
+    this.selectAddStudents = 'tab';
+  }
+  clickAddStudents() {
+    this.formCreateClass = 'tab';
+    this.selectStudents = 'tab';
+    this.selectAddStudents = 'active tab';
   }
   clickStudents() {
     this.formCreateClass = 'tab';
     this.selectStudents = 'active tab';
+    this.selectAddStudents = 'tab';
   }
 
   onSubmitCadastro(): void {
