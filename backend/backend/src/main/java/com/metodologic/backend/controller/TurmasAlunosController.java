@@ -42,7 +42,7 @@ public class TurmasAlunosController {
         return new ResponseEntity<>(turmasAlunosRepository.findAll(), HttpStatus.OK);
     }
     
-    @GetMapping(path = "alunosByTurma/{id}")
+    @GetMapping(path = "/alunosByTurma/{id}")
     public ResponseEntity<List<Aluno>> findAlunosByTurma(@PathVariable long id) {
         List<TurmasAlunos> turmasAlunos = turmasAlunosRepository.findByTurmaId(id);
         List<Aluno> alunos = new ArrayList<>();
@@ -93,7 +93,7 @@ public class TurmasAlunosController {
 
     }
     
-    @DeleteMapping(path = "removerAlunoTurma/{alunoId}/{turmaId}")
+    @DeleteMapping(path = "/removerAlunoTurma/{alunoId}/{turmaId}")
     public ResponseEntity<Void> delete(@PathVariable long alunoId, @PathVariable long turmaId){
         Optional<TurmasAlunos> turmasAlunosOptional = turmasAlunosRepository.findOneTurmasAlunos(alunoId, turmaId);
 

@@ -1,0 +1,37 @@
+.card-student{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #17384c21;
+  width: 100%;
+}
+
+.variant6 {
+  color: #17384ccb;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.points{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.actions{
+  cursor: pointer;
+}
+
+.mat-icon-button{
+  border-radius: 50%;
+  width: 50px;
+}
+
+.icon-display {
+  transform: scale(0.8);
+}
+

@@ -15,6 +15,10 @@ export class StudentsService {
     return this.http.post<Aluno>(this.URL+`/add`, aluno)
   }
 
+  getAlunoByNameOrEmail(busca : string) : Observable<Aluno[]> {
+    return this.http.get<Aluno[]>(this.URL + `/aluno/` + busca);
+  }
+
 
 }
 

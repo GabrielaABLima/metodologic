@@ -40,6 +40,11 @@ public class AlunoController {
         return new ResponseEntity<>(alunoRepository.findAll(), HttpStatus.OK);
     }
     
+    @GetMapping(path = "/aluno/{busca}")
+    public ResponseEntity<List<Aluno>> findByNameOrEmail(@PathVariable String busca){
+        return new ResponseEntity<>(alunoRepository.findByNameOrEmailAlunos(busca), HttpStatus.OK);
+    }
+    
     @GetMapping(path = "/{id}")
     public ResponseEntity<Aluno> findById(@PathVariable long id){
         log.info(dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));

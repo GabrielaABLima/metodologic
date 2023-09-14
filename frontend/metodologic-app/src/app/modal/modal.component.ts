@@ -8,8 +8,10 @@ import { Component, Input } from '@angular/core';
 export class ModalComponent {
   @Input() title!: string;
   mostrar: boolean = false;
+  classId?: number;
 
-  toggle () {
+  toggle (classId?: number) {
+    this.classId = classId;
     this.mostrar = !this.mostrar;
   }
 }
