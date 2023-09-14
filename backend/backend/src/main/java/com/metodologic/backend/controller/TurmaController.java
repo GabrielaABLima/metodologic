@@ -61,6 +61,13 @@ public class TurmaController {
         }
     }
     
+    @GetMapping(path = "/professor/{professorId}")
+    public ResponseEntity<List<Turma>> findByProfessor(@PathVariable long professorId){
+        List<Turma> turmas = turmaRepository.findByProfessorId(professorId);
+
+        return new ResponseEntity<>(turmas, HttpStatus.OK);
+    }
+    
     @PostMapping(path = "/add")
     public ResponseEntity<Turma> save(@RequestBody TurmaCreateRequest request){
         Optional<Professor> optional = professorRepository.findById(request.professorId);

@@ -8,7 +8,7 @@
         </svg>
 
         </mat-label>
-      <input matInput />
+      <input matInput [(ngModel)]="termoDePesquisa" (input)="pesquisar()" />
     </mat-form-field>
     <div style="display: flex; justify-content: flex-end;">
       <button class="play-button" (click)="modal.toggle()"><p class="variant3">+</p></button>
@@ -25,30 +25,23 @@
       <th>Instituição</th>
       <th>Curso</th>
       <th>Descrição</th>
-      <th>Participantes</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let class of dataSource" class="tableRow">
-      <td>{{ class.code }}</td>
-      <td>{{ class.name }}</td>
-      <td>{{ class.institution }}</td>
-      <td>{{ class.course }}</td>
-      <td>{{ class.description }}</td>
-      <td>{{ class.participant }}</td>
+    <tr *ngFor="let class of resultados" class="tableRow">
+      <td>{{ class.codigo }}</td>
+      <td>{{ class.nome }}</td>
+      <td>{{ class.instituicaoEnsino }}</td>
+      <td>{{ class.curso }}</td>
+      <td>{{ class.descricao }}</td>
+      <!-- <td>{{ class. }}</td> -->
       <td>
-        <!-- <div class="button-actions">
-          <svg width="4" height="14" viewBox="0 0 8 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 9.77778C6.21111 9.77778 8 11.5667 8 13.7778C8 15.9889 6.21111 17.7778 4 17.7778C1.78889 17.7778 0 15.9889 0 13.7778C0 11.5667 1.78889 9.77778 4 9.77778ZM0 4C0 6.21111 1.78889 8 4 8C6.21111 8 8 6.21111 8 4C8 1.78889 6.21111 0 4 0C1.78889 0 0 1.78889 0 4ZM0 23.5556C0 25.7667 1.78889 27.5556 4 27.5556C6.21111 27.5556 8 25.7667 8 23.5556C8 21.3444 6.21111 19.5556 4 19.5556C1.78889 19.5556 0 21.3444 0 23.5556Z" fill="#17384C"/>
-          </svg>
-
-        </div> -->
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="modalEdit.toggle(class.id)">
+          <button mat-menu-item (click)="modalEdit.toggle(class.codigo)">
             <mat-icon class="icon-display" color="primary">edit</mat-icon>
             <span>Editar</span>
           </button>

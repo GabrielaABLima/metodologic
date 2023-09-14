@@ -18,7 +18,7 @@ export class ModalClassesComponent implements OnChanges {
   studentsSearchResult: Aluno[] = [];
   studentsToAdd: Aluno[] = [];
   studentsFromClass: Aluno[] = [];
-  @Input() classId?: number;
+  @Input() classId?: string;
 
 
   aluno = new Aluno(
@@ -191,7 +191,7 @@ export class ModalClassesComponent implements OnChanges {
 
     this.studentsToAdd.map((student) => {
       if(student.id && this.classId){
-          this.classesStudentsService.add({alunoId: student.id, turmaId: this.classId}).subscribe({
+          this.classesStudentsService.add({alunoId: student.id, turmaCod: this.classId}).subscribe({
             next: (response) => {
               console.log(response);
             },

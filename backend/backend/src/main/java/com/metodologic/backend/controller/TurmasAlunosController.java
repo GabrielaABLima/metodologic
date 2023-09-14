@@ -42,9 +42,9 @@ public class TurmasAlunosController {
         return new ResponseEntity<>(turmasAlunosRepository.findAll(), HttpStatus.OK);
     }
     
-    @GetMapping(path = "/alunosByTurma/{id}")
-    public ResponseEntity<List<Aluno>> findAlunosByTurma(@PathVariable long id) {
-        List<TurmasAlunos> turmasAlunos = turmasAlunosRepository.findByTurmaId(id);
+    @GetMapping(path = "/alunosByTurma/{turmaCod}")
+    public ResponseEntity<List<Aluno>> findAlunosByTurma(@PathVariable String cod) {
+        List<TurmasAlunos> turmasAlunos = turmasAlunosRepository.findByTurmaCodigo(cod);
         List<Aluno> alunos = new ArrayList<>();
         for (TurmasAlunos turmaAluno : turmasAlunos) {
             Aluno aluno = turmaAluno.getAluno();
@@ -79,7 +79,7 @@ public class TurmasAlunosController {
     @PostMapping(path = "/add")
     public ResponseEntity<TurmasAlunos> save(@RequestBody TurmasAlunosCreateRequest turmasAlunosCreateRequest){
         Optional<Aluno> optionalAluno = alunoRepository.findById(turmasAlunosCreateRequest.alunoId);
-        Optional<Turma> optionalTurma = turmaRepository.findById(turmasAlunosCreateRequest.turmaId);
+        Optional<Turma> optionalTurma = turmaRepository.findByCodigo(turmasAlunosCreateRequest.turmaCod);
         if(optionalAluno.isPresent() && optionalTurma.isPresent()){
             Aluno aluno = optionalAluno.get();
             Turma turma = optionalTurma.get();
@@ -94,8 +94,8 @@ public class TurmasAlunosController {
     }
     
     @DeleteMapping(path = "/removerAlunoTurma/{alunoId}/{turmaId}")
-    public ResponseEntity<Void> delete(@PathVariable long alunoId, @PathVariable long turmaId){
-        Optional<TurmasAlunos> turmasAlunosOptional = turmasAlunosRepository.findOneTurmasAlunos(alunoId, turmaId);
+    public ResponseEntity<Void> delete(@PathVariable long alunoId, @PathVariable String turmaId){
+        Optional<TurmasAlunos> turmasAlunosOptional = turmasAlunosRepository.findByAlunoIdAndTurmaCodigo(alunoId, turmaId);
 
         if (turmasAlunosOptional.isPresent()) {
             TurmasAlunos turmaAluno = turmasAlunosOptional.get();

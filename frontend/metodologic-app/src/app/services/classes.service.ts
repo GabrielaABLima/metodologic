@@ -15,6 +15,10 @@ export class ClassesService {
     return this.http.post<Turma>(this.URL+`/add`, turma)
   }
 
+  getClassesByProfessor(professorId: number): Observable<Turma[]>{
+    return this.http.get<Turma[]>(this.URL+`/professor/` + professorId);
+  }
+
 
 }
 

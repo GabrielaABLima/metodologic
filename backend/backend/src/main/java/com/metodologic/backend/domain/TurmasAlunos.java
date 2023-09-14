@@ -31,7 +31,7 @@ public class TurmasAlunos {
     private Long id;
     
     @ManyToOne
-    @JoinColumn(name = "FK_TURMAS_TURMA_ID")
+    @JoinColumn(name = "FK_TURMAS_TRM_COD")
     private Turma turma;
 
     @ManyToOne

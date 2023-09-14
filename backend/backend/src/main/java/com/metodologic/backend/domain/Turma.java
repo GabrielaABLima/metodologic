@@ -32,11 +32,6 @@ import org.hibernate.validator.constraints.Length;
 @NoArgsConstructor
 @Table(name = "TURMAS")
 public class Turma {
-    @Id
-    @Column( name="TRM_ID" )
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @EqualsAndHashCode.Include
-    private Long id;
         
     @NotNull( message = "Nome é obrigatório" )
     @NotEmpty( message = "Nome não pode ser vazio" )
@@ -44,6 +39,7 @@ public class Turma {
     @Length( max = 60 )
     private String nome;
     
+    @Id
     @NotNull( message = "Código é obrigatório" )
     @NotEmpty( message = "Código não pode ser vazio" )
     @Column( name="TRM_COD" )

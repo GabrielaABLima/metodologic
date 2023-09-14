@@ -8,6 +8,6 @@ import lombok.Data;
 
 @Data
 public class TurmasAlunosCreateRequest {
-    public Long turmaId;
+    public String turmaCod;
     public Long alunoId;
 }

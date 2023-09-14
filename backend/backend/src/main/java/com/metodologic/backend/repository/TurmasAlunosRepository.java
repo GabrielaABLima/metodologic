@@ -15,9 +15,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface TurmasAlunosRepository extends JpaRepository<TurmasAlunos, Long> {
     List<TurmasAlunos> findByAlunoId(Long alunoId);
-    List<TurmasAlunos> findByTurmaId(Long turmaId);
-    
-    @Query("SELECT ta FROM TurmasAlunos ta WHERE ta.aluno.id = :alunoId AND ta.turma.id = :turmaId")
-    Optional<TurmasAlunos> findOneTurmasAlunos(@Param("alunoId") long alunoId, @Param("turmaId") long turmaId);
-
+    List<TurmasAlunos> findByTurmaCodigo(String turmaCod);
+    Optional<TurmasAlunos> findByAlunoIdAndTurmaCodigo(long alunoId, String turmaCodigo);
 }
