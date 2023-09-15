@@ -43,8 +43,8 @@ public class TurmasAlunosController {
     }
     
     @GetMapping(path = "/alunosByTurma/{turmaCod}")
-    public ResponseEntity<List<Aluno>> findAlunosByTurma(@PathVariable String cod) {
-        List<TurmasAlunos> turmasAlunos = turmasAlunosRepository.findByTurmaCodigo(cod);
+    public ResponseEntity<List<Aluno>> findAlunosByTurma(@PathVariable String turmaCod) {
+        List<TurmasAlunos> turmasAlunos = turmasAlunosRepository.findByTurmaCodigo(turmaCod);
         List<Aluno> alunos = new ArrayList<>();
         for (TurmasAlunos turmaAluno : turmasAlunos) {
             Aluno aluno = turmaAluno.getAluno();

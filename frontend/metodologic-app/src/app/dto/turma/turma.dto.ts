@@ -9,7 +9,6 @@ export class Turma {
     public instituicaoEnsino: string,
     public descricao?: string,
     public professorId?: number,
-    public alunosId?: number[],
     public id?: number
   ) {}
 }

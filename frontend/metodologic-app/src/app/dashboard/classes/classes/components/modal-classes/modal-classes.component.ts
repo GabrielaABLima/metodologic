@@ -133,7 +133,6 @@ export class ModalClassesComponent implements OnChanges {
       this.instituicaoEnsino!.value,
       this.descricao!.value,
       1,
-      [1],
     );
   }
 
