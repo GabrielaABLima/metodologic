@@ -5,20 +5,15 @@
 package com.metodologic.backend.controller;
 
 import com.metodologic.backend.controller.dto.TurmaCreateRequest;
-import com.metodologic.backend.domain.Aluno;
-import com.metodologic.backend.domain.Professor;
 import com.metodologic.backend.domain.Turma;
-import com.metodologic.backend.repository.AlunoRepository;
-import com.metodologic.backend.repository.ProfessorRepository;
+import com.metodologic.backend.domain.Usuario;
 import com.metodologic.backend.repository.TurmaRepository;
-import com.metodologic.backend.util.DateUtil;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import com.metodologic.backend.repository.UsuarioRepository;
 import java.util.List;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -38,19 +33,17 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 public class TurmaController {
     private final TurmaRepository turmaRepository;
-    private final AlunoRepository alunoRepository;
-    private final ProfessorRepository professorRepository;
-    private DateUtil  dateUtil;
+    
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
     @GetMapping
     public ResponseEntity<List<Turma>> list(){
-        log.info(dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
         return new ResponseEntity<>(turmaRepository.findAll(), HttpStatus.OK);
     }
     
     @GetMapping(path = "/{id}")
     public ResponseEntity<Turma> findById(@PathVariable long id){
-        log.info(dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
         Optional<Turma> turmaOptional = turmaRepository.findById(id);
 
         if (turmaOptional.isPresent()) {
@@ -70,11 +63,11 @@ public class TurmaController {
     
     @PostMapping(path = "/add")
     public ResponseEntity<Turma> save(@RequestBody TurmaCreateRequest request){
-        Optional<Professor> optional = professorRepository.findById(request.professorId);
+        Optional<Usuario> optional = usuarioRepository.findById(request.professorId);
         if(optional.isPresent()){
-            Professor professor = optional.get();
+            Usuario usuario = optional.get();
             Turma turma = new Turma();
-            turma.setProfessor(professor);
+            turma.setProfessor(usuario);
             turma.setCodigo(request.codigo);
             turma.setNome(request.nome);
             turma.setCurso(request.curso);

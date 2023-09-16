@@ -58,8 +58,8 @@ public class Turma {
     @Length( max = 200 )
     private String descricao;
     
-    @JoinColumn( name="FK_PROFESSORES_PRF_ID" )
+    @JoinColumn( name="FK_PROFESSORES_USR_ID" )
     @ManyToOne
-    private Professor professor;
+    private Usuario professor;
     
 }

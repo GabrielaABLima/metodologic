@@ -1,21 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.metodologic.backend.controller;
 
 import com.metodologic.backend.controller.dto.TurmasAlunosCreateRequest;
-import com.metodologic.backend.domain.Aluno;
 import com.metodologic.backend.domain.Turma;
 import com.metodologic.backend.domain.TurmasAlunos;
-import com.metodologic.backend.repository.AlunoRepository;
+import com.metodologic.backend.domain.Usuario;
 import com.metodologic.backend.repository.TurmaRepository;
 import com.metodologic.backend.repository.TurmasAlunosRepository;
+import com.metodologic.backend.repository.UsuarioRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,9 +30,11 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @CrossOrigin(origins = "*")
 public class TurmasAlunosController {
+    
+    @Autowired
+    UsuarioRepository usuarioRepository;
     private final TurmaRepository turmaRepository;
     private final TurmasAlunosRepository turmasAlunosRepository;
-    private final AlunoRepository alunoRepository;
 
     @GetMapping
     public ResponseEntity<List<TurmasAlunos>> list(){
@@ -43,11 +42,11 @@ public class TurmasAlunosController {
     }
     
     @GetMapping(path = "/alunosByTurma/{turmaCod}")
-    public ResponseEntity<List<Aluno>> findAlunosByTurma(@PathVariable String turmaCod) {
+    public ResponseEntity<List<Usuario>> findAlunosByTurma(@PathVariable String turmaCod) {
         List<TurmasAlunos> turmasAlunos = turmasAlunosRepository.findByTurmaCodigo(turmaCod);
-        List<Aluno> alunos = new ArrayList<>();
+        List<Usuario> alunos = new ArrayList<>();
         for (TurmasAlunos turmaAluno : turmasAlunos) {
-            Aluno aluno = turmaAluno.getAluno();
+            Usuario aluno = turmaAluno.getAluno();
             
             alunos.add(aluno);
         }
@@ -78,10 +77,10 @@ public class TurmasAlunosController {
     
     @PostMapping(path = "/add")
     public ResponseEntity<TurmasAlunos> save(@RequestBody TurmasAlunosCreateRequest turmasAlunosCreateRequest){
-        Optional<Aluno> optionalAluno = alunoRepository.findById(turmasAlunosCreateRequest.alunoId);
+        Optional<Usuario> optionalAluno = usuarioRepository.findById(turmasAlunosCreateRequest.alunoId);
         Optional<Turma> optionalTurma = turmaRepository.findByCodigo(turmasAlunosCreateRequest.turmaCod);
         if(optionalAluno.isPresent() && optionalTurma.isPresent()){
-            Aluno aluno = optionalAluno.get();
+            Usuario aluno = optionalAluno.get();
             Turma turma = optionalTurma.get();
             TurmasAlunos newTurmasAlunos = new TurmasAlunos();
             newTurmasAlunos.setAluno(aluno);

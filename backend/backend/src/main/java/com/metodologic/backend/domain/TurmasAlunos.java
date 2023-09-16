@@ -35,6 +35,6 @@ public class TurmasAlunos {
     private Turma turma;
 
     @ManyToOne
-    @JoinColumn(name = "FK_ALUNOS_ALN_ID")
-    private Aluno aluno;
+    @JoinColumn(name = "FK_ALUNOS_USR_ID")
+    private Usuario aluno;
 }

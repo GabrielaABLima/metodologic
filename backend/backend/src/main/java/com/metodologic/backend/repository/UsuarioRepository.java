@@ -4,12 +4,11 @@
  */
 package com.metodologic.backend.repository;
 
-import com.metodologic.backend.domain.Professor;
+import com.metodologic.backend.domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.security.core.userdetails.UserDetails;
 
-@RepositoryRestResource
-public interface ProfessorRepository extends JpaRepository<Professor, Long> {
-    
+
+public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
+    UserDetails findByEmail(String email);
 }
-   
