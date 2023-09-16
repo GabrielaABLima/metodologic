@@ -3,8 +3,11 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Aluno } from 'src/app/dto/aluno/aluno.dto';
 import { Professor } from 'src/app/dto/professor/professor.dto';
+import { UsuarioRequestDTO } from 'src/app/dto/usuario/UserRequestDTO';
+import { AuthService } from 'src/app/services/auth.service';
 import { StudentsService } from 'src/app/services/students.service';
 import { TeachersService } from 'src/app/services/teachers.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +21,7 @@ export class RegisterComponent {
 
   constructor(
     // private imageUploadService : ImageUploadService,
-    private studentsService: StudentsService,
+    private authService: AuthService,
     private teachersService: TeachersService,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -51,12 +54,10 @@ export class RegisterComponent {
       dataNascimento: new FormControl('', [Validators.required]),
 
       curso: new FormControl('', [
-        Validators.required,
         Validators.maxLength(100),
       ]),
 
       instituicaoEnsino: new FormControl('', [
-        Validators.required,
         Validators.maxLength(100),
       ]),
 
@@ -89,28 +90,16 @@ export class RegisterComponent {
   get tipoPerfil() {
     return this.registerFormGroup.get('tipoPerfil');
   }
-  private createAluno(): Aluno {
-    return new Aluno(
+
+  private createUsuario(): UsuarioRequestDTO {
+    return new UsuarioRequestDTO(
       this.nome!.value,
       this.email!.value,
       this.senha!.value,
       this.dataNascimento!.value,
       this.curso!.value,
       this.instituicaoEnsino!.value,
-      0,
-      0
-    );
-  }
-  private createProfessor(): Professor {
-    return new Professor(
-      this.nome!.value,
-      this.email!.value,
-      this.senha!.value,
-      this.dataNascimento!.value,
-      this.curso!.value,
-      this.instituicaoEnsino!.value,
-      0,
-      0
+      this.tipoPerfil!.value
     );
   }
 
@@ -124,27 +113,15 @@ export class RegisterComponent {
   }
 
   onSubmitCadastro(): void {
-    if(this.tipoPerfil?.value === "aluno"){
-      this.studentsService.save(this.createAluno()).subscribe({
+      this.authService.save(this.createUsuario()).subscribe({
         next: (response) => {
           console.log(response);
-          // this.router.navigate(['/']);
         },
         error: (err) => {
           console.log(err);
-        }
-      })
-    }else if(this.tipoPerfil?.value === "professor"){
-      this.teachersService.save(this.createProfessor()).subscribe({
-        next: (response) => {
-          console.log(response);
-          // this.router.navigate(['/']);
         },
-        error: (err) => {
-          console.log(err);
-        }
-      })
-    }
+      });
+      console.log(this.createUsuario());
   }
 
   // cadastrarEvento(){

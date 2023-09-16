@@ -34,7 +34,6 @@ export class ModalClassesComponent implements OnChanges {
   alunos: Aluno[]= [this.aluno];
 
   constructor(
-    private studentsService: StudentsService,
     private classesStudentsService: ClassesStudentsService,
     private classesService: ClassesService,
     private formBuilder: FormBuilder,
@@ -171,19 +170,19 @@ export class ModalClassesComponent implements OnChanges {
   }
 
   onSubmitSearch(): void {
-    this.studentsService.getAlunoByNameOrEmail(this.busca?.value).subscribe({
-      next: (response) => {
-        response.map((student) => {
-          const studentAlreadySelected = this.studentsToAdd.find((studentToAdd) => studentToAdd.id === student.id);
-          if(!studentAlreadySelected){
-            this.studentsSearchResult.push(student);
-          }
-        })
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
+    // this.studentsService.getAlunoByNameOrEmail(this.busca?.value).subscribe({
+    //   next: (response) => {
+    //     response.map((student) => {
+    //       const studentAlreadySelected = this.studentsToAdd.find((studentToAdd) => studentToAdd.id === student.id);
+    //       if(!studentAlreadySelected){
+    //         this.studentsSearchResult.push(student);
+    //       }
+    //     })
+    //   },
+    //   error: (err) => {
+    //     console.log(err);
+    //   }
+    // })
   }
 
   handleAddStudents(){
