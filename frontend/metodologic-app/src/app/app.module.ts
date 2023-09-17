@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from './modal/modal.module';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -36,6 +37,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatDialogModule,
     ModalModule,
     MatFormFieldModule,
+    MatSnackBarModule
 
   ],
   providers: [],

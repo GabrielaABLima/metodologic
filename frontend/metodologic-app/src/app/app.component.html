@@ -37,7 +37,7 @@
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item routerLink="/profile">Ver perfil</button>
-    <button mat-menu-item routerLink="/login">Desconectar</button>
+    <button mat-menu-item (click)="logout()">Desconectar</button>
   </mat-menu>
 
 </mat-toolbar>
