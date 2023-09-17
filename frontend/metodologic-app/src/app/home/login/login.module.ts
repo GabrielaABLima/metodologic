@@ -6,6 +6,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,9 @@ import { LoginComponent } from './login/login.component';
     MatInputModule,
     MatGridListModule,
     MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ]
 })
 export class LoginModule { }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Aluno } from 'src/app/dto/aluno/aluno.dto';
 import { Professor } from 'src/app/dto/professor/professor.dto';
@@ -21,6 +22,7 @@ export class RegisterComponent {
 
   constructor(
     // private imageUploadService : ImageUploadService,
+    private snackBar: MatSnackBar,
     private authService: AuthService,
     private teachersService: TeachersService,
     private formBuilder: FormBuilder,
@@ -28,6 +30,34 @@ export class RegisterComponent {
     private route: ActivatedRoute
   ) {
   }
+
+
+  showSnackbar(message: string, durationInSeconds: number = 3): void {
+    this.snackBar.open(message, 'x', {
+      duration: durationInSeconds * 1000,
+      horizontalPosition: 'start',
+      verticalPosition: 'bottom',
+    });
+
+  }
+  openSuccessSnackBar(){
+    this.snackBar.open("Usuário registrado!", "OK", {
+      duration: 3000,
+      horizontalPosition: 'start',
+      verticalPosition: 'bottom',
+      panelClass: 'green-snackbar',
+     });
+  }
+
+  openFailureSnackBar(){
+    this.snackBar.open("Registro inválido!", "Try again!", {
+      duration: 3000,
+      horizontalPosition: 'start',
+      verticalPosition: 'bottom',
+      panelClass: ['red-snackbar','login-snackbar'],
+      });
+  }
+
 
   ngOnInit(): void {
     this.registerFormGroup = this.formBuilder.group({
@@ -113,15 +143,15 @@ export class RegisterComponent {
   }
 
   onSubmitCadastro(): void {
-      this.authService.save(this.createUsuario()).subscribe({
+      this.authService.register(this.createUsuario()).subscribe({
         next: (response) => {
-          console.log(response);
+          this.openSuccessSnackBar();
+          this.router.navigate(['/login']);
         },
         error: (err) => {
-          console.log(err);
+          this.openFailureSnackBar();
         },
       });
-      console.log(this.createUsuario());
   }
 
   // cadastrarEvento(){

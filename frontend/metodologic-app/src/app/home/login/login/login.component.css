@@ -67,3 +67,23 @@
   margin: 12px;
   cursor: pointer;
 }
+
+.form-container-login{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.campo{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

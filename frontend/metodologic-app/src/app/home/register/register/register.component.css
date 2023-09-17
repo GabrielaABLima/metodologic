@@ -155,3 +155,9 @@ mat-form-field{
   align-items: center;
 
 }
+
+.green-snackbar {
+  background: rgb(65, 252, 134);
+  color: white;
+}
+

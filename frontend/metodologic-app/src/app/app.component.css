@@ -86,10 +86,9 @@
   width: 100%;
 }
 
-/* Defina o estilo para o elemento que contém o menu e o router-outlet */
 .container {
-  position: relative; /* Isso garante que o posicionamento dos elementos seja relativo a este contêiner */
-  min-height: 100vh; /* Garante que o contêiner tenha pelo menos a altura total da viewport */
+  position: relative;
+  min-height: 100vh;
 }
 
 

@@ -3,4 +3,17 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-/* styles.css ou styles.scss */
+.green-snackbar button {
+  color: #50ADE4 !important;
+  border: none !important;
+}
+.red-snackbar {
+  background: #F44336 !important;
+  color: white !important;
+}
+.red-snackbar button {
+  background-color: #F44336 !important;
+  color: white !important;
+  border: none !important;
+}
+
