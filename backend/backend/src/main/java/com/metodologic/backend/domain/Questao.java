@@ -4,13 +4,15 @@
  */
 package com.metodologic.backend.domain;
 
-import com.metodologic.backend.enums.EQuestaoTema;
+import com.metodologic.backend.enums.EQuestaoCategoria;
 import com.metodologic.backend.enums.ETipoQuestao;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -25,30 +27,26 @@ import org.hibernate.validator.constraints.Length;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "QUESTOES")
-public class Questoes {
+public class Questao {
     @Id
     @Column( name="QST_ID" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     @EqualsAndHashCode.Include
     private Long id;
         
-    @NotNull( message = "Nível é obrigatório" )
-    @NotEmpty( message = "Nível não pode ser vazio" )
     @Column( name="QST_NIVEL" )
     private int nivel;
     
-    @NotNull( message = "Pontos é obrigatório" )
-    @NotEmpty( message = "Pontos não pode ser vazio" )
     @Column( name="QST_PONTOS" )
     private int pontos;
     
-    @NotNull( message = "Tipo é obrigatório" )
-    @NotEmpty( message = "Tipo não pode ser vazio" )
     @Column( name="QST_TIPO" )
     private ETipoQuestao tipo;
+
+    @Column( name="QST_CATEGORIA" )
+    private EQuestaoCategoria categoria;
     
-    @NotNull( message = "Tema é obrigatório" )
-    @NotEmpty( message = "Tema não pode ser vazio" )
-    @Column( name="QST_TEMA" )
-    private EQuestaoTema tema;
+    @JoinColumn( name="FK_CONTEUDO_CNT_ID" )
+    @ManyToOne
+    private Conteudo conteudo;
 }

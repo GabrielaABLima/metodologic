@@ -5,7 +5,18 @@
 package com.metodologic.backend.enums;
 
 public enum ETipoQuestao {
-    ASSOCIACAO,
-    LACUNAS,
-    ABERTA,
+    ASSOCIACAO("ASSOCIACAO"),
+    LACUNAS("LACUNAS"),
+    ABERTA("ABERTA"),
+    OPTATIVA("OPTATIVA");
+
+    private String tipo;
+    
+    ETipoQuestao(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    public String getTipo(){
+        return this.tipo;
+    }
 }

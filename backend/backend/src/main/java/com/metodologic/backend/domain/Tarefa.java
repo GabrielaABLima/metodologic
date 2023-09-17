@@ -40,8 +40,6 @@ public class Tarefa {
     private String nome;
     
     @Column( name="TRF_DATA_ENTREGA" )
-    @NotNull( message = "Data de entrega é obrigatório" )
-    @NotEmpty( message = "Data de entrega não pode ser vazio" )
     private Date dataEntrega;
     
     @Column( name="TRF_DATA_ATRIBUICAO" )
