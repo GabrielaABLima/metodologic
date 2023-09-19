@@ -4,5 +4,5 @@
  */
 package com.metodologic.backend.controller.dto;
 
-public record LoginResponseDTO(String token, String role) {
+public record LoginResponseDTO(String token, String role, int points) {
 }

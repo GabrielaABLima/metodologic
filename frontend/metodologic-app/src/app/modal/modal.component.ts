@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -10,8 +10,12 @@ export class ModalComponent {
   mostrar: boolean = false;
   classId?: string;
 
-  toggle (classId?: string) {
-    this.classId = classId;
-    this.mostrar = !this.mostrar;
-  }
+
+toggle(classId?: string) {
+  console.log("tese");
+  this.classId = classId;
+  this.mostrar = !this.mostrar;
+}
+
+
 }

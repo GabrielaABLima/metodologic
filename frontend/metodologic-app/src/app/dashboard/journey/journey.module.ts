@@ -6,18 +6,22 @@ import { JourneyComponent } from './journey/journey.component';
 import { JourneyItemComponent } from './journey/components/journey-item/journey-item.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { ModalModule } from 'src/app/modal/modal.module';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     JourneyComponent,
-    JourneyItemComponent
+    JourneyItemComponent,
+
   ],
   imports: [
     CommonModule,
     JourneyRoutingModule,
     MatGridListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ModalModule,
+    MatIconModule
   ]
 })
 export class JourneyModule {

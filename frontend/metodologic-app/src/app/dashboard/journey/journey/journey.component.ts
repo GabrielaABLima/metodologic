@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { ModalComponent } from 'src/app/modal/modal.component';
 
 @Component({
   selector: 'app-journey',
@@ -8,9 +9,22 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 })
 export class JourneyComponent {
   columns: number = 5;
-
+  showQuestion: boolean = false;
+  @ViewChild('modalModulo') modalModulo!: ModalComponent;
+  points: number = 0;
 
   constructor(private breakpointObserver: BreakpointObserver) { }
+  openGame(data: any) {
+    this.showQuestion = true;
+
+    setTimeout(() => {
+      this.closeGame(data);
+    }, 90000);
+  }
+
+  closeGame(data: any) {
+    this.showQuestion = false;
+  }
 
   ngOnInit() {
     this.breakpointObserver.observe([
