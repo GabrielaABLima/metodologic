@@ -5,10 +5,11 @@
 package com.metodologic.backend.repository;
 
 import com.metodologic.backend.domain.Questao;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface QuestaoRepository extends JpaRepository<Questao, Long>{
-    
+    List<Questao> findByNivel(int nivel);
 }

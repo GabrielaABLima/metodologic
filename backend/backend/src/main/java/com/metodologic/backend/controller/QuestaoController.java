@@ -9,13 +9,17 @@ import com.metodologic.backend.repository.ConteudoRepository;
 import com.metodologic.backend.repository.QuestaoRepository;
 import com.metodologic.backend.repository.UsuarioRepository;
 import jakarta.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,5 +59,12 @@ public class QuestaoController {
         }
         
         return ResponseEntity.ok().build();
+    }
+    
+    @GetMapping("/module/{nivel}")
+    public ResponseEntity<List<Questao>> getByModule(@PathVariable int nivel){
+        List<Questao> questoes = questaoRepository.findByNivel(nivel);
+        
+        return new ResponseEntity<>(questoes, HttpStatus.OK);
     }
 }

@@ -2,10 +2,10 @@ package com.metodologic.backend.enums;
 
 public enum EQuestaoCategoria {
     TECNICA("TECNICA"),
-    INSTRUMENTOS("INSTRUMENTOS"),
-    EXEMPLOS("EXEMPLOS"),
+    INSTRUMENTOS("INSTRUMENTO"),
+    EXEMPLOS("EXEMPLO"),
     DEFINICAO("DEFINICAO"),
-    PALAVRA_CHAVES("PALAVRA_CHAVES");
+    PALAVRA_CHAVES("PALAVRA_CHAVE");
     
     private final String categoria;
 

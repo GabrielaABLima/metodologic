@@ -4,6 +4,7 @@ import { QuestaoContainerComponent } from './questao-container.component';
 import { QuestaoContainerRoutingModule } from './questao-container-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { QuestaoModule } from '../questao/questao.module';
 
 
 
@@ -14,7 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     QuestaoContainerRoutingModule,
-    MatIconModule
+    MatIconModule,
+    QuestaoModule
   ]
 })
 export class QuestaoContainerModule { }

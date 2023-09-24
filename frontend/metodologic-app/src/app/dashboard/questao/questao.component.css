@@ -1,0 +1,37 @@
+.optativa-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.enunciado {
+  color: #17384C;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  text-align: justify;
+  margin: 10px;
+}
+
+.opcoes{
+  margin-top: 10px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.opcoes-variant {
+  color: #17384C;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  margin: 10px;
+}
+
+.opcao{
+  width: 100%;
+}
