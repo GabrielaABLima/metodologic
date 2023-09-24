@@ -17,7 +17,6 @@ export class QuestaoContainerComponent {
   score: number = 0;
   type: string | null;
   id: string | null
-  animateWidth = true;
 
   constructor(
     private router: Router,
@@ -31,30 +30,10 @@ export class QuestaoContainerComponent {
 
   }
 
-  toggleAnimation() {
-    this.animateWidth = !this.animateWidth;
-  }
-
-  // Função para iniciar o cronômetro
-  startTimer() {
-    // Implemente a lógica para iniciar o cronômetro e contar até 30 segundos
-  }
-
-
-  onAnimationDone() {
-    this.nextQuestion();
-  }
-
-  // Função para carregar a próxima questão
   nextQuestion() {
     console.log("teste");
     this.currentIndex++;
     this.currentQuestion = this.questions[this.currentIndex];
-    this.animateWidth = false;
-
-    setTimeout(() => {
-      this.animateWidth = true;
-    }, 10);
   }
 
   // Função para manipular a resposta selecionada
