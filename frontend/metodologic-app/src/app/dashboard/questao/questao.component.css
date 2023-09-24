@@ -24,6 +24,15 @@
   flex-direction: column;
 }
 
+.associative-opcoes{
+  margin-top: 10px;
+  max-width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .opcoes-variant {
   color: #17384C;
   font-family: 'Lexend', sans-serif;
@@ -35,3 +44,54 @@
 .opcao{
   width: 100%;
 }
+
+.associative-button {
+  border-radius: 20px;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 10px;
+  max-width: 60%;
+}
+
+.associative-button p{
+  color: #173647d7;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  margin: 8px;
+  text-align: left;
+}
+
+
+.metodo-button {
+  background-color: #f4f5a7e1;
+  margin-right: 5px;
+
+}
+
+.metodo-button:hover{
+  background-color: #eaec6e38;
+}
+
+.answer-button {
+  background-color: #50aee441;
+  margin-left: 5px;
+}
+
+
+
+.answer-button:hover{
+  background-color: #50aee427;
+}
+
+.associatives-buttons-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+

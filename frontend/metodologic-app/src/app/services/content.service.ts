@@ -25,5 +25,13 @@ export class ContentService {
     return this.http.get<Conteudo[]>(`${this.URL}/except/${id}`, { headers });
   }
 
+  getRandomContent(): Observable<Conteudo[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+
+    return this.http.get<Conteudo[]>(`${this.URL}/random`, { headers });
+  }
+
 }
 

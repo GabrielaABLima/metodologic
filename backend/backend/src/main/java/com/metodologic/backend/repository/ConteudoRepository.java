@@ -15,5 +15,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface ConteudoRepository extends JpaRepository<Conteudo, Long>{
     @Query(value = "SELECT * FROM conteudos WHERE cnt_id <> :id ORDER BY RAND() LIMIT 4", nativeQuery = true)
     List<Conteudo> getRandomConteudoExcludingId(@Param("id") Long id);
+    
+    @Query(value = "SELECT * FROM conteudos ORDER BY RAND() LIMIT 6", nativeQuery = true)
+    List<Conteudo> getRandomConteudo();
 
 }

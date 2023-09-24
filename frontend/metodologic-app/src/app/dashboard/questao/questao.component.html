@@ -1,10 +1,31 @@
-<div class="optativa-container" *ngIf="question">
+<div class="optativa-container" *ngIf="question.tipo === 'OPTATIVA'">
   <p class="enunciado">Selecione a alternativa que representa um {{question.categoria.toLowerCase()}} do método {{question.conteudo?.metodo}}:</p>
   <div class="opcoes">
     <div *ngFor="let option of options" class="opcao" (click)="selectAnswer(option)">
       <mat-radio-button [value]="option.isAnswer">
         <p class="opcoes-variant">{{option.option}}</p>
       </mat-radio-button>
+    </div>
+  </div>
+</div>
+<div class="optativa-container" *ngIf="question.tipo === 'ASSOCIACAO'">
+  <p class="enunciado">Associe os métodos listados com seus {{question.categoria.toLowerCase()}} correspondentes:</p>
+  <div class="opcoes">
+    <div *ngIf="associatives" class="opcao">
+      <ng-container *ngFor="let item of associatives.metodos; let i = index">
+        <div  class="associatives-buttons-container">
+          <button class="associative-button metodo-button">
+            <p>
+              {{item.metodoKey}}
+            </p>
+          </button>
+          <button class="associative-button answer-button">
+            <p>
+              {{associatives.answers[i].metodoKey}}
+            </p>
+          </button>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>

@@ -31,4 +31,11 @@ public class ConteudoController {
         
         return new ResponseEntity<>(conteudos, HttpStatus.OK);
     }
+    
+    @GetMapping("/random")
+    public ResponseEntity<List<Conteudo>> getRandom(){
+        List<Conteudo> conteudos = conteudoRepository.getRandomConteudo();
+        
+        return new ResponseEntity<>(conteudos, HttpStatus.OK);
+    }
 }
