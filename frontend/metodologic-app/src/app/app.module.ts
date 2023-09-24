@@ -16,12 +16,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from './modal/modal.module';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { EmptyStateComponent } from './dashboard/components/empty-state/empty-state.component';
+import { NotLoggedComponent } from './dashboard/components/not-logged/not-logged.component';
+import { EmptyStateModule } from './dashboard/components/empty-state/empty-state.module';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    NotLoggedComponent,
   ],
   imports: [
     BrowserModule,

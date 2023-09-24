@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./dashboard/profile/profile.module').then(m => m.ProfileModule)
+  },
+  {
+    path: 'question/:type/:id',
+    loadChildren: () => import('./dashboard/questao-container/questao-container.module').then(m => m.QuestaoContainerModule)
   }
 ];
 

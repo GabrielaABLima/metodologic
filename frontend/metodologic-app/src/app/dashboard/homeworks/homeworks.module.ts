@@ -8,11 +8,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'; // Importe o MatInputModule do Angular Material
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
-
+import { EmptyStateModule } from '../components/empty-state/empty-state.module';
 
 @NgModule({
   declarations: [
-    HomeworksComponent
+    HomeworksComponent,
   ],
   imports: [
     CommonModule,
@@ -21,7 +21,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatInputModule,
     MatGridListModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    EmptyStateModule
   ]
 })
 export class HomeworksModule { }

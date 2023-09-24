@@ -1,5 +1,5 @@
 <p class="variant2">Tarefas</p>
-<div class="modules-container">
+<div class="modules-container" *ngIf="dataSource.length > 0">
   <div style="display: flex; flex-direction: row; width: 100%; justify-content: space-between; align-items: center;">
     <mat-form-field appearance="outline" color="primary" style="width: calc(30% + 90px); margin-bottom: 0px;">
       <mat-label >
@@ -55,5 +55,15 @@
   </tbody>
 </table>
 
+
+</div>
+
+<div  class="empty-modules-container" *ngIf="dataSource.length === 0">
+  <app-empty-state
+    [title]="titleEmpty"
+    [description]="descriptionEmpty"
+    imgSource="../../../../assets/images/empty-homework.png"
+  >
+  </app-empty-state>
 
 </div>

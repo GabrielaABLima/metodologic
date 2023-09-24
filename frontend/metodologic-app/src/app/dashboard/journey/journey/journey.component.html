@@ -5,47 +5,16 @@
     <app-journey-item (onClickModule)="openGame($event)" [clickable]="true" color="#FCFA14" title="MÓDULO 1" description="Embarque na jornada da metodologia pelos primeiros passos. Aprenda os conceitos dos métodos Bibliográfico, Estudo de Caso, Levantamento e Pesquisa ex-post-facto"/>
   </mat-grid-tile>
   <mat-grid-tile fxFlex.gt-md="33.3%">
-    <app-journey-item [clickable]="true" color="#FED812" title="MÓDULO 2" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio"/>
+    <app-journey-item [clickable]="userPoints >= 50" color="#FED812" title="MÓDULO 2" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio"/>
   </mat-grid-tile>
   <mat-grid-tile fxFlex.gt-md="33.3%">
-    <app-journey-item [clickable]="false" color="#FFBE0D" title="MÓDULO 3" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio"/>
+    <app-journey-item [clickable]="userPoints >= 100" color="#FFBE0D" title="MÓDULO 3" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio"/>
   </mat-grid-tile>
   <mat-grid-tile fxFlex.gt-md="33.3%">
-    <app-journey-item [clickable]="false" color="#FD9D0C" title="MÓDULO 4" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio"/>
+    <app-journey-item [clickable]="userPoints >= 150" color="#FD9D0C" title="MÓDULO 4" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio"/>
   </mat-grid-tile>
   <mat-grid-tile fxFlex.gt-md="33.3%">
-    <app-journey-item [clickable]="false" color="#FD6E0E" title="MÓDULO 5" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio"/>
+    <app-journey-item [clickable]="userPoints >= 200" color="#FD6E0E" title="MÓDULO 5" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio"/>
   </mat-grid-tile>
 </mat-grid-list>
-</div>
-
-<div class="questao-container" *ngIf="showQuestion">
-  <div class="questao-header">
-    <div>
-    <span style="cursor: pointer;" routerLink="">
-
-      <svg width="30" height="32" viewBox="0 0 40 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 25.5V0.5L39.5 11L20 25.5Z" fill="#FEEF0D"/>
-        <path d="M20 25.5V0.5L0 13L20 25.5Z" fill="#FDD30A"/>
-        <path d="M39.5 11L20 25.5V41.5L39.5 28.5V11Z" fill="#EFCB09"/>
-        <path d="M0 30.5V13L20 25.5V41.5L0 30.5Z" fill="#E95B06"/>
-      </svg>
-
-    </span>
-  </div>
-  <div style="height: 100%; display: flex; align-items: center;">
-    <p class="point-variant">{{points}}</p>
-  </div>
-
-    <button class="close-button" (click)="closeGame($event)">
-      <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
-        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" fill="yellow"/>
-      </svg>
-    </button>
-  </div>
-  <div class="line"></div>
-  <div class="questao-content">
-     <div></div>
-  </div>
-
 </div>

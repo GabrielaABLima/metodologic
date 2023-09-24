@@ -14,12 +14,13 @@ import { StudentListCardComponent } from './classes/components/student-list-card
 import { ModalClassesComponent } from './classes/components/modal-classes/modal-classes.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import { EmptyStateModule } from '../components/empty-state/empty-state.module';
 
 @NgModule({
   declarations: [
     ClassesComponent,
     StudentListCardComponent,
-    ModalClassesComponent,
+    ModalClassesComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +35,7 @@ import {MatButtonModule} from '@angular/material/button';
     ReactiveFormsModule,
     MatMenuModule,
     MatButtonModule,
+    EmptyStateModule
   ]
 })
 export class ClassesModule { }

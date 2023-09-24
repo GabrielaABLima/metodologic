@@ -80,7 +80,7 @@ export class LoginComponent {
         if(response.role === "professor") this.openSuccessSnackBar("Professor logado com sucesso");
         sessionStorage.setItem("role", response.role);
         sessionStorage.setItem("token", response.token);
-        sessionStorage.setItem("ponts", response.points.toString());
+        sessionStorage.setItem("points", response.points.toString());
         this.router.navigate(['/journey']);
       },
       error: (err) => {

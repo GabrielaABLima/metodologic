@@ -7,25 +7,7 @@ import { Professor } from 'src/app/dto/professor/professor.dto';
 import { Turma } from 'src/app/dto/turma/turma.dto';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import { ClassesService } from 'src/app/services/classes.service';
-import { StudentsService } from 'src/app/services/students.service';
 
-
-export default interface PeriodicElement {
-  code: string;
-  name: string;
-  course: string;
-  institution: string;
-  participant: number;
-  description: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {code: "ECC6", name: 'Escrita científica', institution: "IFSP", course: "Bacharelado em Ciência da Computação", participant: 25, description: "Disciplina que tem como foco o ensino da escrita necessária para produção de textos científicos"},
-  {code: "PDTC7", name: 'Produção de Textos Científicos', institution: "IFSP", course: "Engenharia de Controle e Automação", participant: 33, description: "Disciplina que tem como foco o ensino da escrita necessária para produção de textos científicos",},
-  {code: "MTDPC", name: 'Metodologias de Pesquisa', institution: "Unifeob", course: "Workshop de Produção de textos", participant: 21, description: "Disciplina que tem como foco o ensino da escrita necessária para produção de textos científicos"},
-  {code: "TDEC", name: 'Técnicas de Escritas Científicas', institution: "UNIFAE", course: "Palestra - textos acadêmicos", participant: 25, description: "Disciplina que tem como foco o ensino da escrita necessária para produção de textos científicos"},
-
-];
 
 @Component({
   selector: 'app-classes',
@@ -33,11 +15,18 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./classes.component.css']
 })
 export class ClassesComponent implements OnChanges{
+
+  @ViewChild('modal') modal: any;
+
+
   displayedColumns: string[] = ['code', 'name', 'institution', 'course', 'participant', 'description'];
-  dataSource = ELEMENT_DATA;
   classes: Turma[] = [];
   resultados: Turma[] = [];
   termoDePesquisa = '';
+  userRole = sessionStorage.getItem("role");
+  titleEmpty = this.userRole === "aluno" ? "Nenhuma turma encontrada" : "Sem turmas criadas";
+  descriptionEmpty = this.userRole === "aluno" ? "Parece que você ainda não está inscrito em nenhuma turma. Clique no botão abaixo para se increver em uma nova turma!" : "Não há turmas atribuídas no momento. Crie uma nova turma para começar a ensinar.";
+  buttonEmpty = this.userRole === "aluno" ? "Inscrever-se" : "Criar turma";
   professor = new Professor(
     "Gabi",
     "gabi@gmail.com",
@@ -89,6 +78,10 @@ export class ClassesComponent implements OnChanges{
         objeto.codigo.toLowerCase().includes(lowercaseTermo) ||
         objeto.instituicaoEnsino.toLowerCase().includes(lowercaseTermo);
     });
+  }
+
+  emptyClick(){
+    this.modal.toggle();
   }
 
 
