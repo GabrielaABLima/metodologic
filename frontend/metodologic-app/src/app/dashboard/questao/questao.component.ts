@@ -10,7 +10,7 @@ import { BuildQuestionService } from 'src/app/services/build_question.service';
 })
 export class QuestaoComponent {
   @Input() question!: Questao;
-  @Output() answerSelected: EventEmitter<{ answer: string, isCorrect: boolean }> = new EventEmitter();
+  @Output() answerSelected: EventEmitter<number> = new EventEmitter();
 
   constructor(
     private buildQuestionService: BuildQuestionService
@@ -21,6 +21,16 @@ export class QuestaoComponent {
     if(this.question){
       this.options = this.buildQuestionService.buildMultipleChoiceQuestion(this.question);
 
+    }
+
+  }
+
+  selectAnswer(option: MultipleChoiceOption) {
+    console.log(option);
+    if(option.isAnswer){
+      this.answerSelected.emit(this.question.pontos);
+    }else{
+      this.answerSelected.emit(0);
     }
 
   }

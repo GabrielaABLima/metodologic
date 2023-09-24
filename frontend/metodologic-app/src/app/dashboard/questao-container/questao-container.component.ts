@@ -19,6 +19,7 @@ export class QuestaoContainerComponent {
   score: number = 0;
   type: string | null;
   id: string | null
+  pontoQuestaoAtual: number = 0;
 
   constructor(
     private router: Router,
@@ -57,18 +58,18 @@ export class QuestaoContainerComponent {
 
 
   nextQuestion() {
-    console.log(this.currentQuestion);
+    this.score += this.pontoQuestaoAtual;
+
+
     this.currentIndex++;
     this.currentQuestion = this.questoes[this.currentIndex];
-    this.setWidth(((this.currentIndex/this.questoes.length)*100)+"%");
+    this.setWidth(((this.currentIndex / this.questoes.length) * 100) + "%");
+
   }
 
-  handleAnswer(answerInfo: { answer: string, isCorrect: boolean }) {
-    const { isCorrect } = answerInfo;
-    if (isCorrect) {
-      this.score++;
-    }
-
+  handleAnswer(pontos: number) {
+    console.log(pontos);
+    this.pontoQuestaoAtual = pontos;
   }
 
   closeGame(data: any) {

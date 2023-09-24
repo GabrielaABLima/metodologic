@@ -1,8 +1,8 @@
 <div class="optativa-container" *ngIf="question">
   <p class="enunciado">Selecione a alternativa que representa um {{question.categoria.toLowerCase()}} do método {{question.conteudo?.metodo}}:</p>
   <div class="opcoes">
-    <div *ngFor="let option of options" class="opcao">
-      <mat-radio-button  [value]="option.isAnswer">
+    <div *ngFor="let option of options" class="opcao" (click)="selectAnswer(option)">
+      <mat-radio-button [value]="option.isAnswer">
         <p class="opcoes-variant">{{option.option}}</p>
       </mat-radio-button>
     </div>

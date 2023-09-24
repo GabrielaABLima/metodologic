@@ -5,7 +5,7 @@ export class Questao {
     public id: number,
     public categoria: string,
     public nivel: number,
-    public ponto: number,
+    public pontos: number,
     public tipo: string,
     public conteudo?: Conteudo,
   ) {}
