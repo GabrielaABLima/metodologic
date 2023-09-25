@@ -60,6 +60,8 @@ export class QuestaoComponent {
     console.log(key);
     if(key === this.associativeMetodoSelected){
       this.answerSelected.emit(this.question.pontos);
+      this.associatives.metodos = this.associatives.metodos.filter((metodo) => metodo.value != key);
+      this.associatives.answers = this.associatives.answers.filter((answer) => answer.value != key);
     }else{
       this.answerSelected.emit(-this.question.pontos);
     }
