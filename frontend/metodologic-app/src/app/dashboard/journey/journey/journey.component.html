@@ -2,10 +2,10 @@
 <div class="modules-container">
 <mat-grid-list [cols]="columns" gutterSize="25px" rowHeight="300px">
   <mat-grid-tile fxFlex.gt-md="33.3%">
-    <app-journey-item (onClickModule)="openGame($event)" [clickable]="true" color="#FCFA14" title="MÓDULO 1" description="Embarque na jornada da metodologia pelos primeiros passos. Aprenda os conceitos dos métodos Bibliográfico, Estudo de Caso, Levantamento e Pesquisa ex-post-facto"/>
+    <app-journey-item (onClickModule)="openGame(1)" [clickable]="true" color="#FCFA14" title="MÓDULO 1" description="Embarque na jornada da metodologia pelos primeiros passos. Aprenda os conceitos dos métodos Bibliográfico, Estudo de Caso, Levantamento e Pesquisa ex-post-facto"/>
   </mat-grid-tile>
   <mat-grid-tile fxFlex.gt-md="33.3%">
-    <app-journey-item [clickable]="userPoints >= 50" color="#FED812" title="MÓDULO 2" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio"/>
+    <app-journey-item (onClickModule)="openGame(2)" [clickable]="userPoints >= 50" color="#FED812" title="MÓDULO 2" description="Curtindo a jornada? Vamos aprender mais alguns métodos: Revisão Sistemática da Literatura, Pesquisa Experimental e Documental. Além de revisar métodos do módulo anterior."/>
   </mat-grid-tile>
   <mat-grid-tile fxFlex.gt-md="33.3%">
     <app-journey-item [clickable]="userPoints >= 100" color="#FFBE0D" title="MÓDULO 3" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio"/>

@@ -31,7 +31,7 @@ export class BuildQuestionService {
           console.log(err);
         }
       })
-      const indiceAleatorio = Math.floor(Math.random() * (options.length + 1));
+      const indiceAleatorio = Math.floor(Math.random() * (options.length));
 
       const rightAnswerConteudo =  this.obterValorDaPropriedade(questao.conteudo, questao.categoria.toLowerCase()) + "";
       const conteudoRightToAdd: MultipleChoiceOption = new MultipleChoiceOption(rightAnswerConteudo, true);

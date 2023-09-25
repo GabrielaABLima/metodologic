@@ -20,8 +20,9 @@ export class JourneyComponent {
     private router: Router,
     private breakpointObserver: BreakpointObserver
   ) { }
-  openGame(data: any) {
-    this.router.navigate(['/question/module/1']);
+  openGame(data: number) {
+    console.log(data);
+    this.router.navigate(['/question/module/' + data]);
   }
 
   ngOnInit() {

@@ -27,6 +27,7 @@ export class ClassesComponent implements OnChanges{
   titleEmpty = this.userRole === "aluno" ? "Nenhuma turma encontrada" : "Sem turmas criadas";
   descriptionEmpty = this.userRole === "aluno" ? "Parece que você ainda não está inscrito em nenhuma turma. Clique no botão abaixo para se increver em uma nova turma!" : "Não há turmas atribuídas no momento. Crie uma nova turma para começar a ensinar.";
   buttonEmpty = this.userRole === "aluno" ? "Inscrever-se" : "Criar turma";
+  title = this.userRole === "aluno" ? "Inscrever-se em nova turma" : "Criar nova turma";
   professor = new Professor(
     "Gabi",
     "gabi@gmail.com",
@@ -83,6 +84,7 @@ export class ClassesComponent implements OnChanges{
   emptyClick(){
     this.modal.toggle();
   }
+
 
 
 }

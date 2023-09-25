@@ -18,6 +18,7 @@ export class ModalClassesComponent implements OnChanges {
   studentsSearchResult: Aluno[] = [];
   studentsToAdd: Aluno[] = [];
   studentsFromClass: Aluno[] = [];
+  userRole = sessionStorage.getItem("role");
   @Input() classId?: string;
 
 
@@ -137,8 +138,8 @@ export class ModalClassesComponent implements OnChanges {
 
 
   selectStudents = "tab";
-  formCreateClass = "active tab";
-  selectAddStudents = "tab";
+  formCreateClass = this.userRole === 'aluno' ? "tab" : "active tab";
+  selectAddStudents = this.userRole === 'aluno' ? "active tab" : "tab";
 
 
   clickCriarClasse() {
