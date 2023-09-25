@@ -68,8 +68,12 @@ export class QuestaoContainerComponent {
   }
 
   handleAnswer(pontos: number) {
-    console.log(pontos);
-    this.pontoQuestaoAtual = pontos;
+    if(this.questoes[this.currentIndex].tipo === "ASSOCIACAO"){
+      this.score += pontos;
+    }else{
+      this.pontoQuestaoAtual = pontos;
+    }
+
   }
 
   skipQuestion() {

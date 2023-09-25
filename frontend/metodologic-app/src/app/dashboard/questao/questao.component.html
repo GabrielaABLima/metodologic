@@ -14,12 +14,12 @@
     <div *ngIf="associatives" class="associative-opcao">
       <ng-container *ngFor="let item of associatives.metodos; let i = index">
         <div  class="associatives-buttons-container">
-          <button class="associative-button metodo-button">
+          <button class="associative-button metodo-button" (click)="selectAssociativeMetodo(item.value)">
             <p>
               {{item.metodoKey}}
             </p>
           </button>
-          <button class="associative-button answer-button">
+          <button class="associative-button answer-button" (click)="selectAssociativeAnswer(associatives.answers[i].value)">
             <p>
               {{associatives.answers[i].metodoKey}}
             </p>

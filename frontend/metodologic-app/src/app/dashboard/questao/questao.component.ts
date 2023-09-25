@@ -18,19 +18,9 @@ export class QuestaoComponent {
   ) {}
   options: MultipleChoiceOption[] = [];
   associatives !: AssociativeList;
-  associativeMetodos : Associative[] = [];
-  associativeAnswers : Associative[] = [];
+  associativeMetodoSelected!: number;
 
   ngOnInit(){
-    console.log(this.question);
-    if(this.question){
-      if(this.question.tipo === "OPTATIVA"){
-        this.options = this.buildQuestionService.buildMultipleChoiceQuestion(this.question);
-      }else if(this.question.tipo === "ASSOCIACAO"){
-        this.associatives = this.buildQuestionService.buildAssociativeQuestion(this.question);
-
-      }
-    }
 
   }
 
@@ -40,7 +30,11 @@ export class QuestaoComponent {
         if(this.question.tipo === "OPTATIVA"){
           this.options = this.buildQuestionService.buildMultipleChoiceQuestion(this.question);
         }else if(this.question.tipo === "ASSOCIACAO"){
-          this.associatives = this.buildQuestionService.buildAssociativeQuestion(this.question);
+          this.buildQuestionService.buildAssociativeQuestion(this.question)
+          .subscribe((associativeList: AssociativeList) => {
+            this.associatives = associativeList;
+          });
+
 
         }
       }
@@ -55,6 +49,20 @@ export class QuestaoComponent {
       this.answerSelected.emit(0);
     }
 
+  }
+
+  selectAssociativeMetodo(key: number){
+    console.log(key);
+    this.associativeMetodoSelected = key;
+  }
+
+  selectAssociativeAnswer(key: number){
+    console.log(key);
+    if(key === this.associativeMetodoSelected){
+      this.answerSelected.emit(this.question.pontos);
+    }else{
+      this.answerSelected.emit(-this.question.pontos);
+    }
   }
 
 }

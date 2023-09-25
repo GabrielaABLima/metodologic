@@ -4,6 +4,7 @@ import { MultipleChoiceOption } from '../dto/questao/multiple-choice.type';
 import { ContentService } from './content.service';
 import { Conteudo } from '../dto/conteudo/conteudo.dto';
 import { Associative, AssociativeList } from '../dto/questao/associative.type';
+import { Observable, catchError, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,33 +42,36 @@ export class BuildQuestionService {
     return options;
   }
 
-  buildAssociativeQuestion(questao: Questao): AssociativeList{
-    let associativeMetodos: Associative[] = []
-    let associativeAnswers: Associative[] = []
-    this.contentService.getRandomContent().subscribe({
-      next: (conteudos) => {
-        conteudos.slice(0, 4).map((conteudo) => {
-          const buildConteudo = this.obterValorDaPropriedade(conteudo, questao.categoria.toLowerCase()) + "";
-          const conteudoToAdd: Associative = new Associative(conteudo.metodo, conteudo.id);
-          const answerToAdd: Associative = new Associative(buildConteudo, conteudo.id);
-          associativeMetodos.push(conteudoToAdd);
-          associativeAnswers.push(answerToAdd);
-        })
-      },
-      error: (err) => {
-        console.log(err);
-      }
+
+buildAssociativeQuestion(questao: Questao): Observable<AssociativeList> {
+  return this.contentService.getRandomContent().pipe(
+    map((conteudos) => {
+      const slicedConteudos = conteudos.slice(0, 4);
+      const associativeMetodos: Associative[] = [];
+      const associativeAnswers: Associative[] = [];
+
+      slicedConteudos.forEach((conteudo) => {
+        const buildConteudo = this.obterValorDaPropriedade(conteudo, questao.categoria.toLowerCase()) + "";
+        const conteudoToAdd: Associative = new Associative(conteudo.metodo, conteudo.id);
+        const answerToAdd: Associative = new Associative(buildConteudo, conteudo.id);
+        associativeMetodos.push(conteudoToAdd);
+        associativeAnswers.push(answerToAdd);
+      });
+
+      const shuffledMetodos = this.shuffleArray(associativeMetodos);
+
+      return new AssociativeList(shuffledMetodos, associativeAnswers);
+    }),
+    catchError((error) => {
+      console.log(error);
+      throw error;
     })
-
-    associativeMetodos = this.shuffleArray(associativeMetodos);
-    associativeAnswers = this.shuffleArray(associativeAnswers);
-
-
-    return new AssociativeList(associativeMetodos, associativeAnswers);
-  }
+  );
+}
 
   shuffleArray<T>(array: T[]): T[] {
     const shuffledArray = [...array];
+    console.log(array);
 
     for (let i = shuffledArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
