@@ -81,6 +81,7 @@ export class LoginComponent {
         sessionStorage.setItem("role", response.role);
         sessionStorage.setItem("token", response.token);
         sessionStorage.setItem("points", response.points.toString());
+        sessionStorage.setItem("id", response.id.toString());
         this.router.navigate(['/journey']);
       },
       error: (err) => {

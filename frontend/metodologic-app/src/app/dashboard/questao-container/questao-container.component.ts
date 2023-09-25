@@ -1,7 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lineAnimation } from 'src/app/animation/line_animation';
-import { AnimationEvent } from '@angular/animations';
 import { Questao } from 'src/app/dto/questao/questao.dto';
 import { QuestionService } from 'src/app/services/question.service';
 
@@ -36,7 +35,7 @@ export class QuestaoContainerComponent {
     if(this.id){
       this.questionService.getByModule(+this.id).subscribe({
           next: (response) => {
-            response.map((questao) => {
+            response.slice(0,5).map((questao) => {
               this.questoes.push(questao);
             })
           },
@@ -44,6 +43,7 @@ export class QuestaoContainerComponent {
             console.log(err);
           }
       })
+
     }
   }
 
@@ -58,12 +58,19 @@ export class QuestaoContainerComponent {
 
 
   nextQuestion() {
-    this.score += this.pontoQuestaoAtual;
+    if(this.currentIndex === (this.questoes.length -1)){
+      this.closeGame();
+    }else{
+      this.score += this.pontoQuestaoAtual;
 
 
-    this.currentIndex++;
-    this.currentQuestion = this.questoes[this.currentIndex];
-    this.setWidth(((this.currentIndex / this.questoes.length) * 100) + "%");
+      this.currentIndex++;
+      this.currentQuestion = this.questoes[this.currentIndex];
+      this.setWidth(((this.currentIndex / (this.questoes.length-1)) * 100) + "%");
+    }
+
+
+
 
   }
 
@@ -82,10 +89,10 @@ export class QuestaoContainerComponent {
 
     this.currentIndex++;
     this.currentQuestion = this.questoes[this.currentIndex];
-    this.setWidth(((this.currentIndex / this.questoes.length) * 100) + "%");
+    this.setWidth(((this.currentIndex / (this.questoes.length-1)) * 100) + "%");
   }
 
-  closeGame(data: any) {
+  closeGame() {
     if(this.type === "module"){
       this.router.navigate(['/journey']);
     }else{

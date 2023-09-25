@@ -2,6 +2,7 @@ export class LoginResponseDTO {
   constructor(
     public token: string,
     public role: string,
-    public points: number
+    public points: number,
+    public id: number
   ) {}
 }

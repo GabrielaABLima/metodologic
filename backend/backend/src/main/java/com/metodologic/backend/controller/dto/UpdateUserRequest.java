@@ -4,5 +4,14 @@
  */
 package com.metodologic.backend.controller.dto;
 
-public record LoginResponseDTO(String token, String role, int points, long id) {
+import com.metodologic.backend.enums.EUserRole;
+import java.util.Date;
+
+
+public class UpdateUserRequest {
+    public String email;
+    public String nome;
+    public Date dataNascimento;
+    public String curso;
+    public String instituicaoEnsino;
 }
