@@ -11,7 +11,7 @@
 <div class="optativa-container" *ngIf="question.tipo === 'ASSOCIACAO'">
   <p class="enunciado">Associe os métodos listados com seus {{question.categoria.toLowerCase()}} correspondentes:</p>
   <div class="opcoes">
-    <div *ngIf="associatives" class="opcao">
+    <div *ngIf="associatives" class="associative-opcao">
       <ng-container *ngFor="let item of associatives.metodos; let i = index">
         <div  class="associatives-buttons-container">
           <button class="associative-button metodo-button">

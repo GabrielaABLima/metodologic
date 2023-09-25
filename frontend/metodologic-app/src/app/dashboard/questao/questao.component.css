@@ -17,20 +17,19 @@
 
 .opcoes{
   margin-top: 10px;
-  width: 90%;
+  max-width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.associative-opcoes{
-  margin-top: 10px;
-  max-width: 90%;
+.associative-opcao{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  max-width: 70%;
 }
 
 .opcoes-variant {
@@ -91,6 +90,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 

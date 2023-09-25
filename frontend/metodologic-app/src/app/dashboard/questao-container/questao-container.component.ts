@@ -72,6 +72,15 @@ export class QuestaoContainerComponent {
     this.pontoQuestaoAtual = pontos;
   }
 
+  skipQuestion() {
+    this.score -= 5;
+
+
+    this.currentIndex++;
+    this.currentQuestion = this.questoes[this.currentIndex];
+    this.setWidth(((this.currentIndex / this.questoes.length) * 100) + "%");
+  }
+
   closeGame(data: any) {
     if(this.type === "module"){
       this.router.navigate(['/journey']);
