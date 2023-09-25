@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { lineAnimation } from 'src/app/animation/line_animation';
 import { Questao } from 'src/app/dto/questao/questao.dto';
 import { QuestionService } from 'src/app/services/question.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-questao-container',
@@ -24,7 +25,8 @@ export class QuestaoContainerComponent {
     private router: Router,
     private route: ActivatedRoute,
     private questionService: QuestionService,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private userService: UsersService
   ) {
     this.type = this.route.snapshot.paramMap.get('type');
     this.id = this.route.snapshot.paramMap.get('id');
@@ -59,6 +61,22 @@ export class QuestaoContainerComponent {
 
   nextQuestion() {
     if(this.currentIndex === (this.questoes.length -1)){
+      const id = sessionStorage.getItem("id");
+      const pontos = sessionStorage.getItem("points");
+      console.log(pontos);
+      if (id !== null && pontos !== null){
+        this.userService.updateUserPoints(+id, +pontos+this.score).subscribe({
+          next: (response) => {
+            console.log(response);
+            sessionStorage.setItem("points", (+pontos+this.score)+"");
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        })
+      }
+
+
       this.closeGame();
     }else{
       this.score += this.pontoQuestaoAtual;

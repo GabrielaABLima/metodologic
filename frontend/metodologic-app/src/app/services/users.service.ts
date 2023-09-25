@@ -28,6 +28,13 @@ export class UsersService {
     return this.http.put<UpdateUserRequestDTO>(this.URL + "/" + id, updateUser, { headers });
   }
 
+  updateUserPoints(id: number, pontos: number){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.put<Usuario>(this.URL + "/pontos/" + id, {"pontos": pontos}, { headers });
+  }
+
 
 }
 
