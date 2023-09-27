@@ -183,7 +183,7 @@ export class ModalClassesComponent implements OnChanges {
       if(this.userId && this.searchedClass.codigo){
           this.classesStudentsService.add({alunoId: +this.userId, turmaCod: this.searchedClass.codigo}).subscribe({
             next: (response) => {
-              console.log(response);
+              window.location.reload();
             },
             error: (err) => {
               console.log(err);

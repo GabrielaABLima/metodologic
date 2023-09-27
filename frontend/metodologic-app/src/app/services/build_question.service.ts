@@ -18,24 +18,26 @@ export class BuildQuestionService {
 
   buildMultipleChoiceQuestion(questao: Questao): MultipleChoiceOption[]{
     const options: MultipleChoiceOption[] = []
-    if(questao.conteudo){
-      this.contentService.getRandomContentExceptById(questao.conteudo.id).subscribe({
+    const conteudoSelecionado = questao.conteudo;
+    if(conteudoSelecionado){
+      this.contentService.getRandomContentExceptById(conteudoSelecionado.id).subscribe({
         next: (conteudos) => {
           conteudos.map((conteudo) => {
             const buildConteudo = this.obterValorDaPropriedade(conteudo, questao.categoria.toLowerCase()) + "";
             const conteudoToAdd: MultipleChoiceOption = new MultipleChoiceOption(buildConteudo, false);
             options.push(conteudoToAdd);
           })
+          const indiceAleatorio = Math.floor(Math.random() * (options.length));
+
+          const rightAnswerConteudo =  this.obterValorDaPropriedade(conteudoSelecionado, questao.categoria.toLowerCase()) + "";
+          const conteudoRightToAdd: MultipleChoiceOption = new MultipleChoiceOption(rightAnswerConteudo, true);
+          options.splice(indiceAleatorio, 0, conteudoRightToAdd);
+
         },
         error: (err) => {
           console.log(err);
         }
       })
-      const indiceAleatorio = Math.floor(Math.random() * (options.length));
-
-      const rightAnswerConteudo =  this.obterValorDaPropriedade(questao.conteudo, questao.categoria.toLowerCase()) + "";
-      const conteudoRightToAdd: MultipleChoiceOption = new MultipleChoiceOption(rightAnswerConteudo, true);
-      options.splice(indiceAleatorio, 0, conteudoRightToAdd);
 
     }
 
