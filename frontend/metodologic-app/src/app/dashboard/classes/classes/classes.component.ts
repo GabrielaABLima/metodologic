@@ -1,4 +1,4 @@
-import { ClassesStudentsService } from './../../../services/classes_students.service';
+import { ClassesStudentsService } from 'src/app/services/classes_students.service';
 import { Component, ElementRef, SimpleChanges, ViewChild, OnChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -32,23 +32,38 @@ export class ClassesComponent implements OnChanges{
 
   constructor(
     private classesService: ClassesService,
+    private classesStudentsService: ClassesStudentsService,
     private router: Router,
     private route: ActivatedRoute
   ) {
   }
   ngOnInit(): void {
     if(this.userId){
-      this.classesService.getClassesByProfessor(+this.userId).subscribe({
-        next: (response) => {
-          response.map((turma) => {
-            this.classes.push(turma);
-          })
-          this.resultados = this.classes;
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      })
+      if(this.userRole === 'professor'){
+        this.classesService.getClassesByProfessor(+this.userId).subscribe({
+          next: (response) => {
+            response.map((turma) => {
+              this.classes.push(turma);
+            })
+            this.resultados = this.classes;
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        })
+      }else{
+        this.classesStudentsService.getClassesByAluno(+this.userId).subscribe({
+          next: (response) => {
+            response.map((turma) => {
+              this.classes.push(turma);
+            })
+            this.resultados = this.classes;
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        })
+      }
     }
 
   }

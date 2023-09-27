@@ -28,6 +28,13 @@ export class ClassesStudentsService {
     this.http.delete(this.URL+`/removerAlunoTurma/` + alunoId + "/" + turmaCod);
   }
 
+  getClassesByAluno(alunoId: number): Observable<Turma[]>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.get<Turma[]>(this.URL+`/turmasByAluno/` + alunoId, { headers });
+  }
+
 
 }
 
