@@ -20,5 +20,9 @@ export class AuthService {
   login(credentials: LoginRequestDTO): Observable<LoginResponseDTO> {
     return this.http.post<LoginResponseDTO>(this.URL + `/login`, credentials);
   }
+
+  logout(){
+    sessionStorage.clear();
+  }
 }
 

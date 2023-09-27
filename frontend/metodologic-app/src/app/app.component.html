@@ -21,16 +21,18 @@
     <button class="menu-button" color="primary"><p class="variant1" routerLink="/classes">Turmas</p></button>
   </div>
 
-  <div class="example-card" style="margin-left: auto; ">
+  <div *ngIf="isLogged" class="example-card" style="margin-left: auto; ">
     <div style="display: flex; flex-direction: row;">
-      <div class="profile-image" style="margin-right: 12px;"></div>
+      <div class="profile-image" style="margin-right: 12px;">
+        <p>{{userProfilePicture}}</p>
+      </div>
       <div style="display: flex; flex-direction: column; margin-right: 20px;">
-        <p class="variant2" style="font-weight: 500;">Shiba Inu</p>
-        <p class="variant3">Dog Breed</p>
+        <p class="variant2" style="font-weight: 500;">{{userName}}</p>
+        <p class="variant3">{{userEmail}}</p>
       </div>
     </div>
   </div>
-  <button class="round-button" [matMenuTriggerFor]="menu">
+  <button *ngIf="isLogged" class="round-button" [matMenuTriggerFor]="menu">
     <svg width="77" height="50" viewBox="0 0 66 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M30.2099 38.7024L1.0546 9.5469C-0.351534 8.14076 -0.351534 5.86106 1.0546 4.45507L4.4551 1.05457C5.85884 -0.349168 8.13389 -0.35187 9.54093 1.04857L32.7559 24.1548L55.9707 1.04857C57.3778 -0.35187 59.6528 -0.349168 61.0566 1.05457L64.4571 4.45507C65.8632 5.86121 65.8632 8.14091 64.4571 9.5469L35.3019 38.7024C33.8958 40.1084 31.6161 40.1084 30.2099 38.7024Z" fill="#FFEB3B"/>
     </svg>

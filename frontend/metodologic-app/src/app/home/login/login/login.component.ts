@@ -1,3 +1,4 @@
+import { UsersService } from 'src/app/services/users.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,7 +22,8 @@ export class LoginComponent {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userService: UsersService,
   ) {
   }
   openSuccessSnackBar(message: string){
@@ -83,6 +85,7 @@ export class LoginComponent {
         sessionStorage.setItem("points", response.points.toString());
         sessionStorage.setItem("id", response.id.toString());
         this.router.navigate(['/journey']);
+
       },
       error: (err) => {
         this.openFailureSnackBar();

@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Aluno } from '../dto/aluno/aluno.dto';
 import { Usuario } from '../dto/usuario/UsuarioDTO';
 import { UpdateUserRequestDTO } from '../dto/usuario/UpdateUserRequestDTO';
+import { CheckLoginResponseDTO } from '../dto/usuario/CheckLoginResponseDTO';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,9 @@ import { UpdateUserRequestDTO } from '../dto/usuario/UpdateUserRequestDTO';
 export class UsersService {
   URL:string = "http://localhost:8080/usuarios"
   private token = sessionStorage.getItem("token");
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,) { }
 
   getById(id : number) : Observable<Usuario> {
     const headers = new HttpHeaders({
@@ -34,7 +38,6 @@ export class UsersService {
     });
     return this.http.put<Usuario>(this.URL + "/pontos/" + id, {"pontos": pontos}, { headers });
   }
-
 
 }
 
