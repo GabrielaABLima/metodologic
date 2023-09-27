@@ -19,20 +19,11 @@ export class ModalClassesComponent implements OnChanges {
   studentsToAdd: Aluno[] = [];
   studentsFromClass: Aluno[] = [];
   userRole = sessionStorage.getItem("role");
+  userId = sessionStorage.getItem("id");
+  codigo = "";
+  searchedClass!: Turma;
   @Input() classId?: string;
 
-
-  aluno = new Aluno(
-        "Gabi",
-        "gabi@gmail.com",
-        "senha",
-        new Date(2020, 10, 25),
-        "BCC",
-        "IFSP",
-        0,
-        0
-      );
-  alunos: Aluno[]= [this.aluno];
 
   constructor(
     private classesStudentsService: ClassesStudentsService,
@@ -67,10 +58,6 @@ export class ModalClassesComponent implements OnChanges {
 
   ngOnInit(): void {
     this.createClassFormGroup = this.formBuilder.group({
-      codigo: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(10),
-      ]),
 
       nome: new FormControl('', [
         Validators.required,
@@ -104,9 +91,6 @@ export class ModalClassesComponent implements OnChanges {
 
   }
 
-  get codigo() {
-    return this.createClassFormGroup.get('codigo');
-  }
   get nome() {
     return this.createClassFormGroup.get('nome');
   }
@@ -125,15 +109,26 @@ export class ModalClassesComponent implements OnChanges {
   }
 
 
-  private createTurma(): Turma {
-    return new Turma(
-      this.nome!.value,
-      this.codigo!.value,
-      this.curso!.value,
-      this.instituicaoEnsino!.value,
-      this.descricao!.value,
-      1,
-    );
+  private createTurma(): Turma | undefined {
+    if(this.userId){
+      const nome = this.nome!.value;
+      const curso = this.curso!.value;
+      const instituicao = this.instituicaoEnsino!.value;
+      const dataAtual = new Date();
+      const anoAtual = dataAtual.getFullYear().toString();
+      var ultimosDoisDigitos = anoAtual.slice(-2);
+      this.codigo = (nome.slice(0, 2) + curso.slice(0, 2) + instituicao.slice(0,2) + ultimosDoisDigitos).toLocaleUpperCase();
+      return new Turma(
+        this.nome!.value,
+        this.codigo,
+        this.curso!.value,
+        this.instituicaoEnsino!.value,
+        this.descricao!.value,
+        +this.userId,
+      );
+    }else{
+      return undefined;
+    }
   }
 
 
@@ -159,10 +154,24 @@ export class ModalClassesComponent implements OnChanges {
   }
 
   onSubmitCadastro(): void {
-    this.classesService.save(this.createTurma()).subscribe({
+    const turma = this.createTurma();
+    if(turma){
+      this.classesService.save(turma).subscribe({
+        next: (response) => {
+          console.log(response);
+          window.location.reload();
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+    }
+  }
+
+  onSubmitSearch(): void {
+    this.classesService.getClassByCode(this.busca?.value).subscribe({
       next: (response) => {
-        console.log(response);
-        // this.router.navigate(['/']);
+        this.searchedClass = response;
       },
       error: (err) => {
         console.log(err);
@@ -170,27 +179,9 @@ export class ModalClassesComponent implements OnChanges {
     })
   }
 
-  onSubmitSearch(): void {
-    // this.studentsService.getAlunoByNameOrEmail(this.busca?.value).subscribe({
-    //   next: (response) => {
-    //     response.map((student) => {
-    //       const studentAlreadySelected = this.studentsToAdd.find((studentToAdd) => studentToAdd.id === student.id);
-    //       if(!studentAlreadySelected){
-    //         this.studentsSearchResult.push(student);
-    //       }
-    //     })
-    //   },
-    //   error: (err) => {
-    //     console.log(err);
-    //   }
-    // })
-  }
-
-  handleAddStudents(){
-
-    this.studentsToAdd.map((student) => {
-      if(student.id && this.classId){
-          this.classesStudentsService.add({alunoId: student.id, turmaCod: this.classId}).subscribe({
+  handleSubscribe(){
+      if(this.userId && this.searchedClass.codigo){
+          this.classesStudentsService.add({alunoId: +this.userId, turmaCod: this.searchedClass.codigo}).subscribe({
             next: (response) => {
               console.log(response);
             },
@@ -198,10 +189,7 @@ export class ModalClassesComponent implements OnChanges {
               console.log(err);
             }
           })
-          this.studentsFromClass.push(student);
       }
-    });
-    this.studentsToAdd = [];
   }
 
 

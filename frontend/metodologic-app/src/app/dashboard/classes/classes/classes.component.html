@@ -58,7 +58,7 @@
 
 </div>
 
-<div class="empty-modules-container">
+<div class="empty-modules-container" *ngIf="resultados.length === 0">
   <app-empty-state
     [title]="titleEmpty"
     [description]="descriptionEmpty"

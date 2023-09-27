@@ -62,14 +62,18 @@ export class AppComponent {
       this.userName = "";
       this.userProfilePicture = "";
       this.isLogged = false;
-      this.router.navigate(['/login']);
 
     }
 
-    setTimeout(() => {
-      this.checkUserLogged();
-    }, 1);
-
+    if(this.isLogged){
+      setTimeout(() => {
+        this.checkUserLogged();
+      }, 6000000);
+    }else{
+      setTimeout(() => {
+        this.checkUserLogged();
+      }, 20000);
+    }
   }
 
 

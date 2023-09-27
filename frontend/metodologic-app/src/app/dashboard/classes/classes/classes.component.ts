@@ -24,21 +24,12 @@ export class ClassesComponent implements OnChanges{
   resultados: Turma[] = [];
   termoDePesquisa = '';
   userRole = sessionStorage.getItem("role");
+  userId = sessionStorage.getItem("id");
   titleEmpty = this.userRole === "aluno" ? "Nenhuma turma encontrada" : "Sem turmas criadas";
   descriptionEmpty = this.userRole === "aluno" ? "Parece que você ainda não está inscrito em nenhuma turma. Clique no botão abaixo para se increver em uma nova turma!" : "Não há turmas atribuídas no momento. Crie uma nova turma para começar a ensinar.";
   buttonEmpty = this.userRole === "aluno" ? "Inscrever-se" : "Criar turma";
   title = this.userRole === "aluno" ? "Inscrever-se em nova turma" : "Criar nova turma";
-  professor = new Professor(
-    "Gabi",
-    "gabi@gmail.com",
-    "senha",
-    new Date(2020, 10, 25),
-    "BCC",
-    "IFSP",
-    0,
-    0,
-    1
-  );
+
   constructor(
     private classesService: ClassesService,
     private router: Router,
@@ -46,8 +37,8 @@ export class ClassesComponent implements OnChanges{
   ) {
   }
   ngOnInit(): void {
-    if(this.professor.id){
-      this.classesService.getClassesByProfessor(this.professor.id).subscribe({
+    if(this.userId){
+      this.classesService.getClassesByProfessor(+this.userId).subscribe({
         next: (response) => {
           response.map((turma) => {
             this.classes.push(turma);

@@ -100,4 +100,15 @@ public class TurmaController {
         turmaRepository.save(turma);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    
+    @GetMapping("/codigo/{codigo}")
+    public ResponseEntity<Turma> findByCodigo(@PathVariable String codigo){
+        Optional<Turma> turmaOptional = turmaRepository.findByCodigo(codigo);
+        if (turmaOptional.isPresent()) {
+            Turma turma = turmaOptional.get();
+            return new ResponseEntity<>(turma, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

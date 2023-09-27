@@ -11,4 +11,5 @@ export class Turma {
     public professorId?: number,
     public id?: number
   ) {}
+
 }
