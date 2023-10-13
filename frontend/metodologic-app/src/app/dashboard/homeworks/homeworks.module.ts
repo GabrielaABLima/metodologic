@@ -9,10 +9,15 @@ import { MatInputModule } from '@angular/material/input'; // Importe o MatInputM
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import { EmptyStateModule } from '../components/empty-state/empty-state.module';
+import { ModalHomeworksComponent } from './homeworks/components/modal-homeworks/modal-homeworks.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'src/app/modal/modal.module';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
     HomeworksComponent,
+    ModalHomeworksComponent,
   ],
   imports: [
     CommonModule,
@@ -22,7 +27,12 @@ import { EmptyStateModule } from '../components/empty-state/empty-state.module';
     MatGridListModule,
     MatFormFieldModule,
     MatIconModule,
-    EmptyStateModule
+    EmptyStateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ModalModule,
+    MatSelectModule,
+
   ]
 })
 export class HomeworksModule { }

@@ -1,5 +1,5 @@
 <p class="variant2">Tarefas</p>
-<div class="modules-container" *ngIf="dataSource.length > 0">
+<div class="modules-container" *ngIf="resultados.length > 0">
   <div style="display: flex; flex-direction: row; width: 100%; justify-content: space-between; align-items: center;">
     <mat-form-field appearance="outline" color="primary" style="width: calc(30% + 90px); margin-bottom: 0px;">
       <mat-label >
@@ -32,25 +32,25 @@
       <th>Instituição</th>
       <th>Curso</th>
       <th>Data da atribuição</th>
-      <th>Nota</th>
+      <th *ngIf="userRole === 'aluno'">Nota</th>
 
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let homework of dataSource" class="tableRow">
+    <tr *ngFor="let homework of resultados; let i = index" class="tableRow">
       <td>
         <svg width="54" height="24" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" [attr.fill]="homework.color"/>
-          <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  [attr.fill]="homework.color"/>
-          <path opacity="0.7" d="M47.5 42.0068L0 18.1293L47.5 0L93.5 23.8775L47.5 42.0068Z" [attr.fill]="homework.color"/>
+          <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" [attr.fill]="colors[i]"/>
+          <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  [attr.fill]="colors[i]"/>
+          <path opacity="0.7" d="M47.5 42.0068L0 18.1293L47.5 0L93.5 23.8775L47.5 42.0068Z" [attr.fill]="colors[i]"/>
         </svg>
       </td>
-      <td>{{ homework.deliveryDate }}</td>
-      <td>{{ homework.name }}</td>
-      <td>{{ homework.institution }}</td>
-      <td>{{ homework.course }}</td>
-      <td>{{ homework.postDate }}</td>
-      <td>{{ homework.grade }}/{{homework.maxGrade}}</td>
+      <td>{{ homework.dataEntrega }}</td>
+      <td>{{ homework.nome }}</td>
+      <td>{{ homework.turma.instituicaoEnsino }}</td>
+      <td>{{ homework.turma.curso }}</td>
+      <td>{{ homework.dataAtribuicao }}</td>
+      <td *ngIf="userRole === 'aluno'">{{ homework.nota }}</td>
     </tr>
   </tbody>
 </table>
@@ -58,12 +58,17 @@
 
 </div>
 
-<div  class="empty-modules-container" *ngIf="dataSource.length === 0">
+<div  class="empty-modules-container" *ngIf="resultados.length === 0">
   <app-empty-state
     [title]="titleEmpty"
     [description]="descriptionEmpty"
     imgSource="../../../../assets/images/empty-homework.png"
   >
+  <button class="empty-button" (click)="emptyClick()">Criar tarefa</button>
   </app-empty-state>
 
 </div>
+
+<app-modal #modal title="Criar nova tarefa">
+  <app-modal-homeworks></app-modal-homeworks>
+</app-modal>

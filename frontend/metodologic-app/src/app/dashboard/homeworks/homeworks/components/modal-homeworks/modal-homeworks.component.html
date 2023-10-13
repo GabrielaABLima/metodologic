@@ -1,0 +1,71 @@
+<div class="modal-container" *ngIf="userRole === 'professor'">
+  <div class="formCreate">
+    <div class="informative-card">
+      <svg width="51" height="51" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10.3935 0C4.65374 0 0 4.65541 0 10.3935C0 16.135 4.65374 20.787 10.3935 20.787C16.1333 20.787 20.787 16.135 20.787 10.3935C20.787 4.65541 16.1333 0 10.3935 0ZM10.3935 4.61003C11.3656 4.61003 12.1537 5.39809 12.1537 6.37022C12.1537 7.34235 11.3656 8.13041 10.3935 8.13041C9.42138 8.13041 8.63332 7.34235 8.63332 6.37022C8.63332 5.39809 9.42138 4.61003 10.3935 4.61003ZM12.7404 15.255C12.7404 15.5327 12.5153 15.7579 12.2375 15.7579H8.5495C8.27177 15.7579 8.04659 15.5327 8.04659 15.255V14.2492C8.04659 13.9714 8.27177 13.7463 8.5495 13.7463H9.05241V11.0641H8.5495C8.27177 11.0641 8.04659 10.8389 8.04659 10.5612V9.55533C8.04659 9.27759 8.27177 9.05241 8.5495 9.05241H11.2317C11.5094 9.05241 11.7346 9.27759 11.7346 9.55533V13.7463H12.2375C12.5153 13.7463 12.7404 13.9714 12.7404 14.2492V15.255Z" fill="#f9e93e"/>
+      </svg>
+
+      <p class="variant6" style="margin-left: 20px;">
+        Ao criar uma nova turma, um código único é gerado. O código da turma serve como uma espécie de chave de acesso que permite aos alunos se associarem à turma. Compartilhe o código com seus alunos!
+      </p>
+    </div>
+    <form class="form-container" [formGroup]="createHomeworkFormGroup" (ngSubmit)="onSubmitCadastro()">
+
+        <mat-form-field appearance="outline" color="primary" style="width: 90%; margin-top: 20px;" *ngIf="!loadingTurmas">
+          <mat-label>Selecione uma turma</mat-label>
+          <mat-select formControlName="classSelectedForm">
+            <mat-option *ngFor="let class of classes" [value]="class.codigo">{{ class.nome }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="createHomeworkFormGroup.get('classSelectedForm')?.invalid && (createHomeworkFormGroup.get('classSelectedForm')?.dirty || createHomeworkFormGroup.get('classSelectedForm')?.touched)" class="text-danger">
+          <div *ngIf="createHomeworkFormGroup.get('classSelectedForm')?.hasError('required')">Este campo é obrigatório.</div>
+        </div>
+      <div *ngIf="loadingTurmas">
+        <div class="loading-container mb-2">
+          <label class="texto-disabled">Selecione uma turma cadastrada</label>
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
+      <mat-form-field appearance="outline" color="primary" style="width: 90%; margin-top: 20px;">
+        <mat-label style="flex-direction: column;">
+            Nome
+        </mat-label>
+        <input matInput formControlName="nome" />
+      </mat-form-field>
+      <div
+        *ngIf="
+        createHomeworkFormGroup.get('nome')?.invalid &&
+          (createHomeworkFormGroup.get('nome')?.dirty ||
+          createHomeworkFormGroup.get('nome')?.touched ||
+          createHomeworkFormGroup.get('nome')?.errors?.['maxlength'])
+        "
+        class="text-danger"
+      >
+      </div>
+        <mat-form-field appearance="outline" color="primary" style="width: 90%; margin-top: 20px;">
+          <mat-label style="flex-direction: column;">
+            <svg width="16" height="15" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M27.3012 4.36819H24.025V0.819035C24.025 0.368566 23.6565 0 23.206 0H20.4759C20.0254 0 19.6568 0.368566 19.6568 0.819035V4.36819H10.9205V0.819035C10.9205 0.368566 10.5519 0 10.1014 0H7.37132C6.92085 0 6.55228 0.368566 6.55228 0.819035V4.36819H3.27614C1.46744 4.36819 0 5.83562 0 7.64433V31.6694C0 33.4781 1.46744 34.9455 3.27614 34.9455H27.3012C29.1099 34.9455 30.5773 33.4781 30.5773 31.6694V7.64433C30.5773 5.83562 29.1099 4.36819 27.3012 4.36819ZM26.8917 31.6694H3.68566C3.46042 31.6694 3.27614 31.4851 3.27614 31.2598V10.9205H27.3012V31.2598C27.3012 31.4851 27.1169 31.6694 26.8917 31.6694Z" fill="#17384C"/>
+              </svg>
+
+
+              Data de Entrega
+            </mat-label>
+          <input matInput type="date" formControlName="dataEntrega"/>
+        </mat-form-field>
+        <div
+          *ngIf="
+          createHomeworkFormGroup.get('dataEntrega')?.invalid &&
+            (createHomeworkFormGroup.get('dataEntrega')?.dirty ||
+            createHomeworkFormGroup.get('dataEntrega')?.touched)
+          "
+          class="text-danger"
+        >
+        </div>
+
+      <div class="modal-footer">
+        <button class="form-button" type="submit"><p class="variant3">Salvar</p></button>
+      </div>
+    </form>
+  </div>
+</div>
