@@ -1,5 +1,6 @@
 import { Component, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Aluno } from 'src/app/dto/aluno/aluno.dto';
 import { Turma } from 'src/app/dto/turma/turma.dto';
@@ -23,11 +24,13 @@ export class ModalClassesComponent implements OnChanges {
   codigo = "";
   searchedClass!: Turma;
   @Input() classId?: string;
+  classToEdit!: Turma;
 
 
   constructor(
     private classesStudentsService: ClassesStudentsService,
     private classesService: ClassesService,
+    private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
@@ -38,7 +41,6 @@ export class ModalClassesComponent implements OnChanges {
     if (changes['classId'] && !changes['classId'].firstChange) {
       const novoValor = changes['classId'].currentValue;
 
-      console.log('Novo valor de seuInput:', novoValor);
       if(this.classId){
         this.classesStudentsService.getAlunosByTurma(this.classId).subscribe({
           next: (response) => {
@@ -51,6 +53,18 @@ export class ModalClassesComponent implements OnChanges {
             console.log(err);
           }
         })
+        this.classesService.getClassByCode(this.classId).subscribe({
+          next: (response) => {
+            this.classToEdit = response;
+            this.createClassFormGroup.patchValue({
+              curso: this.classToEdit?.curso,
+              descricao: this.classToEdit?.descricao,
+              instituicaoEnsino: this.classToEdit?.instituicaoEnsino,
+              nome: this.classToEdit?.nome
+            });
+          }
+        })
+
       }
     }
   }
@@ -209,8 +223,35 @@ export class ModalClassesComponent implements OnChanges {
 
   removeStudent(studentId?: number){
     if(studentId && this.classId){
-      this.classesStudentsService.removerAlunoTurma(studentId, this.classId);
-      //this.studentsFromClass = this.studentsFromClass.filter((student) => student.id !== studentId);
+      console.log(studentId);
+      console.log(this.classId);
+      this.classesStudentsService.removerAlunoTurma(studentId, this.classId).subscribe(
+        () => {
+          this.openSuccessSnackBar("Aluno removido");
+        },
+        (error) => {
+          this.openFailureSnackBar("Erro ao remover aluno");
+        }
+      );
+      this.studentsFromClass = this.studentsFromClass.filter((student) => student.id !== studentId);
     }
+  }
+
+  openSuccessSnackBar(message: string){
+    this.snackBar.open(message, "OK", {
+      duration: 3000,
+      horizontalPosition: 'start',
+      verticalPosition: 'bottom',
+      panelClass: 'green-snackbar',
+     });
+  }
+
+  openFailureSnackBar(message: string){
+    this.snackBar.open(message, "OK", {
+      duration: 3000,
+      horizontalPosition: 'start',
+      verticalPosition: 'bottom',
+      panelClass: ['red-snackbar','login-snackbar'],
+      });
   }
 }

@@ -15,6 +15,7 @@ import { ModalClassesComponent } from './classes/components/modal-classes/modal-
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import { EmptyStateModule } from '../components/empty-state/empty-state.module';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { EmptyStateModule } from '../components/empty-state/empty-state.module';
     ReactiveFormsModule,
     MatMenuModule,
     MatButtonModule,
-    EmptyStateModule
+    EmptyStateModule,
+    MatSnackBarModule,
   ]
 })
 export class ClassesModule { }

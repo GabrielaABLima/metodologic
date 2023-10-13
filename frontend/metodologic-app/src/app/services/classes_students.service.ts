@@ -21,11 +21,17 @@ export class ClassesStudentsService {
   }
 
   getAlunosByTurma(turmaCod: string):Observable<Aluno[]> {
-    return this.http.get<Aluno[]>(this.URL+`/alunosByTurma/` + turmaCod);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.get<Aluno[]>(this.URL+`/alunosByTurma/` + turmaCod, { headers });
   }
 
-  removerAlunoTurma(alunoId: number, turmaCod: string): void{
-    this.http.delete(this.URL+`/removerAlunoTurma/` + alunoId + "/" + turmaCod);
+  removerAlunoTurma(alunoId: number, turmaCod: string){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.delete(this.URL+`/removerAlunoTurma/` + alunoId + "/" + turmaCod, { headers });
   }
 
   getClassesByAluno(alunoId: number): Observable<Turma[]>{
