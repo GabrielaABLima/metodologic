@@ -1,0 +1,69 @@
+{
+        "nivel": 1,
+        "pontos": 5,
+        "categoria": "EXEMPLOS",
+        "tipo": "ASSOCIACAO"
+},
+{
+        "nivel": 1,
+        "pontos": 5,
+        "categoria": "DEFINICAO",
+        "tipo": "ASSOCIACAO"
+},
+{
+        "nivel": 1,
+        "pontos": 5,
+        "categoria": "EXEMPLOS",
+        "tipo": "OPTATIVA",
+	"conteudoId": 1
+},
+{
+        "nivel": 1,
+        "pontos": 5,
+        "categoria": "EXEMPLOS",
+        "tipo": "OPTATIVA",
+	"conteudoId": 5
+},
+{
+        "nivel": 1,
+        "pontos": 5,
+        "categoria": "EXEMPLOS",
+        "tipo": "OPTATIVA",
+	"conteudoId": 9
+},
+{
+        "nivel": 1,
+        "pontos": 5,
+        "categoria": "EXEMPLOS",
+        "tipo": "OPTATIVA",
+	"conteudoId": 4
+},
+{
+        "nivel": 1,
+        "pontos": 10,
+        "categoria": "DEFINICAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 1
+},
+{
+        "nivel": 1,
+        "pontos": 10,
+        "categoria": "DEFINICAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 5
+},
+{
+        "nivel": 1,
+        "pontos": 10,
+        "categoria": "DEFINICAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 9
+},
+{
+        "nivel": 1,
+        "pontos": 10,
+        "categoria": "DEFINICAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 4
+}
+

@@ -1,0 +1,29 @@
+INSERT INTO questoes (qst_nivel, qst_pontos, qst_categoria, qst_tipo, fk_conteudo_cnt_id
+) VALUES (1, 5, 'EXEMPLOS', 'ASSOCIACAO', null);
+
+INSERT INTO questoes (qst_nivel, qst_pontos, qst_categoria, qst_tipo, fk_conteudo_cnt_id
+) VALUES (1, 5, 'DEFINICAO', 'ASSOCIACAO', null);
+
+INSERT INTO questoes (qst_nivel, qst_pontos, qst_categoria, qst_tipo, fk_conteudo_cnt_id
+) VALUES (1, 5, 'EXEMPLOS', 'OPTATIVA', 1);
+
+INSERT INTO questoes (qst_nivel, qst_pontos, qst_categoria, qst_tipo, fk_conteudo_cnt_id
+) VALUES (1, 5, 'EXEMPLOS', 'OPTATIVA', 5);
+
+INSERT INTO questoes (qst_nivel, qst_pontos, qst_categoria, qst_tipo, fk_conteudo_cnt_id
+) VALUES (1, 5, 'EXEMPLOS', 'OPTATIVA', 9);
+
+INSERT INTO questoes (qst_nivel, qst_pontos, qst_categoria, qst_tipo, fk_conteudo_cnt_id
+) VALUES (1, 5, 'EXEMPLOS', 'OPTATIVA', 4);
+
+INSERT INTO questoes (qst_nivel, qst_pontos, qst_categoria, qst_tipo, fk_conteudo_cnt_id
+) VALUES (1, 10, 'DEFINICAO', 'OPTATIVA', 1);
+
+INSERT INTO questoes (qst_nivel, qst_pontos, qst_categoria, qst_tipo, fk_conteudo_cnt_id
+) VALUES (1, 10, 'DEFINICAO', 'OPTATIVA', 5);
+
+INSERT INTO questoes (qst_nivel, qst_pontos, qst_categoria, qst_tipo, fk_conteudo_cnt_id
+) VALUES (1, 10, 'DEFINICAO', 'OPTATIVA', 9);
+
+INSERT INTO questoes (qst_nivel, qst_pontos, qst_categoria, qst_tipo, fk_conteudo_cnt_id
+) VALUES (1, 10, 'DEFINICAO', 'OPTATIVA', 4);
