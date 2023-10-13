@@ -45,7 +45,7 @@
             <mat-icon class="icon-display" color="primary">edit</mat-icon>
             <span>Editar</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="modalDelete.toggle(class.codigo)">
             <mat-icon class="icon-display" color="warn">delete</mat-icon>
             <span>Deletar</span>
           </button>
@@ -77,3 +77,5 @@
 <app-modal #modalEdit title="Editar turma">
   <app-modal-classes [classId]="modalEdit.classId"></app-modal-classes>
 </app-modal>
+
+<app-modal-delete #modalDelete (delete)="handleDeleteClass($event)" title="Deletar turma" description="Tem certeza de que deseja excluir esta turma? A exclusão removerá todos os alunos inscritos."></app-modal-delete>

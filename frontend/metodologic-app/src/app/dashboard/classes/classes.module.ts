@@ -16,6 +16,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import { EmptyStateModule } from '../components/empty-state/empty-state.module';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ModalDeleteModule } from 'src/app/modal-delete/modal-delete.module';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     MatButtonModule,
     EmptyStateModule,
     MatSnackBarModule,
+    ModalDeleteModule,
   ]
 })
 export class ClassesModule { }

@@ -17,6 +17,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -61,5 +62,6 @@ public class Turma {
     @JoinColumn( name="FK_PROFESSORES_USR_ID" )
     @ManyToOne
     private Usuario professor;
+
     
 }

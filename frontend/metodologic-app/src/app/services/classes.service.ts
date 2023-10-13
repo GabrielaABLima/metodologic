@@ -34,6 +34,13 @@ export class ClassesService {
     return this.http.get<Turma>(this.URL+`/codigo/` + code, { headers });
   }
 
+  deleteClassByCode(code: string){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.delete<Turma>(this.URL + '/' + code, { headers });
+  }
+
 
 }
 

@@ -12,7 +12,6 @@ export class ModalComponent {
 
 
 toggle(classId?: string) {
-  console.log("tese");
   this.classId = classId;
   this.mostrar = !this.mostrar;
 }

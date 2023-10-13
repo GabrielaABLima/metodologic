@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClassesStudentsService } from 'src/app/services/classes_students.service';
 import { Component, ElementRef, SimpleChanges, ViewChild, OnChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -33,6 +34,7 @@ export class ClassesComponent implements OnChanges{
   constructor(
     private classesService: ClassesService,
     private classesStudentsService: ClassesStudentsService,
+    private snackBar: MatSnackBar,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -91,7 +93,34 @@ export class ClassesComponent implements OnChanges{
     this.modal.toggle();
   }
 
+  handleDeleteClass(classId: string | number) {
+    this.classesService.deleteClassByCode(classId + "").subscribe(
+      () => {
+        this.openSuccessSnackBar("Turma deletada");
+      },
+      (error) => {
+        this.openFailureSnackBar("Erro ao deletar turma");
+      }
+    );
+    window.location.reload();
+  }
 
+  openSuccessSnackBar(message: string){
+    this.snackBar.open(message, "OK", {
+      duration: 3000,
+      horizontalPosition: 'start',
+      verticalPosition: 'bottom',
+      panelClass: 'green-snackbar',
+    });
+  }
 
+  openFailureSnackBar(message: string){
+    this.snackBar.open(message, "OK", {
+      duration: 3000,
+      horizontalPosition: 'start',
+      verticalPosition: 'bottom',
+      panelClass: ['red-snackbar','login-snackbar'],
+      });
+  }
 }
 

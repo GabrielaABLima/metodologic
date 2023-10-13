@@ -104,6 +104,16 @@ public class TurmasAlunosController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    
+    @DeleteMapping(path = "/{turmaCod}")
+    public ResponseEntity<Void> deleteByTurmaCod(@PathVariable String turmaCod){
+        List<TurmasAlunos> turmasAlunos = turmasAlunosRepository.findByTurmaCodigo(turmaCod);
+
+        for (TurmasAlunos turmaAluno : turmasAlunos) {
+            turmasAlunosRepository.delete(turmaAluno);
+        } 
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
    
 }

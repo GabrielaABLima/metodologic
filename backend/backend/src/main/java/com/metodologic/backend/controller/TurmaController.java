@@ -6,8 +6,10 @@ package com.metodologic.backend.controller;
 
 import com.metodologic.backend.controller.dto.TurmaCreateRequest;
 import com.metodologic.backend.domain.Turma;
+import com.metodologic.backend.domain.TurmasAlunos;
 import com.metodologic.backend.domain.Usuario;
 import com.metodologic.backend.repository.TurmaRepository;
+import com.metodologic.backend.repository.TurmasAlunosRepository;
 import com.metodologic.backend.repository.UsuarioRepository;
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +38,9 @@ public class TurmaController {
     
     @Autowired
     UsuarioRepository usuarioRepository;
+    
+    @Autowired
+    TurmasAlunosRepository turmasAlunosRepository;
 
     @GetMapping
     public ResponseEntity<List<Turma>> list(){
@@ -80,16 +85,21 @@ public class TurmaController {
 
     }
     
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable long id){
-        Optional<Turma> turmaOptional = turmaRepository.findById(id);
+    
+    @DeleteMapping(path = "/{cod}")
+    public ResponseEntity<Void> deleteByCod(@PathVariable String cod){
+        Optional<Turma> turmaOptional = turmaRepository.findByCodigo(cod);
 
         if (turmaOptional.isPresent()) {
             Turma turma = turmaOptional.get();
+            List<TurmasAlunos> turmasAlunos = turmasAlunosRepository.findByTurmaCodigo(cod);
+
+            for (TurmasAlunos turmaAluno : turmasAlunos) {
+                turmasAlunosRepository.delete(turmaAluno);
+            } 
             turmaRepository.delete(turma);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.OK);
         } else {
-            // Handle the case where the resource is not found, e.g., return a 404 response.
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
