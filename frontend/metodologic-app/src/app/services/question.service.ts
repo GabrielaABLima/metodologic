@@ -24,5 +24,21 @@ export class QuestionService {
     return this.http.get<Questao[]>(`${this.URL}/module/${nivel}`, { headers });
   }
 
+  getAll(): Observable<Questao[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+
+    return this.http.get<Questao[]>(this.URL, { headers });
+  }
+
+  getById(id: number): Observable<Questao> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+
+    return this.http.get<Questao>(`${this.URL}/${id}`, { headers });
+  }
+
 }
 

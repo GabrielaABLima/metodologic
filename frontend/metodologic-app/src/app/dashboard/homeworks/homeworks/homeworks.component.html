@@ -11,13 +11,11 @@
       <input matInput />
     </mat-form-field>
     <div style="display: flex; justify-content: flex-end;">
-      <button class="filter-button " >
-        <svg width="42" height="22" viewBox="0 0 42 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="42" height="4" rx="2" fill="#17384C"/>
-          <rect x="7" y="9" width="28" height="4" rx="2" fill="#17384C"/>
-          <rect x="15" y="18" width="12" height="4" rx="2" fill="#17384C"/>
-        </svg>
-
+      <button *ngIf="userRole === 'professor'" style="background-color: #50aee411;" mat-icon-button (click)="modal.toggle()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button *ngIf="userRole === 'aluno'" style="background-color: #50aee411;" mat-icon-button (click)="modal.toggle()">
+        <mat-icon>filter_list</mat-icon>
       </button>
     </div>
 </div>
@@ -28,29 +26,48 @@
     <tr>
       <th></th>
       <th>Data de entrega</th>
+      <th>Turma</th>
       <th>Nome</th>
       <th>Instituição</th>
       <th>Curso</th>
       <th>Data da atribuição</th>
       <th *ngIf="userRole === 'aluno'">Nota</th>
+      <th *ngIf="userRole === 'professor'"></th>
 
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let homework of resultados; let i = index" class="tableRow">
-      <td>
+      <td (click)="openHomework(homework.id)" style="cursor: pointer;">
         <svg width="54" height="24" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" [attr.fill]="colors[i]"/>
           <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  [attr.fill]="colors[i]"/>
           <path opacity="0.7" d="M47.5 42.0068L0 18.1293L47.5 0L93.5 23.8775L47.5 42.0068Z" [attr.fill]="colors[i]"/>
         </svg>
       </td>
-      <td>{{ homework.dataEntrega }}</td>
+      <td>{{ homework.dataEntrega | date:'dd/MM/yyyy' }}</td>
+      <td>{{ homework.turma.nome }}</td>
       <td>{{ homework.nome }}</td>
       <td>{{ homework.turma.instituicaoEnsino }}</td>
       <td>{{ homework.turma.curso }}</td>
-      <td>{{ homework.dataAtribuicao }}</td>
+      <td>{{ homework.dataAtribuicao | date:'dd/MM/yyyy' }}</td>
       <td *ngIf="userRole === 'aluno'">{{ homework.nota }}</td>
+      <td *ngIf="userRole === 'professor'">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="modalEdit.toggle(homework.id + '')">
+            <mat-icon class="icon-display" color="primary">edit</mat-icon>
+            <span>Editar</span>
+          </button>
+          <button mat-menu-item (click)="modalDelete.toggle(homework.id)">
+            <mat-icon class="icon-display" color="warn">delete</mat-icon>
+            <span>Deletar</span>
+          </button>
+        </mat-menu>
+      </td>
+
     </tr>
   </tbody>
 </table>
@@ -64,7 +81,7 @@
     [description]="descriptionEmpty"
     imgSource="../../../../assets/images/empty-homework.png"
   >
-  <button class="empty-button" (click)="emptyClick()">Criar tarefa</button>
+  <button *ngIf="userRole === 'professor'" class="empty-button" (click)="emptyClick()">Criar tarefa</button>
   </app-empty-state>
 
 </div>
@@ -72,3 +89,9 @@
 <app-modal #modal title="Criar nova tarefa">
   <app-modal-homeworks></app-modal-homeworks>
 </app-modal>
+
+<app-modal #modalEdit title="Editar tarefa">
+  <app-modal-homeworks [tarefaId]="modalEdit.id"></app-modal-homeworks>
+</app-modal>
+
+<app-modal-delete #modalDelete (delete)="handleDeleteHomework($event)" title="Deletar tarefa" description="Tem certeza de que deseja excluir esta tarefa? A exclusão removerá todas as notas dos alunos."></app-modal-delete>

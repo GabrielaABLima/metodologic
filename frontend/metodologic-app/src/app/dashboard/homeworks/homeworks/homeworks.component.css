@@ -73,7 +73,6 @@
   border-bottom: 1px solid #ddd;
   font-weight: 400;
   font-size: 13px;
-  cursor: pointer;
 }
 
 .tableRow {
@@ -136,4 +135,22 @@
 
 .empty-button:hover{
   background-color: #50aee450;
+}
+
+.button-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  width: 20px;
+  height:25px;
+  cursor: pointer;
+}
+.button-actions:hover {
+  background-color: #50ADE41a;
+
+}
+
+.icon-display {
+  transform: scale(0.8);
 }

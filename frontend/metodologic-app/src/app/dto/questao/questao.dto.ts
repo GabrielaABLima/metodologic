@@ -10,3 +10,11 @@ export class Questao {
     public conteudo?: Conteudo,
   ) {}
 }
+
+export class QuestaoTarefa {
+  constructor(
+    public id: number,
+    public questaoId: number,
+    public tarefaId: number,
+  ) {}
+}

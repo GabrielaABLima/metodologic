@@ -4,6 +4,7 @@ import com.metodologic.backend.controller.dto.QuestaoRequestDTO;
 import com.metodologic.backend.controller.dto.RegisterDTO;
 import com.metodologic.backend.domain.Conteudo;
 import com.metodologic.backend.domain.Questao;
+import com.metodologic.backend.domain.Tarefa;
 import com.metodologic.backend.domain.Usuario;
 import com.metodologic.backend.repository.ConteudoRepository;
 import com.metodologic.backend.repository.QuestaoRepository;
@@ -66,5 +67,24 @@ public class QuestaoController {
         List<Questao> questoes = questaoRepository.findByNivel(nivel);
         
         return new ResponseEntity<>(questoes, HttpStatus.OK);
+    }
+    
+    @GetMapping("")
+    public ResponseEntity<List<Questao>> getAll(){
+        List<Questao> questoes = questaoRepository.findAll();
+        
+        return new ResponseEntity<>(questoes, HttpStatus.OK);
+    }
+    
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Questao> findById(@PathVariable long id){
+        Optional<Questao> questaoOptional = questaoRepository.findById(id);
+
+        if (questaoOptional.isPresent()) {
+            Questao questao = questaoOptional.get();
+            return new ResponseEntity<>(questao, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

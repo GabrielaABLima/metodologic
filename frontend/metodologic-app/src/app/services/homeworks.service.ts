@@ -26,4 +26,18 @@ export class HomeworksService {
     });
     return this.http.get<Tarefa[]>(this.URL+`/professor/` + professorId, { headers });
   }
+
+  getHomeworkById(tarefaId: number): Observable<Tarefa>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.get<Tarefa>(this.URL+`/` + tarefaId, { headers });
+  }
+
+  getHomeworksByStudent(alunoId: number): Observable<Tarefa[]>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.get<Tarefa[]>(this.URL+`/alunos/` + alunoId, { headers });
+  }
 }

@@ -99,12 +99,12 @@
 .formCreate{
   background-color: #fff;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 96.5%;
+  width: 97.5%;
   border-radius: 0px 7px 7px 7px;
   max-height: 500px;
+  min-height: 500px;
 }
 
 .students{

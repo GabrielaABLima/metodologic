@@ -81,6 +81,18 @@ public class TarefaController {
         }
     }
     
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Tarefa> findById(@PathVariable long id){
+        Optional<Tarefa> tarefaOptional = tarefaRepository.findById(id);
+
+        if (tarefaOptional.isPresent()) {
+            Tarefa tarefa= tarefaOptional.get();
+            return new ResponseEntity<>(tarefa, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
     @PostMapping(path = "/add")
     public ResponseEntity<Tarefa> save(@RequestBody TarefaCreateRequest request){
         Optional<Turma> optional = turmaRepository.findByCodigo(request.codigo);

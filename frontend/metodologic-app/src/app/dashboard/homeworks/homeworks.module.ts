@@ -13,26 +13,38 @@ import { ModalHomeworksComponent } from './homeworks/components/modal-homeworks/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'src/app/modal/modal.module';
 import {MatSelectModule} from '@angular/material/select';
+import { ModalDeleteModule } from "../../modal-delete/modal-delete.module";
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { QuestionAddCardModule } from '../question-add-card/question-add-card.module';
+import { QuestionListCardModule } from '../question-list-card/question-list-card.module';
 
 @NgModule({
-  declarations: [
-    HomeworksComponent,
-    ModalHomeworksComponent,
-  ],
-  imports: [
-    CommonModule,
-    HomeworksRoutingModule,
-    MatTableModule,
-    MatInputModule,
-    MatGridListModule,
-    MatFormFieldModule,
-    MatIconModule,
-    EmptyStateModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ModalModule,
-    MatSelectModule,
+    declarations: [
+        HomeworksComponent,
+        ModalHomeworksComponent,
+    ],
+    imports: [
+        CommonModule,
+        HomeworksRoutingModule,
+        MatTableModule,
+        MatInputModule,
+        MatGridListModule,
+        MatFormFieldModule,
+        MatIconModule,
+        EmptyStateModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ModalModule,
+        MatSelectModule,
+        ModalDeleteModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        QuestionAddCardModule,
+        QuestionListCardModule,
 
-  ]
+    ]
 })
 export class HomeworksModule { }

@@ -1,12 +1,24 @@
 <div class="modal-container" *ngIf="userRole === 'professor'">
-  <div class="formCreate">
+  <div class="options">
+    <div class="profile-tabs">
+      <div [ngClass]="formCreateClass" (click)="clickCreateHomework()">
+        <p>Informações</p>
+      </div>
+      <div [ngClass]="selectAddQuestions" (click)="clickAddQuestions()">
+        <p>Questões</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="formCreateClass === 'active tab'" class="formCreate">
     <div class="informative-card">
       <svg width="51" height="51" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M10.3935 0C4.65374 0 0 4.65541 0 10.3935C0 16.135 4.65374 20.787 10.3935 20.787C16.1333 20.787 20.787 16.135 20.787 10.3935C20.787 4.65541 16.1333 0 10.3935 0ZM10.3935 4.61003C11.3656 4.61003 12.1537 5.39809 12.1537 6.37022C12.1537 7.34235 11.3656 8.13041 10.3935 8.13041C9.42138 8.13041 8.63332 7.34235 8.63332 6.37022C8.63332 5.39809 9.42138 4.61003 10.3935 4.61003ZM12.7404 15.255C12.7404 15.5327 12.5153 15.7579 12.2375 15.7579H8.5495C8.27177 15.7579 8.04659 15.5327 8.04659 15.255V14.2492C8.04659 13.9714 8.27177 13.7463 8.5495 13.7463H9.05241V11.0641H8.5495C8.27177 11.0641 8.04659 10.8389 8.04659 10.5612V9.55533C8.04659 9.27759 8.27177 9.05241 8.5495 9.05241H11.2317C11.5094 9.05241 11.7346 9.27759 11.7346 9.55533V13.7463H12.2375C12.5153 13.7463 12.7404 13.9714 12.7404 14.2492V15.255Z" fill="#f9e93e"/>
       </svg>
 
-      <p class="variant6" style="margin-left: 20px;">
-        Ao criar uma nova turma, um código único é gerado. O código da turma serve como uma espécie de chave de acesso que permite aos alunos se associarem à turma. Compartilhe o código com seus alunos!
+      <p class="variant6" style="margin-left: 20px; margin-right: 10px; text-align: justify;">
+        Por favor, primeiro crie a tarefa e clique em 'Salvar' para garantir que todas as informações sejam registradas.
+        Só depois da tarefa já registrada, você pode adicionar as questões relacionadas à tarefa.
+        Se a tarefa já está registrada, pode adicionar as questões.
       </p>
     </div>
     <form class="form-container" [formGroup]="createHomeworkFormGroup" (ngSubmit)="onSubmitCadastro()">
@@ -67,5 +79,9 @@
         <button class="form-button" type="submit"><p class="variant3">Salvar</p></button>
       </div>
     </form>
+  </div>
+  <div *ngIf="selectAddQuestions === 'active tab'" class="formCreate">
+    <app-question-add-card style="width: 95%; margin-top: 20px;" (addQuestion)="handleAddQuestion($event)"></app-question-add-card>
+    <app-question-list-card style="width: 90%;" [questions]="questionsFromHomework" (removeQuestion)="handleDeleteQuestion($event)" ></app-question-list-card>
   </div>
 </div>
