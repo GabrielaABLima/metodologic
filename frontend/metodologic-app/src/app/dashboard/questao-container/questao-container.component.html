@@ -21,7 +21,7 @@
     <app-questao #questaoAtual [question]="questoes[currentIndex]" (answerSelected)="handleAnswer($event)"></app-questao>
   </div>
 
-  <div class="questao-footer">
+  <div *ngIf="type === 'module' || type === 'homework'" class="questao-footer">
     <button class="questao-button cancel-button" (click)="skipQuestion()">
       PULAR
     </button>

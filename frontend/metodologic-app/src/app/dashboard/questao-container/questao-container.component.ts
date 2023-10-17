@@ -1,9 +1,11 @@
+import { QuestionsHomeworksService } from 'src/app/services/questions_homeworks.service';
 import { Component, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lineAnimation } from 'src/app/animation/line_animation';
 import { Questao } from 'src/app/dto/questao/questao.dto';
 import { QuestionService } from 'src/app/services/question.service';
 import { UsersService } from 'src/app/services/users.service';
+import { StudentsHomeworksService } from 'src/app/services/students_homeworks.service';
 
 @Component({
   selector: 'app-questao-container',
@@ -20,11 +22,14 @@ export class QuestaoContainerComponent {
   type: string | null;
   id: string | null
   pontoQuestaoAtual: number = 0;
+  userId = sessionStorage.getItem("id");
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private questionService: QuestionService,
+    private questionsHomeworksService: QuestionsHomeworksService,
+    private studentsHomeworksService: StudentsHomeworksService,
     private elementRef: ElementRef,
     private userService: UsersService
   ) {
@@ -34,18 +39,46 @@ export class QuestaoContainerComponent {
 
   ngOnInit() {
     this.setWidth('0%')
-    if(this.id){
-      this.questionService.getByModule(+this.id).subscribe({
-          next: (response) => {
-            response.slice(0,5).map((questao) => {
-              this.questoes.push(questao);
-            })
-          },
-          error: (err) => {
-            console.log(err);
-          }
-      })
+    if(this.type === "module"){
+      if(this.id){
+        this.questionService.getByModule(+this.id).subscribe({
+            next: (response) => {
+              response.slice(0,5).map((questao) => {
+                this.questoes.push(questao);
+              })
+            },
+            error: (err) => {
+              console.log(err);
+            }
+        })
 
+      }
+    }else if(this.type === "view"){
+      if(this.id){
+        this.questionService.getById(+this.id).subscribe({
+            next: (response) => {
+              this.questoes.push(response);
+            },
+            error: (err) => {
+              console.log(err);
+            }
+        })
+
+      }
+    }else if(this.type === "homework"){
+      if(this.id){
+        this.questionsHomeworksService.getQuestionsByHomework(+this.id).subscribe({
+            next: (response) => {
+              response.map((questao) => {
+                this.questoes.push(questao);
+              })
+            },
+            error: (err) => {
+              console.log(err);
+            }
+        })
+
+      }
     }
   }
 
@@ -60,10 +93,11 @@ export class QuestaoContainerComponent {
 
 
   nextQuestion() {
+    if(this.userId && this.id){
+    this.score += this.pontoQuestaoAtual;
     if(this.currentIndex === (this.questoes.length -1)){
       const id = sessionStorage.getItem("id");
       const pontos = sessionStorage.getItem("points");
-      console.log(pontos);
       if (id !== null && pontos !== null){
         this.userService.updateUserPoints(+id, +pontos+this.score).subscribe({
           next: (response) => {
@@ -74,12 +108,26 @@ export class QuestaoContainerComponent {
             console.log(err);
           }
         })
+        if(this.type === "homework"){
+          const maxGrade = this.questoes.reduce((acumulador, questao) => {
+            return acumulador + questao.pontos;
+          }, 0);
+          const grade = Math.round((this.score * 100)/maxGrade);
+          this.studentsHomeworksService.add({tarefaId: +this.id, alunoId: +this.userId, nota: grade}).subscribe({
+            next: (response) => {
+              console.log(response);
+            },
+            error: (err) => {
+              console.log(err);
+            }
+          })
+        }
       }
 
 
       this.closeGame();
     }else{
-      this.score += this.pontoQuestaoAtual;
+
 
 
       this.currentIndex++;
@@ -88,7 +136,7 @@ export class QuestaoContainerComponent {
     }
 
 
-
+  }
 
   }
 
