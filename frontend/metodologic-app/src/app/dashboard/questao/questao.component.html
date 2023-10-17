@@ -9,7 +9,7 @@
   </div>
 </div>
 <div class="optativa-container" *ngIf="question.tipo === 'ASSOCIACAO'">
-  <p class="enunciado">Associe os métodos listados com seus {{question.categoria.toLowerCase()}} correspondentes:</p>
+  <p class="enunciado">Associe os métodos listados com sua definição correspondente:</p>
   <div class="opcoes">
     <div *ngIf="associatives" class="associative-opcao">
       <ng-container *ngFor="let item of associatives.metodos; let i = index">

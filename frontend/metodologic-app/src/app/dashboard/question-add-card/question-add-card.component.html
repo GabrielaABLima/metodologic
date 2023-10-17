@@ -1,0 +1,47 @@
+<div class="question-add-container">
+  <form class="form-container" [formGroup]="filterQuestionFormGroup" (ngSubmit)="onAddQuestion()">
+
+    <div class="select-input">
+      <mat-form-field appearance="outline" color="primary" *ngIf="!loadingTurmas" style="width: 160px;">
+        <mat-label>Metodologia</mat-label>
+        <mat-select (selectionChange)="selectMetodology($event)" formControlName="metodologySelectedForm">
+          <mat-option *ngFor="let content of contents" [value]="content?.id">{{ content?.metodo }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="filterQuestionFormGroup.get('metodologySelectedForm')?.invalid && (filterQuestionFormGroup.get('metodologySelectedForm')?.dirty || filterQuestionFormGroup.get('metodologySelectedForm')?.touched)" class="text-danger">
+      </div>
+    </div>
+    <div *ngIf="!selectedCategoryAllowed" class="custom-form-field" style="width: 155px;">
+      <label for="custom-select">Categoria*</label>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </div>
+    <div *ngIf="selectedCategoryAllowed" class="select-input">
+      <mat-form-field appearance="outline" color="primary"  *ngIf="!loadingTurmas" style="width: 155px;">
+        <mat-label>Categoria</mat-label>
+        <mat-select  (selectionChange)="selectCategory($event)" formControlName="categorySelectedForm">
+          <mat-option *ngFor="let category of categories" [value]="category">{{ category.toLowerCase() }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="filterQuestionFormGroup.get('categorySelectedForm')?.invalid && (filterQuestionFormGroup.get('categorySelectedForm')?.dirty || filterQuestionFormGroup.get('categorySelectedForm')?.touched)" class="text-danger">
+      </div>
+    </div>
+    <div *ngIf="!selectedTypeAllowed" class="custom-form-field" style="width: 130px;">
+      <label for="custom-select">Tipo*</label>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </div>
+    <div *ngIf="selectedTypeAllowed" class="select-input">
+      <mat-form-field appearance="outline" color="primary"  *ngIf="!loadingTurmas" style="width: 130px;">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="questionTypeSelectedForm">
+          <mat-option *ngFor="let type of types" [value]="type">{{ type.toLowerCase() }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="filterQuestionFormGroup.get('questionTypeSelectedForm')?.invalid && (filterQuestionFormGroup.get('questionTypeSelectedForm')?.dirty || filterQuestionFormGroup.get('questionTypeSelectedForm')?.touched)" class="text-danger">
+      </div>
+    </div>
+
+    <button mat-icon-button style="margin-bottom: 20px;" (click)="onAddQuestion">
+      <mat-icon color="primary">add_circle</mat-icon>
+    </button>
+  </form>
+</div>

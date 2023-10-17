@@ -1,0 +1,46 @@
+<table *ngIf="questions.length > 0" class="custom-table mat-table">
+  <thead>
+    <tr>
+      <th>Método</th>
+      <th>Categoria</th>
+      <th>Tipo</th>
+      <th>Pontos</th>
+      <th></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let question of questions; let i = index" class="tableRow">
+      <td>{{ question.conteudo?.metodo }}</td>
+      <td>{{ question.categoria }}</td>
+      <td>{{ question.tipo }}</td>
+      <td>{{ question.pontos }}</td>
+      <td>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="viewQuestion(question.id)">
+            <mat-icon class="icon-display" color="primary">visibility</mat-icon>
+            <span>Visualizar</span>
+          </button>
+          <button mat-menu-item (click)="deleteQuestion(question.id)">
+            <mat-icon class="icon-display" color="warn">delete</mat-icon>
+            <span>Deletar</span>
+          </button>
+        </mat-menu>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+
+<div  class="empty-modules-container" *ngIf="questions.length === 0">
+  <app-empty-state
+    [title]="titleEmpty"
+    [description]="descriptionEmpty"
+    imgSource="../../../../assets/images/empty-question.png"
+  >
+  </app-empty-state>
+
+</div>
