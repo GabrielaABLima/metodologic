@@ -1,5 +1,5 @@
 <p class="variant2">Tarefas</p>
-<div class="modules-container" *ngIf="resultados.length > 0">
+<div class="modules-container" *ngIf="resultados.length > 0 || tarefasAluno.length > 0">
   <div style="display: flex; flex-direction: row; width: 100%; justify-content: space-between; align-items: center;">
     <mat-form-field appearance="outline" color="primary" style="width: calc(30% + 90px); margin-bottom: 0px;">
       <mat-label >
@@ -36,8 +36,34 @@
 
     </tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let homework of resultados; let i = index" class="tableRow">
+  <tbody *ngIf="userRole === 'aluno' && !loadingAluno">
+    <tr *ngFor="let homework of tarefasAluno; let i = index" class="tableRow">
+      <td *ngIf="homework.done">
+          <svg width="54" height="24" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" [attr.fill]="colors[i]"/>
+            <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  [attr.fill]="colors[i]"/>
+            <path opacity="0.7" d="M47.5 42.0068L0 18.1293L47.5 0L93.5 23.8775L47.5 42.0068Z" [attr.fill]="colors[i]"/>
+          </svg>
+      </td>
+      <td *ngIf="!homework.done" (click)="openHomework(homework.tarefa.id)" style="cursor: pointer;">
+          <svg width="54" height="24" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" fill="#D3D3D3"/>
+            <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  fill="#D3D3D3"/>
+            <path opacity="0.7" d="M47.5 42.0068L0 18.1293L47.5 0L93.5 23.8775L47.5 42.0068Z" fill="#D3D3D3"/>
+          </svg>
+      </td>
+      <td>{{ homework.tarefa.dataEntrega | date:'dd/MM/yyyy' }}</td>
+      <td>{{ homework.tarefa.turma.nome }}</td>
+      <td>{{ homework.tarefa.nome }}</td>
+      <td>{{ homework.tarefa.turma.instituicaoEnsino }}</td>
+      <td>{{ homework.tarefa.turma.curso }}</td>
+      <td>{{ homework.tarefa.dataAtribuicao | date:'dd/MM/yyyy' }}</td>
+      <td>{{ homework.nota }}</td>
+
+    </tr>
+  </tbody>
+  <tbody *ngIf="userRole === 'professor'">
+    <tr *ngFor="let homework of tarefas; let i = index" class="tableRow">
       <td (click)="openHomework(homework.id)" style="cursor: pointer;">
         <svg width="54" height="24" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" [attr.fill]="colors[i]"/>
@@ -51,8 +77,7 @@
       <td>{{ homework.turma.instituicaoEnsino }}</td>
       <td>{{ homework.turma.curso }}</td>
       <td>{{ homework.dataAtribuicao | date:'dd/MM/yyyy' }}</td>
-      <td *ngIf="userRole === 'aluno'">{{ homework.nota }}</td>
-      <td *ngIf="userRole === 'professor'">
+      <td>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
           <mat-icon>more_vert</mat-icon>
         </button>
@@ -75,7 +100,7 @@
 
 </div>
 
-<div  class="empty-modules-container" *ngIf="resultados.length === 0">
+<div  class="empty-modules-container" *ngIf="resultados.length === 0 && tarefasAluno.length === 0">
   <app-empty-state
     [title]="titleEmpty"
     [description]="descriptionEmpty"
