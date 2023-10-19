@@ -40,18 +40,25 @@
     <tr *ngFor="let homework of tarefasAluno; let i = index" class="tableRow">
       <td *ngIf="homework.done">
           <svg width="54" height="24" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" [attr.fill]="colors[i]"/>
-            <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  [attr.fill]="colors[i]"/>
-            <path opacity="0.7" d="M47.5 42.0068L0 18.1293L47.5 0L93.5 23.8775L47.5 42.0068Z" [attr.fill]="colors[i]"/>
+            <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" [attr.fill]="'rgb(255, ' + (255 - i * 10) + ', 0)'"/>
+            <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  [attr.fill]="'rgb(255, ' + (255 - i * 10) + ', 0)'"/>
+            <path opacity="0.7" d="M47.5 42.0068L0 18.1293L47.5 0L93.5 23.8775L47.5 42.0068Z" [attr.fill]="'rgb(255, ' + (255 - i * 10) + ', 0)'"/>
           </svg>
       </td>
-      <td *ngIf="!homework.done" (click)="openHomework(homework.tarefa.id)" style="cursor: pointer;">
+      <td *ngIf="!homework.done && (homework.tarefa.dataEntrega+'') > dataAtual.toISOString()" (click)="openHomework(homework.tarefa.id)" style="cursor: pointer;">
           <svg width="54" height="24" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" fill="#D3D3D3"/>
             <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  fill="#D3D3D3"/>
             <path opacity="0.7" d="M47.5 42.0068L0 18.1293L47.5 0L93.5 23.8775L47.5 42.0068Z" fill="#D3D3D3"/>
           </svg>
       </td>
+      <td *ngIf="(homework.tarefa.dataEntrega+'') < dataAtual.toISOString() && !homework.done">
+        <svg width="54" height="24" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" fill="#D3D3D3"/>
+          <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  fill="#D3D3D3"/>
+          <path opacity="0.7" d="M47.5 42.0068L0 18.1293L47.5 0L93.5 23.8775L47.5 42.0068Z" fill="#D3D3D3"/>
+        </svg>
+    </td>
       <td>{{ homework.tarefa.dataEntrega | date:'dd/MM/yyyy' }}</td>
       <td>{{ homework.tarefa.turma.nome }}</td>
       <td>{{ homework.tarefa.nome }}</td>
@@ -66,9 +73,9 @@
     <tr *ngFor="let homework of tarefas; let i = index" class="tableRow">
       <td (click)="openHomework(homework.id)" style="cursor: pointer;">
         <svg width="54" height="24" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" [attr.fill]="colors[i]"/>
-          <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  [attr.fill]="colors[i]"/>
-          <path opacity="0.7" d="M47.5 42.0068L0 18.1293L47.5 0L93.5 23.8775L47.5 42.0068Z" [attr.fill]="colors[i]"/>
+          <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" [attr.fill]="'rgb(255, ' + (255 - i * 10) + ', 0)'"/>
+          <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  [attr.fill]="'rgb(255, ' + (255 - i * 10) + ', 0)'"/>
+          <path opacity="0.7" d="M47.5 42.0068L0 18.1293L47.5 0L93.5 23.8775L47.5 42.0068Z" [attr.fill]="'rgb(255, ' + (255 - i * 10) + ', 0)'"/>
         </svg>
       </td>
       <td>{{ homework.dataEntrega | date:'dd/MM/yyyy' }}</td>
@@ -82,6 +89,10 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="modalGrade.toggle(homework.id + '')" style="color: '#55E397'">
+            <mat-icon class="icon-display" color="accent">school</mat-icon>
+            <span>Avaliar</span>
+          </button>
           <button mat-menu-item (click)="modalEdit.toggle(homework.id + '')">
             <mat-icon class="icon-display" color="primary">edit</mat-icon>
             <span>Editar</span>
@@ -117,6 +128,10 @@
 
 <app-modal #modalEdit title="Editar tarefa">
   <app-modal-homeworks [tarefaId]="modalEdit.id"></app-modal-homeworks>
+</app-modal>
+
+<app-modal #modalGrade title="Visualizar notas">
+  <app-modal-grades-homework [tarefaId]="modalGrade.id"></app-modal-grades-homework>
 </app-modal>
 
 <app-modal-delete #modalDelete (delete)="handleDeleteHomework($event)" title="Deletar tarefa" description="Tem certeza de que deseja excluir esta tarefa? A exclusão removerá todas as notas dos alunos."></app-modal-delete>

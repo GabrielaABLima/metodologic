@@ -1,0 +1,60 @@
+.grade-container{
+  background-color: #ebe8ef44;
+  border-radius: 20px;
+  padding: 20px 0px 20px 0px;
+  margin: 10px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.modal-content{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-grade-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.variant6 {
+  color: #17384ccb;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.variant2 {
+  color: #50ADE4;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  margin-left: 27px;
+}
+
+.grade-item-list{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  border-bottom: 1px solid #17384c21;
+  padding: 5px 20px 5px 20px;
+}
+
+
+.gray-background{
+  background-color: #17384c0a;
+}
+.gray-background{
+  background-color: rgba(255, 255, 255, 0.39);
+}
+

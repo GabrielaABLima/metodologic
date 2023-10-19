@@ -18,7 +18,7 @@ export class ModalHomeworksComponent {
   createHomeworkFormGroup!: FormGroup;
   userRole = sessionStorage.getItem("role");
   userId = sessionStorage.getItem("id");
-  classSelected = "";
+  classSelected: number | undefined;;
   loadingTurmas: boolean = false;
   classes: Turma[] = [];
   formCreateClass = "active tab";
@@ -48,10 +48,8 @@ export class ModalHomeworksComponent {
       if(this.tarefaId){
         this.questionsHomeworksService.getQuestionsByHomework(+this.tarefaId).subscribe({
           next: (response) => {
-            console.log(response);
-            response.map((question) => {
-              this.questionsFromHomework.push(question);
-            })
+            this.questionsFromHomework = response;
+
           },
           error: (err) => {
             console.log(err);
@@ -67,6 +65,7 @@ export class ModalHomeworksComponent {
               dataEntrega: dataEntregaFormatado,
               classSelectedForm: this.questionToEdit?.turma.id,
             });
+            this.classSelectedForm?.setValue(response.turma.codigo);
           }
         })
 
@@ -89,9 +88,8 @@ export class ModalHomeworksComponent {
       this.questionsHomeworksService.getQuestionsByHomework(+this.tarefaId).subscribe({
         next: (response) => {
           console.log(response);
-          response.map((question) => {
-            this.questionsFromHomework.push(question);
-          })
+          this.questionsFromHomework = response;
+
         },
         error: (err) => {
           console.log(err);
@@ -112,7 +110,6 @@ export class ModalHomeworksComponent {
       ]),
 
     });
-
 
   }
 

@@ -19,11 +19,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { QuestionAddCardModule } from '../question-add-card/question-add-card.module';
 import { QuestionListCardModule } from '../question-list-card/question-list-card.module';
+import { ModalGradesHomeworkComponent } from './homeworks/components/modal-grades-homework/modal-grades-homework.component';
 
 @NgModule({
     declarations: [
         HomeworksComponent,
         ModalHomeworksComponent,
+        ModalGradesHomeworkComponent,
     ],
     imports: [
         CommonModule,
