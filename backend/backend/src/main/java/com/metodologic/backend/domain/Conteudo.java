@@ -46,10 +46,10 @@ public class Conteudo {
     @Column( name="CNT_INSTRUMENTOS" )
     private String instrumentos;
     
-    @NotNull( message = "Exemplos é obrigatório" )
-    @NotEmpty( message = "Exemplos não pode ser vazio" )
-    @Column( name="CNT_EXEMPLOS" )
-    private String exemplos;
+    @NotNull( message = "Aplicação é obrigatório" )
+    @NotEmpty( message = "Aplicação não pode ser vazio" )
+    @Column( name="CNT_APLICACAO" )
+    private String aplicacao;
     
     @NotNull( message = "Definição é obrigatório" )
     @NotEmpty( message = "Definição não pode ser vazio" )
@@ -60,4 +60,9 @@ public class Conteudo {
     @NotEmpty( message = "Palavras-chaves não pode ser vazio" )
     @Column( name="CNT_PALAVRAS_CHAVES" )
     private String palavrasChaves;
+    
+    @NotNull( message = "Lacuna é obrigatório" )
+    @NotEmpty( message = "Lacuna não pode ser vazio" )
+    @Column( name="CNT_LACUNA" )
+    private String lacuna;
 }

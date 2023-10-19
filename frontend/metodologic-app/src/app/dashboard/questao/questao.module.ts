@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { QuestaoComponent } from './questao.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     MatRadioModule,
-    FormsModule
+    FormsModule,
+    MatInputModule
 
   ],
   exports: [

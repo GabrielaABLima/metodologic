@@ -64,7 +64,7 @@ public class QuestaoController {
     
     @GetMapping("/module/{nivel}")
     public ResponseEntity<List<Questao>> getByModule(@PathVariable int nivel){
-        List<Questao> questoes = questaoRepository.findByNivel(nivel);
+        List<Questao> questoes = questaoRepository.findByNivelOrderByRandom(nivel);
         
         return new ResponseEntity<>(questoes, HttpStatus.OK);
     }

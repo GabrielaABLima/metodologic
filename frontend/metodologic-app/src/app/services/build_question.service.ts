@@ -5,6 +5,7 @@ import { ContentService } from './content.service';
 import { Conteudo } from '../dto/conteudo/conteudo.dto';
 import { Associative, AssociativeList } from '../dto/questao/associative.type';
 import { Observable, catchError, map } from 'rxjs';
+import { GapQuestion } from '../dto/questao/gap-question.type';
 
 @Injectable({
   providedIn: 'root'
@@ -44,32 +45,46 @@ export class BuildQuestionService {
     return options;
   }
 
+  buildGapQuestion(questao: Questao): GapQuestion {
+    const conteudoSelecionado = questao.conteudo;
 
-buildAssociativeQuestion(questao: Questao): Observable<AssociativeList> {
-  return this.contentService.getRandomContent().pipe(
-    map((conteudos) => {
-      const slicedConteudos = conteudos.slice(0, 4);
-      const associativeMetodos: Associative[] = [];
-      const associativeAnswers: Associative[] = [];
+    if(conteudoSelecionado){
+      const gapSentence = conteudoSelecionado.lacuna.split('*');
+      const gapQuestion = new GapQuestion(gapSentence[0], gapSentence[2], gapSentence[1]);
 
-      slicedConteudos.forEach((conteudo) => {
-        const buildConteudo = this.obterValorDaPropriedade(conteudo, questao.categoria.toLowerCase()) + "";
-        const conteudoToAdd: Associative = new Associative(conteudo.metodo, conteudo.id);
-        const answerToAdd: Associative = new Associative(buildConteudo, conteudo.id);
-        associativeMetodos.push(conteudoToAdd);
-        associativeAnswers.push(answerToAdd);
-      });
+      return gapQuestion;
 
-      const shuffledMetodos = this.shuffleArray(associativeMetodos);
+    }
+    return new GapQuestion("", "", "");
 
-      return new AssociativeList(shuffledMetodos, associativeAnswers);
-    }),
-    catchError((error) => {
-      console.log(error);
-      throw error;
-    })
-  );
-}
+  }
+
+
+  buildAssociativeQuestion(questao: Questao): Observable<AssociativeList> {
+    return this.contentService.getRandomContent().pipe(
+      map((conteudos) => {
+        const slicedConteudos = conteudos.slice(0, 4);
+        const associativeMetodos: Associative[] = [];
+        const associativeAnswers: Associative[] = [];
+
+        slicedConteudos.forEach((conteudo) => {
+          const buildConteudo = this.obterValorDaPropriedade(conteudo, questao.categoria.toLowerCase()) + "";
+          const conteudoToAdd: Associative = new Associative(conteudo.metodo, conteudo.id);
+          const answerToAdd: Associative = new Associative(buildConteudo, conteudo.id);
+          associativeMetodos.push(conteudoToAdd);
+          associativeAnswers.push(answerToAdd);
+        });
+
+        const shuffledMetodos = this.shuffleArray(associativeMetodos);
+
+        return new AssociativeList(shuffledMetodos, associativeAnswers);
+      }),
+      catchError((error) => {
+        console.log(error);
+        throw error;
+      })
+    );
+  }
 
   shuffleArray<T>(array: T[]): T[] {
     const shuffledArray = [...array];

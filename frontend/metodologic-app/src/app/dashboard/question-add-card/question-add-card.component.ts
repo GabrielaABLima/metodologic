@@ -42,7 +42,6 @@ export class QuestionAddCardComponent {
     if(this.userId){
       this.questionService.getAll().subscribe({
               next: (questions) => {
-                console.log(questions);
                 this.questions = questions;
 
                 for (const question of questions) {

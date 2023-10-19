@@ -1,5 +1,5 @@
 <div class="optativa-container" *ngIf="question.tipo === 'OPTATIVA'">
-  <p class="enunciado">Selecione a alternativa que representa um {{question.categoria.toLowerCase()}} do método {{question.conteudo?.metodo}}:</p>
+  <p class="enunciado">Selecione a alternativa que representa um{{title}} do método {{question.conteudo?.metodo}}:</p>
   <div class="opcoes">
     <div *ngFor="let option of options" class="opcao" (click)="selectAnswer(option)">
       <mat-radio-button [value]="option.isAnswer">
@@ -9,7 +9,7 @@
   </div>
 </div>
 <div class="optativa-container" *ngIf="question.tipo === 'ASSOCIACAO'">
-  <p class="enunciado">Associe os métodos listados com sua definição correspondente:</p>
+  <p class="enunciado">Associe os métodos listados com {{title}} correspondente{{plural? 's': ''}}:</p>
   <div class="opcoes">
     <div *ngIf="associatives" class="associative-opcao">
       <ng-container *ngFor="let item of associatives.metodos; let i = index">
@@ -28,4 +28,16 @@
       </ng-container>
     </div>
   </div>
+</div>
+<div class="gap-container" *ngIf="question.tipo === 'LACUNAS'">
+  <p class="enunciado">Complete a lacuna na seguinte afirmação sobre o método {{question.conteudo?.metodo}}</p>
+    <div *ngIf="gapQuestion" class="gap-question-container">
+      <p class="variant4">
+        {{gapQuestion.sentenceBeforeGap}}
+        <mat-form-field class="gap-input" style="width: auto; max-width: 250px; height: 60px;">
+          <input [(ngModel)]="gapInput" matInput (input)="onGapInputChange($event)">
+        </mat-form-field>
+        {{gapQuestion.sentenceAfterGap}}
+      </p>
+    </div>
 </div>

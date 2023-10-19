@@ -94,5 +94,32 @@
   width: 100%;
 }
 
+.gap-question-container{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  justify-content: center;
+  height: 80%;
+}
 
+.gap-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  height: 100%;
+}
+
+.variant4{
+  color: #17384C;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  text-align: justify;
+  display: inline;
+}
+
+.gap-input {
+  flex: 1;
+}
 
