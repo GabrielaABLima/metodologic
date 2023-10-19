@@ -129,9 +129,10 @@ export class ModalClassesComponent implements OnChanges {
       const curso = this.curso!.value;
       const instituicao = this.instituicaoEnsino!.value;
       const dataAtual = new Date();
+      const semester = dataAtual.getMonth() >= 6 ? "2" : "1";
       const anoAtual = dataAtual.getFullYear().toString();
       var ultimosDoisDigitos = anoAtual.slice(-2);
-      this.codigo = (nome.slice(0, 2) + curso.slice(0, 2) + instituicao.slice(0,2) + ultimosDoisDigitos).toLocaleUpperCase();
+      this.codigo = (nome.slice(0, 2) + +this.userId + curso.slice(0, 2) + semester + instituicao.slice(0,2) + ultimosDoisDigitos).toLocaleUpperCase();
       return new Turma(
         this.nome!.value,
         this.codigo,
@@ -223,8 +224,6 @@ export class ModalClassesComponent implements OnChanges {
 
   removeStudent(studentId?: number){
     if(studentId && this.classId){
-      console.log(studentId);
-      console.log(this.classId);
       this.classesStudentsService.removerAlunoTurma(studentId, this.classId).subscribe(
         () => {
           this.openSuccessSnackBar("Aluno removido");

@@ -30,6 +30,10 @@ export class ClassesComponent implements OnChanges{
   descriptionEmpty = this.userRole === "aluno" ? "Parece que você ainda não está inscrito em nenhuma turma. Clique no botão abaixo para se increver em uma nova turma!" : "Não há turmas atribuídas no momento. Crie uma nova turma para começar a ensinar.";
   buttonEmpty = this.userRole === "aluno" ? "Inscrever-se" : "Criar turma";
   title = this.userRole === "aluno" ? "Inscrever-se em nova turma" : "Criar nova turma";
+  deleteTitle = this.userRole === "aluno" ? "Desinscrever-se da turma" : "Deletar turma";
+  descriptionDelete = this.userRole === "aluno" ?
+  "Tem certeza de que deseja desinscrever-se desta turma? As novas tarefas não serão apresentadas a você." :
+  "Tem certeza de que deseja excluir esta turma? A exclusão removerá todos os alunos inscritos, todas tarefas e suas respectivas questões cadastradas.";
 
   constructor(
     private classesService: ClassesService,
@@ -94,14 +98,27 @@ export class ClassesComponent implements OnChanges{
   }
 
   handleDeleteClass(classId: string | number) {
-    this.classesService.deleteClassByCode(classId + "").subscribe(
-      () => {
-        this.openSuccessSnackBar("Turma deletada");
-      },
-      (error) => {
-        this.openFailureSnackBar("Erro ao deletar turma");
+    if(this.userRole === 'professor'){
+      this.classesService.deleteClassByCode(classId + "").subscribe(
+        () => {
+          this.openSuccessSnackBar("Turma deletada");
+        },
+        (error) => {
+          this.openFailureSnackBar("Erro ao deletar turma");
+        }
+      );
+    }else{
+      if(this.userId){
+        this.classesStudentsService.removerAlunoTurma(+this.userId, classId + "").subscribe(
+          () => {
+            this.openSuccessSnackBar("Aluno removido");
+          },
+          (error) => {
+            this.openFailureSnackBar("Erro ao remover aluno");
+          }
+        );
       }
-    );
+    }
     window.location.reload();
   }
 

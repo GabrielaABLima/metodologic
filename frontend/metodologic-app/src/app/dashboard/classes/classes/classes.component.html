@@ -11,7 +11,9 @@
       <input matInput [(ngModel)]="termoDePesquisa" (input)="pesquisar()" />
     </mat-form-field>
     <div style="display: flex; justify-content: flex-end;">
-      <button class="play-button" (click)="modal.toggle()"><p class="variant3">+</p></button>
+      <button style="background-color: #50aee411;" mat-icon-button (click)="modal.toggle()">
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
 
   </div>
@@ -41,13 +43,17 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="modalEdit.toggle(class.codigo)">
+          <button *ngIf="userRole === 'professor'" mat-menu-item (click)="modalEdit.toggle(class.codigo)">
             <mat-icon class="icon-display" color="primary">edit</mat-icon>
             <span>Editar</span>
           </button>
-          <button mat-menu-item (click)="modalDelete.toggle(class.codigo)">
+          <button *ngIf="userRole === 'professor'" mat-menu-item (click)="modalDelete.toggle(class.codigo)">
             <mat-icon class="icon-display" color="warn">delete</mat-icon>
             <span>Deletar</span>
+          </button>
+          <button *ngIf="userRole === 'aluno'" mat-menu-item (click)="modalDelete.toggle(class.codigo)">
+            <mat-icon class="icon-display" color="warn">exit_to_app</mat-icon>
+            <span>Desinscrever</span>
           </button>
         </mat-menu>
       </td>
@@ -75,7 +81,7 @@
 </app-modal>
 
 <app-modal #modalEdit title="Editar turma">
-  <app-modal-classes [classId]="modalEdit.classId"></app-modal-classes>
+  <app-modal-classes [classId]="modalEdit.id"></app-modal-classes>
 </app-modal>
 
-<app-modal-delete #modalDelete (delete)="handleDeleteClass($event)" title="Deletar turma" description="Tem certeza de que deseja excluir esta turma? A exclusão removerá todos os alunos inscritos."></app-modal-delete>
+<app-modal-delete #modalDelete (delete)="handleDeleteClass($event)" [title]="deleteTitle" [description]="descriptionDelete"></app-modal-delete>
