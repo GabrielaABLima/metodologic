@@ -40,4 +40,11 @@ export class HomeworksService {
     });
     return this.http.get<Tarefa[]>(this.URL+`/alunos/` + alunoId, { headers });
   }
+
+  delete(id: string): Observable<Tarefa>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.delete<Tarefa>(this.URL + '/' + id, { headers });
+  }
 }
