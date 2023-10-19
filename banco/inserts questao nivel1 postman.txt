@@ -1,7 +1,7 @@
-{
+[{
         "nivel": 1,
         "pontos": 5,
-        "categoria": "EXEMPLOS",
+        "categoria": "APLICACAO",
         "tipo": "ASSOCIACAO"
 },
 {
@@ -13,51 +13,51 @@
 {
         "nivel": 1,
         "pontos": 5,
-        "categoria": "EXEMPLOS",
+        "categoria": "APLICACAO",
         "tipo": "OPTATIVA",
 	"conteudoId": 1
 },
 {
         "nivel": 1,
         "pontos": 5,
-        "categoria": "EXEMPLOS",
+        "categoria": "APLICACAO",
         "tipo": "OPTATIVA",
-	"conteudoId": 5
+	"conteudoId": 2
 },
 {
         "nivel": 1,
         "pontos": 5,
-        "categoria": "EXEMPLOS",
+        "categoria": "APLICACAO",
         "tipo": "OPTATIVA",
-	"conteudoId": 9
+	"conteudoId": 3
 },
 {
         "nivel": 1,
         "pontos": 5,
-        "categoria": "EXEMPLOS",
+        "categoria": "APLICACAO",
         "tipo": "OPTATIVA",
 	"conteudoId": 4
 },
 {
         "nivel": 1,
-        "pontos": 10,
+        "pontos": 7,
         "categoria": "DEFINICAO",
         "tipo": "OPTATIVA",
 	"conteudoId": 1
 },
 {
         "nivel": 1,
-        "pontos": 10,
+        "pontos": 7,
         "categoria": "DEFINICAO",
         "tipo": "OPTATIVA",
-	"conteudoId": 5
+	"conteudoId": 2
 },
 {
         "nivel": 1,
-        "pontos": 10,
+        "pontos": 7,
         "categoria": "DEFINICAO",
         "tipo": "OPTATIVA",
-	"conteudoId": 9
+	"conteudoId": 3
 },
 {
         "nivel": 1,
@@ -65,5 +65,32 @@
         "categoria": "DEFINICAO",
         "tipo": "OPTATIVA",
 	"conteudoId": 4
-}
-
+},
+{
+        "nivel": 1,
+        "pontos": 10,
+        "categoria": "LACUNA",
+        "tipo": "LACUNAS",
+	"conteudoId": 1
+},
+{
+        "nivel": 1,
+        "pontos": 10,
+        "categoria": "LACUNA",
+        "tipo": "LACUNAS",
+	"conteudoId": 2
+},
+{
+        "nivel": 1,
+        "pontos": 10,
+        "categoria": "LACUNA",
+        "tipo": "LACUNAS",
+	"conteudoId": 3
+},
+{
+        "nivel": 1,
+        "pontos": 10,
+        "categoria": "LACUNA",
+        "tipo": "LACUNAS",
+	"conteudoId": 4
+},
