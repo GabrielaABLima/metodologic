@@ -12,4 +12,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface TarefaRepository extends JpaRepository<Tarefa, Long>{
     List<Tarefa> findByTurmaCodigoIn(List<String> turmaCodigos);
+    List<Tarefa> findByTurmaCodigo(String turmaCodigo);
 }

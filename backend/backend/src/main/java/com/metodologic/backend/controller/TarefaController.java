@@ -7,10 +7,14 @@ package com.metodologic.backend.controller;
 import com.metodologic.backend.controller.dto.TarefaCreateRequest;
 import com.metodologic.backend.controller.dto.TurmaCreateRequest;
 import com.metodologic.backend.domain.Tarefa;
+import com.metodologic.backend.domain.TarefasAlunos;
+import com.metodologic.backend.domain.TarefasQuestoes;
 import com.metodologic.backend.domain.Turma;
 import com.metodologic.backend.domain.TurmasAlunos;
 import com.metodologic.backend.domain.Usuario;
 import com.metodologic.backend.repository.TarefaRepository;
+import com.metodologic.backend.repository.TarefasAlunosRepository;
+import com.metodologic.backend.repository.TarefasQuestoesRepository;
 import com.metodologic.backend.repository.TurmaRepository;
 import com.metodologic.backend.repository.TurmasAlunosRepository;
 import com.metodologic.backend.repository.UsuarioRepository;
@@ -46,6 +50,12 @@ public class TarefaController {
     
     @Autowired
     TurmasAlunosRepository turmasAlunosRepository;
+    
+    @Autowired
+    TarefasQuestoesRepository tarefasQuestoesRepository;
+    
+    @Autowired
+    TarefasAlunosRepository tarefasAlunosRepository;
     
     @GetMapping(path = "/alunos/{alunoId}")
     public ResponseEntity<List<Tarefa>> findByAluno(@PathVariable long alunoId){
@@ -111,13 +121,22 @@ public class TarefaController {
     }
     
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable long id){
+    public ResponseEntity<Tarefa> delete(@PathVariable long id){
         Optional<Tarefa> tarefaOptional = tarefaRepository.findById(id);
 
         if (tarefaOptional.isPresent()) {
             Tarefa tarefa = tarefaOptional.get();
+            List<TarefasQuestoes> tarefasQuestoes = tarefasQuestoesRepository.findByTarefaId(tarefa.getId());
+                for (TarefasQuestoes questao : tarefasQuestoes) {
+                    tarefasQuestoesRepository.delete(questao);
+                } 
+                List<TarefasAlunos> tarefasAlunos = tarefasAlunosRepository.findByTarefaId(tarefa.getId());
+                for (TarefasAlunos alunos : tarefasAlunos) {
+                    tarefasAlunosRepository.delete(alunos);
+                } 
+                tarefaRepository.delete(tarefa);
             tarefaRepository.delete(tarefa);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(tarefa, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

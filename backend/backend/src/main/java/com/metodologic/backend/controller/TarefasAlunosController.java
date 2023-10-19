@@ -41,20 +41,21 @@ public class TarefasAlunosController {
    
 
     @GetMapping(path = "/alunos/{tarefaId}")
-    public ResponseEntity<List<Usuario>> findAlunosByTarefa(@PathVariable long tarefaId) {
+    public ResponseEntity<List<TarefasAlunos>> findAlunosByTarefa(@PathVariable long tarefaId) {
         List<TarefasAlunos> tarefasAlunos = tarefasAlunosRepository.findByTarefaId(tarefaId);
-        List<Usuario> alunos = new ArrayList<>();
-        for (TarefasAlunos tarefasAlunosToAdd : tarefasAlunos) {
-            Usuario aluno = tarefasAlunosToAdd.getAluno();
-            
-            alunos.add(aluno);
-        }
 
-        if (!alunos.isEmpty()) {
-            return new ResponseEntity<>(alunos, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(tarefasAlunos, HttpStatus.OK);
+
+           
+    }
+    
+    @GetMapping(path = "/tarefas/{alunoId}")
+    public ResponseEntity<List<TarefasAlunos>> findTarefasByAluno(@PathVariable long alunoId) {
+        List<TarefasAlunos> tarefasAlunos = tarefasAlunosRepository.findByAlunoId(alunoId);
+
+        return new ResponseEntity<>(tarefasAlunos, HttpStatus.OK);
+        
+            
     }
     
     @PostMapping(path = "/add")
