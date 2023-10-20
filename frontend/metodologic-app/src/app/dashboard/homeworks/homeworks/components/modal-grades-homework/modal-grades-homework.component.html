@@ -2,7 +2,7 @@
   <p class="variant2">{{alunosTarefa[0]?.tarefa?.nome}}</p>
 
   <div class="modal-content">
-    <div class="grade-container">
+    <div class="grade-container" *ngIf="alunosTarefa.length > 0">
       <div class="grade-item-list" *ngFor="let aluno of alunosTarefa; let i = index;" [ngClass]="{'gray-background': i % 2 === 0, 'white-background': i % 2 !== 0}">
         <div style="width: 40%;">
           <p class="variant6">{{aluno.aluno.nome}}</p>
@@ -14,6 +14,13 @@
           <p class="variant6">{{aluno.nota}}%</p>
         </div>
       </div>
+    </div>
+    <div *ngIf="alunosTarefa.length === 0">
+      <app-empty-state
+        title="Nenhuma avaliação a ser considerada"
+        description="As avaliações só consideram as notas de tarefas realizadas, se o aluno não fizer até a data de entrega considere como não feita."
+        imgSource="../../../../assets/images/empty-grade.png"
+      />
     </div>
   </div>
 </div>
