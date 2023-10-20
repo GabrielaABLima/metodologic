@@ -1,5 +1,5 @@
 <p class="variant2">Turmas</p>
-<div class="modules-container" *ngIf="resultados.length > 0">
+<div class="modules-container" *ngIf="classes.length > 0 ">
   <div style="display: flex; flex-direction: row; width: 100%; justify-content: space-between; align-items: center;">
     <mat-form-field appearance="outline" color="primary" style="width: calc(30% + 90px); margin-bottom: 0px;">
       <mat-label >
@@ -8,7 +8,7 @@
         </svg>
 
         </mat-label>
-      <input matInput [(ngModel)]="termoDePesquisa" (input)="pesquisar()" />
+      <input matInput [(ngModel)]="searchInput" (input)="handleSearch($event)" />
     </mat-form-field>
     <div style="display: flex; justify-content: flex-end;">
       <button style="background-color: #50aee411;" mat-icon-button (click)="modal.toggle()">
@@ -20,7 +20,7 @@
 
 <!-- table-example.component.html -->
 <table class="custom-table mat-table">
-  <thead>
+  <thead *ngIf="resultados.length > 0">
     <tr>
       <th>Código</th>
       <th>Nome</th>
@@ -64,7 +64,7 @@
 
 </div>
 
-<div class="empty-modules-container" *ngIf="resultados.length === 0">
+<div class="empty-modules-container" *ngIf="classes.length === 0">
   <app-empty-state
     [title]="titleEmpty"
     [description]="descriptionEmpty"
@@ -72,6 +72,15 @@
   >
     <button class="empty-button" (click)="emptyClick()">{{buttonEmpty}}</button>
   </app-empty-state>
+
+</div>
+
+<div class="empty-modules-container" *ngIf="resultados.length === 0 && classes.length > 0">
+  <app-empty-state
+      title="Nenhum resultado encontrado"
+      description="Nenhuma turma encontrada para a busca realizada, busque por outros valores ou apague e veja todas turmas"
+      imgSource="../../../../assets/images/empty-class.png"
+    />
 
 </div>
 

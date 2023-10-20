@@ -15,15 +15,15 @@ import { ClassesService } from 'src/app/services/classes.service';
   templateUrl: './classes.component.html',
   styleUrls: ['./classes.component.css']
 })
-export class ClassesComponent implements OnChanges{
+export class ClassesComponent{
 
   @ViewChild('modal') modal: any;
 
 
   displayedColumns: string[] = ['code', 'name', 'institution', 'course', 'participant', 'description'];
+  searchInput = "";
   classes: Turma[] = [];
   resultados: Turma[] = [];
-  termoDePesquisa = '';
   userRole = sessionStorage.getItem("role");
   userId = sessionStorage.getItem("id");
   titleEmpty = this.userRole === "aluno" ? "Nenhuma turma encontrada" : "Sem turmas criadas";
@@ -44,13 +44,12 @@ export class ClassesComponent implements OnChanges{
   ) {
   }
   ngOnInit(): void {
+    this.searchInput = "";
     if(this.userId){
       if(this.userRole === 'professor'){
         this.classesService.getClassesByProfessor(+this.userId).subscribe({
           next: (response) => {
-            response.map((turma) => {
-              this.classes.push(turma);
-            })
+            this.classes = response;
             this.resultados = this.classes;
           },
           error: (err) => {
@@ -72,25 +71,6 @@ export class ClassesComponent implements OnChanges{
       }
     }
 
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['termoDePesquisa']) {
-      this.pesquisar();
-    }
-  }
-  pesquisar() {
-    if(this.termoDePesquisa === ''){
-      this.resultados = this.classes;
-    }
-    this.resultados = this.classes.filter(objeto => {
-      const lowercaseTermo = this.termoDePesquisa.toLowerCase();
-
-      return objeto.nome.toLowerCase().includes(lowercaseTermo) ||
-        (objeto.descricao && objeto.descricao.toLowerCase().includes(lowercaseTermo)) ||
-        objeto.codigo.toLowerCase().includes(lowercaseTermo) ||
-        objeto.instituicaoEnsino.toLowerCase().includes(lowercaseTermo);
-    });
   }
 
   emptyClick(){
@@ -138,6 +118,15 @@ export class ClassesComponent implements OnChanges{
       verticalPosition: 'bottom',
       panelClass: ['red-snackbar','login-snackbar'],
       });
+  }
+
+  handleSearch(event: any) {
+      this.resultados = this.classes.filter((classe) => {
+        return Object.values(classe).some((valor) => {
+          return (valor + "").toLowerCase().includes(this.searchInput.toLowerCase());
+        });
+      });
+
   }
 }
 
