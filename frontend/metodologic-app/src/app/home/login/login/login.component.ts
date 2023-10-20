@@ -16,6 +16,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent {
 
   registerFormGroup!: FormGroup;
+  loadingLogin = false;
 
   constructor(
     private snackBar: MatSnackBar,
@@ -46,6 +47,7 @@ export class LoginComponent {
 
 
   ngOnInit(): void {
+
     this.registerFormGroup = this.formBuilder.group({
       email: new FormControl('', [
         Validators.required,
@@ -80,11 +82,22 @@ export class LoginComponent {
       next: (response) => {
         if(response.role === "aluno") this.openSuccessSnackBar("Aluno logado com sucesso!");
         if(response.role === "professor") this.openSuccessSnackBar("Professor logado com sucesso");
+
+
         sessionStorage.setItem("role", response.role);
         sessionStorage.setItem("token", response.token);
         sessionStorage.setItem("points", response.points.toString());
         sessionStorage.setItem("id", response.id.toString());
+        this.loadingLogin = true;
+        setTimeout(()=>{
+          window.location.reload();
+        }, 500);
+        this.loadingLogin = false;
         this.router.navigate(['/journey']);
+
+
+
+
 
       },
       error: (err) => {
