@@ -1,3 +1,4 @@
+import { Aluno } from "../aluno/aluno.dto";
 import { Turma } from "../turma/turma.dto";
 
 export class TarefaCreate {
@@ -20,3 +21,28 @@ export class Tarefa {
   ) {}
 }
 
+export class AlunoTarefa {
+  constructor(
+    public id: number,
+    public alunoId: number,
+    public tarefaId: number,
+    public nota: number,
+  ) {}
+}
+
+export class AlunoTarefaResponse {
+  constructor(
+    public id: number,
+    public aluno: Aluno,
+    public tarefa: Tarefa,
+    public nota: number,
+  ) {}
+}
+
+export class TarefaByAluno {
+  constructor(
+    public tarefa: Tarefa,
+    public nota: string,
+    public done: boolean,
+  ) {}
+}
