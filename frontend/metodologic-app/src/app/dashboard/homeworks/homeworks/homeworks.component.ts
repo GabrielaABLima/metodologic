@@ -28,8 +28,10 @@ export class HomeworksComponent {
   tarefas: Tarefa[] = [];
   tarefasAluno: TarefaByAluno[] = [];
   resultados: Tarefa[] = [];
+  resultadosAluno: TarefaByAluno[] = [];
   loadingAluno: boolean = true;
   dataAtual: Date = new Date();
+  searchInput = "";
   constructor(
     private homeworksService: HomeworksService,
     private studentsHomeworksService: StudentsHomeworksService,
@@ -43,13 +45,12 @@ export class HomeworksComponent {
 
 
   ngOnInit(): void {
+    this.searchInput = "";
     if(this.userId){
       if(this.userRole === 'professor'){
         this.homeworksService.getHomeworksByProfessor(+this.userId).subscribe({
           next: (response) => {
-            response.map((tarefa) => {
-              this.tarefas.push(tarefa);
-            })
+            this.tarefas = response;
             this.resultados = this.tarefas;
           },
           error: (err) => {
@@ -75,6 +76,7 @@ export class HomeworksComponent {
                 }
               });
             });
+            this.resultadosAluno = this.tarefasAluno;
 
             this.loadingAluno = false;
           },
@@ -115,5 +117,25 @@ export class HomeworksComponent {
       verticalPosition: 'bottom',
       panelClass: ['red-snackbar','login-snackbar'],
       });
+  }
+
+  handleSearch(event: any) {
+    if(this.userRole === 'professor'){
+      this.resultados = this.tarefas.filter((tarefa) => {
+        const turmaMatch = Object.values(tarefa.turma).some((valor) => {
+          return (valor + "").toLowerCase().includes(this.searchInput.toLowerCase());
+        });
+        const nomeMatch = tarefa.nome.toLowerCase().includes(this.searchInput.toLowerCase());
+        return turmaMatch || nomeMatch;
+      });
+    }else{
+      this.resultadosAluno = this.tarefasAluno.filter((tarefa) => {
+        const turmaMatch = Object.values(tarefa.tarefa.turma).some((valor) => {
+          return (valor + "").toLowerCase().includes(this.searchInput.toLowerCase());
+        });
+        const nomeMatch = tarefa.tarefa.nome.toLowerCase().includes(this.searchInput.toLowerCase());
+        return turmaMatch || nomeMatch;
+      });
+    }
   }
 }

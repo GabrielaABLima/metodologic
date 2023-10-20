@@ -1,5 +1,5 @@
 <p class="variant2">Tarefas</p>
-<div class="modules-container" *ngIf="resultados.length > 0 || tarefasAluno.length > 0">
+<div class="modules-container" *ngIf="tarefas.length > 0 || tarefasAluno.length > 0">
   <div style="display: flex; flex-direction: row; width: 100%; justify-content: space-between; align-items: center;">
     <mat-form-field appearance="outline" color="primary" style="width: calc(30% + 90px); margin-bottom: 0px;">
       <mat-label >
@@ -8,21 +8,17 @@
         </svg>
 
         </mat-label>
-      <input matInput />
+      <input matInput [(ngModel)]="searchInput" (input)="handleSearch($event)"/>
     </mat-form-field>
     <div style="display: flex; justify-content: flex-end;">
       <button *ngIf="userRole === 'professor'" style="background-color: #50aee411;" mat-icon-button (click)="modal.toggle()">
         <mat-icon>add</mat-icon>
       </button>
-      <button *ngIf="userRole === 'aluno'" style="background-color: #50aee411;" mat-icon-button (click)="modal.toggle()">
-        <mat-icon>filter_list</mat-icon>
-      </button>
     </div>
 </div>
 
-<!-- table-example.component.html -->
 <table class="custom-table mat-table">
-  <thead>
+  <thead *ngIf="resultados.length > 0 || resultadosAluno.length > 0">
     <tr>
       <th></th>
       <th>Data de entrega</th>
@@ -37,7 +33,7 @@
     </tr>
   </thead>
   <tbody *ngIf="userRole === 'aluno' && !loadingAluno">
-    <tr *ngFor="let homework of tarefasAluno; let i = index" class="tableRow">
+    <tr *ngFor="let homework of resultadosAluno; let i = index" class="tableRow">
       <td *ngIf="homework.done">
           <svg width="54" height="24" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" [attr.fill]="'rgb(255, ' + (255 - i * 10) + ', 0)'"/>
@@ -54,9 +50,9 @@
       </td>
       <td *ngIf="(homework.tarefa.dataEntrega+'') < dataAtual.toISOString() && !homework.done">
         <svg width="54" height="24" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" fill="#D3D3D3"/>
-          <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  fill="#D3D3D3"/>
-          <path opacity="0.7" d="M47.5 42.0068L0 18.1293L47.5 0L93.5 23.8775L47.5 42.0068Z" fill="#D3D3D3"/>
+          <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" fill="#ec6853"/>
+          <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  fill="#ec6853"/>
+          <path opacity="0.7" d="M47.5 42.0068L0 18.1293L47.5 0L93.5 23.8775L47.5 42.0068Z" fill="#ec6853"/>
         </svg>
     </td>
       <td>{{ homework.tarefa.dataEntrega | date:'dd/MM/yyyy' }}</td>
@@ -70,8 +66,8 @@
     </tr>
   </tbody>
   <tbody *ngIf="userRole === 'professor'">
-    <tr *ngFor="let homework of tarefas; let i = index" class="tableRow">
-      <td (click)="openHomework(homework.id)" style="cursor: pointer;">
+    <tr *ngFor="let homework of resultados; let i = index" class="tableRow">
+      <td>
         <svg width="54" height="24" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path opacity="0.7" d="M47.5 63.2313L0 39.3537L47.5 21.2245L93.5 45.102L47.5 63.2313Z" [attr.fill]="'rgb(255, ' + (255 - i * 10) + ', 0)'"/>
           <path opacity="0.7" d="M47.5 54.3878L0 30.5102L47.5 12.381L93.5 36.2585L47.5 54.3878Z"  [attr.fill]="'rgb(255, ' + (255 - i * 10) + ', 0)'"/>
@@ -111,16 +107,53 @@
 
 </div>
 
-<div  class="empty-modules-container" *ngIf="resultados.length === 0 && tarefasAluno.length === 0">
-  <app-empty-state
-    [title]="titleEmpty"
-    [description]="descriptionEmpty"
-    imgSource="../../../../assets/images/empty-homework.png"
-  >
-  <button *ngIf="userRole === 'professor'" class="empty-button" (click)="emptyClick()">Criar tarefa</button>
-  </app-empty-state>
+<div *ngIf="userRole === 'professor'">
+  <div  class="empty-modules-container" *ngIf="tarefas.length === 0">
+    <app-empty-state
+      [title]="titleEmpty"
+      [description]="descriptionEmpty"
+      imgSource="../../../../assets/images/empty-homework.png"
+    >
+    <button class="empty-button" (click)="emptyClick()">Criar tarefa</button>
+    </app-empty-state>
 
+  </div>
+
+  <div  class="empty-modules-container" *ngIf="(resultados.length === 0) && (tarefas.length > 0)">
+    <app-empty-state
+      title="Nenhum resultado encontrado"
+      description="Nenhuma tarefa encontrada para a busca realizada, busque por outros valores ou apague e veja todas tarefas"
+      imgSource="../../../../assets/images/empty-homework.png"
+    >
+    </app-empty-state>
+
+  </div>
 </div>
+
+<div *ngIf="userRole === 'aluno'">
+  <div  class="empty-modules-container" *ngIf="tarefasAluno.length === 0">
+    <app-empty-state
+      [title]="titleEmpty"
+      [description]="descriptionEmpty"
+      imgSource="../../../../assets/images/empty-homework.png"
+    />
+
+  </div>
+
+  <div  class="empty-modules-container" *ngIf="(resultadosAluno.length === 0) && (tarefasAluno.length > 0)">
+    <app-empty-state
+      title="Nenhum resultado encontrado"
+      description="Nenhuma tarefa encontrada para a busca realizada, busque por outros valores ou apague e veja todas tarefas"
+      imgSource="../../../../assets/images/empty-homework.png"
+    >
+    </app-empty-state>
+
+  </div>
+</div>
+
+
+
+
 
 <app-modal #modal title="Criar nova tarefa">
   <app-modal-homeworks></app-modal-homeworks>
