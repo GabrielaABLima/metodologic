@@ -1,0 +1,43 @@
+[
+{
+        "nivel": 4,
+        "pontos": 5,
+        "categoria": "APLICACAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 9
+},
+{
+        "nivel": 4,
+        "pontos": 10,
+        "categoria": "DEFINICAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 9
+},
+{
+        "nivel": 4,
+        "pontos": 5,
+        "categoria": "PALAVRA_CHAVE",
+        "tipo": "ASSOCIACAO",
+	"conteudoId": 9
+},
+{
+        "nivel": 4,
+        "pontos": 15,
+        "categoria": "LACUNA",
+        "tipo": "ABERTA",
+	"conteudoId": 4
+},
+{
+        "nivel": 4,
+        "pontos": 15,
+        "categoria": "LACUNA",
+        "tipo": "ABERTA",
+	"conteudoId": 7
+},
+{
+        "nivel": 4,
+        "pontos": 15,
+        "categoria": "LACUNA",
+        "tipo": "ABERTA",
+	"conteudoId": 8
+}]

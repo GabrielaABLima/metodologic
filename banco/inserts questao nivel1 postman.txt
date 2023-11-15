@@ -7,12 +7,6 @@
 {
         "nivel": 1,
         "pontos": 5,
-        "categoria": "DEFINICAO",
-        "tipo": "ASSOCIACAO"
-},
-{
-        "nivel": 1,
-        "pontos": 5,
         "categoria": "APLICACAO",
         "tipo": "OPTATIVA",
 	"conteudoId": 1
@@ -33,64 +27,43 @@
 },
 {
         "nivel": 1,
+        "pontos": 10,
+        "categoria": "DEFINICAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 1
+},
+{
+        "nivel": 1,
+        "pontos": 10,
+        "categoria": "DEFINICAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 2
+},
+{
+        "nivel": 1,
+        "pontos": 10,
+        "categoria": "DEFINICAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 3
+},
+{
+        "nivel": 1,
         "pontos": 5,
-        "categoria": "APLICACAO",
-        "tipo": "OPTATIVA",
-	"conteudoId": 4
-},
-{
-        "nivel": 1,
-        "pontos": 7,
-        "categoria": "DEFINICAO",
-        "tipo": "OPTATIVA",
+        "categoria": "PALAVRA_CHAVE",
+        "tipo": "ASSOCIACAO",
 	"conteudoId": 1
 },
 {
         "nivel": 1,
-        "pontos": 7,
-        "categoria": "DEFINICAO",
-        "tipo": "OPTATIVA",
+        "pontos": 5,
+        "categoria": "PALAVRA_CHAVE",
+        "tipo": "ASSOCIACAO",
 	"conteudoId": 2
 },
 {
         "nivel": 1,
-        "pontos": 7,
-        "categoria": "DEFINICAO",
-        "tipo": "OPTATIVA",
+        "pontos": 5,
+        "categoria": "PALAVRA_CHAVE",
+        "tipo": "ASSOCIACAO",
 	"conteudoId": 3
-},
-{
-        "nivel": 1,
-        "pontos": 10,
-        "categoria": "DEFINICAO",
-        "tipo": "OPTATIVA",
-	"conteudoId": 4
-},
-{
-        "nivel": 1,
-        "pontos": 10,
-        "categoria": "LACUNA",
-        "tipo": "LACUNAS",
-	"conteudoId": 1
-},
-{
-        "nivel": 1,
-        "pontos": 10,
-        "categoria": "LACUNA",
-        "tipo": "LACUNAS",
-	"conteudoId": 2
-},
-{
-        "nivel": 1,
-        "pontos": 10,
-        "categoria": "LACUNA",
-        "tipo": "LACUNAS",
-	"conteudoId": 3
-},
-{
-        "nivel": 1,
-        "pontos": 10,
-        "categoria": "LACUNA",
-        "tipo": "LACUNAS",
-	"conteudoId": 4
-},
+}]

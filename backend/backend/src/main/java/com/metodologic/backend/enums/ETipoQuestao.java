@@ -6,7 +6,6 @@ package com.metodologic.backend.enums;
 
 public enum ETipoQuestao {
     ASSOCIACAO("ASSOCIACAO"),
-    LACUNAS("LACUNAS"),
     ABERTA("ABERTA"),
     OPTATIVA("OPTATIVA");
 

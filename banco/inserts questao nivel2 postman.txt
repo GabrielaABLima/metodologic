@@ -1,42 +1,27 @@
-{
+[{
         "nivel": 2,
         "pontos": 5,
-        "categoria": "EXEMPLOS",
-        "tipo": "OPTATIVA",
-	"conteudoId": 3
-},
-{
-        "nivel": 2,
-        "pontos": 5,
-        "categoria": "EXEMPLOS",
-        "tipo": "OPTATIVA",
-	"conteudoId": 6
-},
-{
-        "nivel": 2,
-        "pontos": 5,
-        "categoria": "EXEMPLOS",
-        "tipo": "OPTATIVA",
-	"conteudoId": 2
-},
-{
-        "nivel": 2,
-        "pontos": 5,
-        "categoria": "EXEMPLOS",
-        "tipo": "OPTATIVA",
-	"conteudoId": 7
-},
-{
-        "nivel": 2,
-        "pontos": 10,
         "categoria": "DEFINICAO",
-        "tipo": "OPTATIVA",
-	"conteudoId": 3
-},	
+        "tipo": "ASSOCIACAO"
+},
 {
         "nivel": 2,
-        "pontos": 10,
-        "categoria": "DEFINICAO",
+        "pontos": 5,
+        "categoria": "APLICACAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 4
+},
+{
+        "nivel": 2,
+        "pontos": 5,
+        "categoria": "APLICACAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 5
+},
+{
+        "nivel": 2,
+        "pontos": 5,
+        "categoria": "APLICACAO",
         "tipo": "OPTATIVA",
 	"conteudoId": 6
 },
@@ -45,13 +30,61 @@
         "pontos": 10,
         "categoria": "DEFINICAO",
         "tipo": "OPTATIVA",
-	"conteudoId": 2
+	"conteudoId": 4
 },
 {
         "nivel": 2,
         "pontos": 10,
         "categoria": "DEFINICAO",
         "tipo": "OPTATIVA",
-	"conteudoId": 7
-}
-
+	"conteudoId": 5
+},
+{
+        "nivel": 2,
+        "pontos": 10,
+        "categoria": "DEFINICAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 6
+},
+{
+        "nivel": 2,
+        "pontos": 5,
+        "categoria": "PALAVRA_CHAVE",
+        "tipo": "ASSOCIACAO",
+	"conteudoId": 4
+},
+{
+        "nivel": 2,
+        "pontos": 5,
+        "categoria": "PALAVRA_CHAVE",
+        "tipo": "ASSOCIACAO",
+	"conteudoId": 5
+},
+{
+        "nivel": 2,
+        "pontos": 5,
+        "categoria": "PALAVRA_CHAVE",
+        "tipo": "ASSOCIACAO",
+	"conteudoId": 6
+},
+{
+        "nivel": 2,
+        "pontos": 15,
+        "categoria": "LACUNA",
+        "tipo": "ABERTA",
+	"conteudoId": 1
+},
+{
+        "nivel": 2,
+        "pontos": 15,
+        "categoria": "LACUNA",
+        "tipo": "ABERTA",
+	"conteudoId": 2
+},
+{
+        "nivel": 2,
+        "pontos": 15,
+        "categoria": "LACUNA",
+        "tipo": "ABERTA",
+	"conteudoId": 3
+}]

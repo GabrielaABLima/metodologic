@@ -1,0 +1,64 @@
+[
+{
+        "nivel": 3,
+        "pontos": 5,
+        "categoria": "APLICACAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 7
+},
+{
+        "nivel": 3,
+        "pontos": 5,
+        "categoria": "APLICACAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 8
+},
+{
+        "nivel": 3,
+        "pontos": 10,
+        "categoria": "DEFINICAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 7
+},
+{
+        "nivel": 3,
+        "pontos": 10,
+        "categoria": "DEFINICAO",
+        "tipo": "OPTATIVA",
+	"conteudoId": 8
+},
+{
+        "nivel": 3,
+        "pontos": 5,
+        "categoria": "PALAVRA_CHAVE",
+        "tipo": "ASSOCIACAO",
+	"conteudoId": 7
+},
+{
+        "nivel": 3,
+        "pontos": 5,
+        "categoria": "PALAVRA_CHAVE",
+        "tipo": "ASSOCIACAO",
+	"conteudoId": 8
+},
+{
+        "nivel": 3,
+        "pontos": 15,
+        "categoria": "LACUNA",
+        "tipo": "ABERTA",
+	"conteudoId": 4
+},
+{
+        "nivel": 3,
+        "pontos": 15,
+        "categoria": "LACUNA",
+        "tipo": "ABERTA",
+	"conteudoId": 5
+},
+{
+        "nivel": 3,
+        "pontos": 15,
+        "categoria": "LACUNA",
+        "tipo": "ABERTA",
+	"conteudoId": 6
+}]
