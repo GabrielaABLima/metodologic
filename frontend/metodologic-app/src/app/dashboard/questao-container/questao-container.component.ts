@@ -43,7 +43,7 @@ export class QuestaoContainerComponent {
       if(this.id){
         this.questionService.getByModule(+this.id).subscribe({
             next: (response) => {
-              response.slice(0,5).map((questao) => {
+              response.map((questao) => {
                 this.questoes.push(questao);
               })
             },
@@ -101,7 +101,6 @@ export class QuestaoContainerComponent {
       if (id !== null && pontos !== null){
         this.userService.updateUserPoints(+id, +pontos+this.score).subscribe({
           next: (response) => {
-            console.log(response);
             sessionStorage.setItem("points", (+pontos+this.score)+"");
           },
           error: (err) => {

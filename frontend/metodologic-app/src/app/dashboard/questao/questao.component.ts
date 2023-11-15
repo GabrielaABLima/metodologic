@@ -45,7 +45,7 @@ export class QuestaoComponent {
           .subscribe((associativeList: AssociativeList) => {
             this.associatives = associativeList;
           });
-        }else if(this.question.tipo === "LACUNAS"){
+        }else if(this.question.tipo === "ABERTA"){
           this.gapQuestion = this.buildQuestionService.buildGapQuestion(this.question);
           console.log(this.gapQuestion);
         }

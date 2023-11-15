@@ -10,6 +10,8 @@ import com.metodologic.backend.repository.ConteudoRepository;
 import com.metodologic.backend.repository.QuestaoRepository;
 import com.metodologic.backend.repository.UsuarioRepository;
 import jakarta.validation.Valid;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
@@ -64,9 +66,17 @@ public class QuestaoController {
     
     @GetMapping("/module/{nivel}")
     public ResponseEntity<List<Questao>> getByModule(@PathVariable int nivel){
-        List<Questao> questoes = questaoRepository.findByNivelOrderByRandom(nivel);
-        
-        return new ResponseEntity<>(questoes, HttpStatus.OK);
+        List<Questao> questoesSelecionadas = new ArrayList<>();
+        List<Questao> questoesNivelAtual = questaoRepository.findByNivelOrderByRandom(nivel);
+        int questoesNivelAtualSize = Math.min(5, questoesNivelAtual.size());
+        questoesSelecionadas.addAll(questoesNivelAtual.subList(0, questoesNivelAtualSize));
+        for (int i = 1; i <= nivel; i++) {
+            List<Questao> questoesNivelAnterior = questaoRepository.findByNivelOrderByRandom(nivel - i);
+            int questoesNivelAnteriorSize = Math.min(3, questoesNivelAnterior.size());
+            questoesSelecionadas.addAll(questoesNivelAnterior.subList(0, questoesNivelAnteriorSize));
+        }
+        Collections.shuffle(questoesSelecionadas);
+        return new ResponseEntity<>(questoesSelecionadas, HttpStatus.OK);
     }
     
     @GetMapping("")
