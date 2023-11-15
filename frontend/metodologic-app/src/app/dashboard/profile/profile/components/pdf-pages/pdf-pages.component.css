@@ -1,0 +1,49 @@
+.pdf-page-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #17384C;
+  width: 800px;
+  padding: 50px;
+}
+
+.img-pdf{
+  width: 400px;
+}
+
+.variant-title{
+  color: #FFFFFF;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 25px;
+}
+
+.variant-subtitle{
+  color: #FFFFFF;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.variant-text{
+  color: #FFFFFF;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  text-align: center;
+}
+
+.logo{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  opacity: 0.8;
+  color: #FFFFFF;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}

@@ -2,9 +2,13 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import jsPDF from 'jspdf';
 import { UpdateUserRequestDTO } from 'src/app/dto/usuario/UpdateUserRequestDTO';
 import { Usuario } from 'src/app/dto/usuario/UsuarioDTO';
 import { UsersService } from 'src/app/services/users.service';
+import html2canvas from 'html2canvas';
+
+
 
 export interface PeriodicElement {
   name: string;
@@ -13,14 +17,9 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { name: 'Conclusão do Nível Iniciante', description: "Concluir o nível inicial de desafios.", points: 50 },
-  { name: 'Mestre das Palavras', description: "Construir um vocabulário de 100 palavras.", points: 75 },
-  { name: 'Explorador Curioso', description: "Realizar 10 pesquisas no banco de dados do jogo.", points: 30 },
-  { name: 'Completista', description: "Concluir todas as missões e desafios do jogo.", points: 200 },
-  { name: 'Editor Exímio', description: "Criar um livro com mais de 500 palavras.", points: 100 },
-  { name: 'Arqueólogo Aventureiro', description: "Descobrir 5 artefatos históricos no jogo.", points: 60 },
-  { name: 'Desafiante Supremo', description: "Alcançar a maior pontuação em um desafio semanal.", points: 120 },
-
+  { name: 'Aprendiz Metodológico', description: "Concluir os desafios iniciais do módulo 1.", points: 50 },
+  { name: 'Maestro da Estruturação', description: "Construir uma base teórica de 5 metodologias", points: 75 },
+  { name: 'Maestro da Escrita Científica', description: "Finalizar o modo jornada", points: 100 },
 ];
 
 @Component({
@@ -32,6 +31,8 @@ export class ProfileComponent {
   editFormGroup!: FormGroup;
   editProfileClass = "tab";
   achievementsClass = "active tab";
+  generatingPdf = false;
+  type = 0;
 
   displayedColumns: string[] = ['name', 'description', 'points'];
   dataSource = ELEMENT_DATA;
@@ -168,6 +169,44 @@ export class ProfileComponent {
       });
     }
 }
+
+  shareLinkedin() {
+    const location = 'https://acomtece.sbv.ifsp.edu.br/';
+        const titulo = 'Minha conquista de Aprendiz Metodológico';
+        const url = `https://www.linkedin.com/shareArticle?mini=true&title=${encodeURIComponent(titulo)}&url=${encodeURIComponent(location)}`;
+        window.open(url, 'mywin', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0');
+    }
+
+  gerarPDF() {
+    this.type = 1;
+    this.generatingPdf = true;
+
+    const element = document.getElementById('certificado');
+
+    if (element && this.generatingPdf) {
+      html2canvas(element).then((canvas) => {
+        const downloadLink = document.createElement('a');
+        downloadLink.href = canvas.toDataURL('image/png');
+
+        downloadLink.download = 'certificado.png';
+
+        // Adiciona o link ao documento
+        document.body.appendChild(downloadLink);
+
+        // Simula um clique no link para iniciar o download
+        downloadLink.click();
+
+        // Remove o link do documento
+        document.body.removeChild(downloadLink);
+      });
+    }
+
+    this.generatingPdf = false;
+    this.type = 0;
+  }
+
+
+
 
 
 }

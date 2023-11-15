@@ -11,12 +11,14 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProgressInfoComponent } from './profile/components/progress-info/progress-info.component';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PdfPagesComponent } from './profile/components/pdf-pages/pdf-pages.component';
 
 
 @NgModule({
   declarations: [
     ProfileComponent,
-    ProgressInfoComponent
+    ProgressInfoComponent,
+    PdfPagesComponent
   ],
   imports: [
     CommonModule,
