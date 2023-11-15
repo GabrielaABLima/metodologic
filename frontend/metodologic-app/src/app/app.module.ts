@@ -19,7 +19,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EmptyStateComponent } from './dashboard/components/empty-state/empty-state.component';
 import { NotLoggedComponent } from './dashboard/components/not-logged/not-logged.component';
 import { EmptyStateModule } from './dashboard/components/empty-state/empty-state.module';
-
+import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
+import { QuestionAddCardComponent } from './dashboard/question-add-card/question-add-card.component';
 
 
 @NgModule({

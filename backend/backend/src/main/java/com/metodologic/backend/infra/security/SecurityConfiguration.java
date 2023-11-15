@@ -33,6 +33,7 @@ public class SecurityConfiguration {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/turmas").hasRole("PROFESSOR")
+                        .requestMatchers(HttpMethod.DELETE, "/turmas").hasRole("PROFESSOR")
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/questoes/register").permitAll()
@@ -55,7 +56,7 @@ public class SecurityConfiguration {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://localhost:4200"); // Adicione a origem permitida aqui
+        configuration.addAllowedOrigin("http://localhost:4200");
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         

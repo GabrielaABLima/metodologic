@@ -44,8 +44,28 @@ $my-yellow-palette: (
  )
 );
 
+$my-green-palette: (
+ 900: #55E397,
+ 800: #483769,
+ 700: #503d73,
+ 600: #5a457d,
+ 500: #614b83,
+ 400: #766394,
+ 300: #8d7ea7,
+ 200: #ada2c0,
+ 100: #cdc7d9,
+ 50: #ebe8ef,
+ contrast: (
+   50: rgba(black, 0.87),
+   100: rgba(black, 0.87),
+   200: rgba(black, 0.87),
+   300: white,
+
+ )
+);
+
 $frontend-exemplo-angular-primary: mat.define-palette($my-purple-palette, 900);
-$frontend-exemplo-angular-accent: mat.define-palette($my-yellow-palette, 900);
+$frontend-exemplo-angular-accent: mat.define-palette($my-green-palette, 900);
 
 $frontend-exemplo-angular-warn: mat.define-palette(mat.$red-palette);
 
