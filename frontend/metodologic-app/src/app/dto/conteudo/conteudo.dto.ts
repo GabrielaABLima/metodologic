@@ -25,5 +25,5 @@ export enum Categoria {
   TECNICA = "as técnicas",
   APLICACAO = 'a aplicação',
   DEFINICAO = 'a definição',
-  PALAVRA_CHAVES = 'as palavras-chaves'
+  PALAVRA_CHAVE = 'as palavras-chaves'
 }

@@ -76,6 +76,7 @@ public class QuestaoController {
             questoesSelecionadas.addAll(questoesNivelAnterior.subList(0, questoesNivelAnteriorSize));
         }
         Collections.shuffle(questoesSelecionadas);
+        questoesSelecionadas = questoesSelecionadas.subList(0, 5);
         return new ResponseEntity<>(questoesSelecionadas, HttpStatus.OK);
     }
     

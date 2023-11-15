@@ -70,9 +70,11 @@ export class BuildQuestionService {
         slicedConteudos.forEach((conteudo) => {
           const buildConteudo = this.obterValorDaPropriedade(conteudo, questao.categoria.toLowerCase()) + "";
           const conteudoToAdd: Associative = new Associative(conteudo.metodo, conteudo.id);
-          const answerToAdd: Associative = new Associative(buildConteudo, conteudo.id);
-          associativeMetodos.push(conteudoToAdd);
-          associativeAnswers.push(answerToAdd);
+            const answerToAdd: Associative = new Associative(buildConteudo, conteudo.id);
+            associativeAnswers.push(answerToAdd);
+            associativeMetodos.push(conteudoToAdd);
+
+
         });
 
         const shuffledMetodos = this.shuffleArray(associativeMetodos);
@@ -84,6 +86,39 @@ export class BuildQuestionService {
         throw error;
       })
     );
+  }
+
+  buildAssociativeQuestionWithId(questao: Questao): AssociativeList {
+    const conteudoSelecionado = questao.conteudo;
+    const associativeMetodos: Associative[] = [];
+    const associativeAnswers: Associative[] = [];
+    if(conteudoSelecionado){
+      const buildConteudo = this.obterValorDaPropriedade(conteudoSelecionado, questao.categoria.toLowerCase()) + "";
+      let options: string[] = buildConteudo.split(",");
+      for (let option of options) {
+        const answerToAdd: Associative = new Associative(option, conteudoSelecionado.id);
+        associativeAnswers.push(answerToAdd);
+      }
+      this.contentService.getRandomContentExceptById(conteudoSelecionado.id).subscribe({
+        next: (conteudos) => {
+          conteudos.forEach((conteudo) => {
+            const buildConteudo = this.obterValorDaPropriedade(conteudo, questao.categoria.toLowerCase()) + "";
+            const conteudoToAdd: Associative = new Associative(conteudo.metodo, conteudo.id);
+              let options: string[] = buildConteudo.split(",");
+              for (let option of options) {
+                if(!(associativeAnswers.find((answer) => answer.metodoKey == option))){
+                  const answerToAdd: Associative = new Associative(option, conteudo.id);
+                  associativeAnswers.push(answerToAdd);
+                }
+              }
+
+          });
+        }
+      });
+
+    }
+
+    return new AssociativeList(associativeMetodos, associativeAnswers);
   }
 
   shuffleArray<T>(array: T[]): T[] {
@@ -99,8 +134,12 @@ export class BuildQuestionService {
   }
 
   obterValorDaPropriedade(conteudo: Conteudo, propriedade: string) {
-    if (conteudo.hasOwnProperty(propriedade)) {
-      return conteudo[propriedade] + "";
+    let propriedadeAux = propriedade;
+    if(propriedade == "palavra_chave"){
+      propriedadeAux = "palavrasChaves";
+    }
+    if (conteudo.hasOwnProperty(propriedadeAux)) {
+      return conteudo[propriedadeAux] + "";
     } else {
       return null;
     }

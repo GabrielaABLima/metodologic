@@ -8,13 +8,13 @@
     <app-journey-item (onClickModule)="openGame(2)" [clickable]="userPoints >= 50" color="#FED812" title="MÓDULO 2" description="Curtindo a jornada? Vamos aprender mais alguns métodos: Revisão Sistemática da Literatura, Pesquisa Experimental e Documental. Além de revisar métodos do módulo anterior."/>
   </mat-grid-tile>
   <mat-grid-tile fxFlex.gt-md="33.3%">
-    <app-journey-item [clickable]="userPoints >= 100" color="#FFBE0D" title="MÓDULO 3" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio"/>
+    <app-journey-item (onClickModule)="openGame(3)" [clickable]="userPoints >= 100" color="#FFBE0D" title="MÓDULO 3" description="Vamos aprofundar nosso conhecimento nos métodos estudados e considerar ainda os novos métodos: Pesquisa de Campo e Pesquisa participante"/>
   </mat-grid-tile>
   <mat-grid-tile fxFlex.gt-md="33.3%">
-    <app-journey-item [clickable]="userPoints >= 150" color="#FD9D0C" title="MÓDULO 4" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio"/>
+    <app-journey-item (onClickModule)="openGame(4)" [clickable]="userPoints >= 150" color="#FD9D0C" title="MÓDULO 4" description="Este módulo avançado introduz o método de Pesquisa Participante e Pesquisa Ação, incluindo uma análise aprofundada de métodos já explorados."/>
   </mat-grid-tile>
   <mat-grid-tile fxFlex.gt-md="33.3%">
-    <app-journey-item [clickable]="userPoints >= 200" color="#FD6E0E" title="MÓDULO 5" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio"/>
+    <app-journey-item (onClickModule)="openGame(5)" [clickable]="userPoints >= 200" color="#FD6E0E" title="MÓDULO 5" description="Neste nível avançado, desafiaremos nossa compreensão dos métodos de pesquisa, consolidando todo o conhecimento adquirido nos módulos anteriores."/>
   </mat-grid-tile>
 </mat-grid-list>
 </div>

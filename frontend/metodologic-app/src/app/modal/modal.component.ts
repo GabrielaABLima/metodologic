@@ -8,13 +8,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ModalComponent {
   @Input() title!: string;
   mostrar: boolean = false;
-  classId?: string;
+  id?: string;
 
 
-toggle(classId?: string) {
-  this.classId = classId;
-  this.mostrar = !this.mostrar;
-}
+  toggle(classId?: string) {
+    this.id = classId;
+    this.mostrar = !this.mostrar;
+  }
 
 
 }

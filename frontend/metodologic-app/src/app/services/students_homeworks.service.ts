@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Turma } from '../dto/turma/turma.dto';
 import { Aluno } from '../dto/aluno/aluno.dto';
 import { Questao, QuestaoTarefa } from '../dto/questao/questao.dto';
-import { AlunoTarefa } from '../dto/tarefa/tarefa.dto';
+import { AlunoTarefa, AlunoTarefaResponse } from '../dto/tarefa/tarefa.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +22,18 @@ export class StudentsHomeworksService {
     return this.http.post<AlunoTarefa>(this.URL+`/add`, {tarefaId, alunoId, nota}, { headers });
   }
 
-  getQuestionsByHomework(tarefaId: number):Observable<Questao[]> {
+  getHomeworksByStudent(alunoId: number):Observable<AlunoTarefaResponse[]> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.token}`
     });
-    return this.http.get<Questao[]>(this.URL + `/` + tarefaId, { headers });
+    return this.http.get<AlunoTarefaResponse[]>(this.URL + `/tarefas/` + alunoId, { headers });
+  }
+
+  getStudentsByHomework(tarefaId: number):Observable<AlunoTarefaResponse[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.get<AlunoTarefaResponse[]>(this.URL + `/alunos/` + tarefaId, { headers });
   }
 
   deleteQuestionHomework(tarefaId: number, questaoId: number):Observable<Questao>{

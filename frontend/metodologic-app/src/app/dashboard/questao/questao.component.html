@@ -8,20 +8,41 @@
     </div>
   </div>
 </div>
-<div class="optativa-container" *ngIf="question.tipo === 'ASSOCIACAO'">
+<div class="optativa-container" *ngIf="question.tipo === 'ASSOCIACAO' && !!question.conteudo">
+  <div style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+    <p class="enunciado">Associe o método {{question.conteudo?.metodo}} com {{title}} correspondente{{plural? 's': ''}}:</p>
+    <p class="enunciado">{{rightOptions}}/{{totalOptions}}</p>
+  </div>
+  <div class="opcoes">
+    <div *ngIf="associatives" class="associative-opcao">
+      <div class="associatives-grid">
+        <ng-container *ngFor="let item of associatives.answers; let i = index">
+          <div  class="associatives-buttons-container-with-content">
+            <button [disabled]="rightOptions == totalOptions" class="associative-button answer-button" [ngClass]="{'disabledButton': rightOptions == totalOptions}" (click)="selectAssociativeAnswer(associatives.answers[i].value, associatives.answers[i].metodoKey)">
+              <p>
+                {{primeiraLetraMaiuscula(item.metodoKey)}}
+              </p>
+            </button>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="optativa-container" *ngIf="question.tipo === 'ASSOCIACAO' && !question.conteudo">
   <p class="enunciado">Associe os métodos listados com {{title}} correspondente{{plural? 's': ''}}:</p>
   <div class="opcoes">
     <div *ngIf="associatives" class="associative-opcao">
-      <ng-container *ngFor="let item of associatives.metodos; let i = index">
+      <ng-container *ngFor="let item of associatives.answers; let i = index">
         <div  class="associatives-buttons-container">
           <button class="associative-button metodo-button" (click)="selectAssociativeMetodo(item.value)">
             <p>
-              {{item.metodoKey}}
+              {{associatives.metodos[i].metodoKey}}
             </p>
           </button>
           <button class="associative-button answer-button" (click)="selectAssociativeAnswer(associatives.answers[i].value)">
             <p>
-              {{associatives.answers[i].metodoKey}}
+              {{item.metodoKey}}
             </p>
           </button>
         </div>
